@@ -12,25 +12,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <!-- SwiperJS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <!-- CSS -->
+     <link rel="stylesheet" href="css/common.css">
     <style>
-        *{
-            font-family: "Poppins", sans-serif;
-        }
-        .h-font{
-            font-family: "Merienda", cursive;
-        }
-        .custom-bg{
-          background-color: #2ec1ac;
-        }
-        .custom-bg:hover{
-          background-color: #269786;
-        }
         .availabity-form{
           margin-top: -50px;
           z-index: 2;
           position: relative;
         }
-
         @media screen and (max-width: 575px){
           .availabity-form{
             margin-top: 25px;
@@ -256,7 +245,171 @@
     </div>
   </div>
 
-
+  <!-- List Rooms -->
+   <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Danh sách các phòng</h2>
+  <div class="container">
+    <div class="row">
+      <!-- Room 1 -->
+      <div class="col-lg-4 col-md-6 my-3">
+        <div class="card border-0 shadow " style="max-width: 350px; margin: auto;">
+          <img src="images/rooms/1.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 >Phòng Đơn</h5>
+            <h6 class="mb-4">2tr999 VND/ngày</h6>
+            <div class="features mb-4">
+                <h6 class="mb-1">Mô tả</h6>
+                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  2 Rooms
+                </span>
+                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  2 Bathrooms
+                </span>
+                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  1 Living Room
+                </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  2 Con ghẹ đít bự
+                </span>
+            </div>
+            <div class="facilites mb-4">
+              <h6 class="mb-1">Cơ sở vật chất</h6>
+              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                Wifi 5G
+              </span>
+              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                2 TV
+              </span>
+              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                1 Infinity Pool
+              </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
+                Ghế tình yêu
+              </span>
+            </div>
+            <div class="rating mb-4">
+              <h6 class="mb-1">Đánh giá</h6>
+              <span class="badge rounded-pill bg-light">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+              </span> 
+            </div>
+            <div class="d-flex justify-content-evenly mb-2">
+              <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Đặt phòng</a>
+              <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Thêm chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Room 2 -->
+      <div class="col-lg-4 col-md-6 my-3">
+        <div class="card border-0 shadow " style="max-width: 350px; margin: auto;">
+          <img src="images/rooms/1.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 >Phòng Đơn</h5>
+            <h6 class="mb-4">2tr999 VND/ngày</h6>
+            <div class="features mb-4">
+                <h6 class="mb-1">Mô tả</h6>
+                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  2 Rooms
+                </span>
+                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  2 Bathrooms
+                </span>
+                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  1 Living Room
+                </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  2 Con ghẹ đít bự
+                </span>
+            </div>
+            <div class="facilites mb-4">
+              <h6 class="mb-1">Cơ sở vật chất</h6>
+              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                Wifi 5G
+              </span>
+              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                2 TV
+              </span>
+              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                1 Infinity Pool
+              </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
+                Ghế tình yêu
+              </span>
+            </div>
+            <div class="rating mb-4">
+              <h6 class="mb-1">Đánh giá</h6>
+              <span class="badge rounded-pill bg-light">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+              </span> 
+            </div>
+            <div class="d-flex justify-content-evenly mb-2">
+              <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Đặt phòng</a>
+              <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Thêm chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Room 3 -->
+      <div class="col-lg-4 col-md-6 my-3">
+        <div class="card border-0 shadow " style="max-width: 350px; margin: auto;">
+          <img src="images/rooms/1.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 >Phòng Đơn</h5>
+            <h6 class="mb-4">2tr999 VND/ngày</h6>
+            <div class="features mb-4">
+                <h6 class="mb-1">Mô tả</h6>
+                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  2 Rooms
+                </span>
+                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  2 Bathrooms
+                </span>
+                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  1 Living Room
+                </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
+                  2 Con ghẹ đít bự
+                </span>
+            </div>
+            <div class="facilites mb-4">
+              <h6 class="mb-1">Cơ sở vật chất</h6>
+              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                Wifi 5G
+              </span>
+              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                2 TV
+              </span>
+              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                1 Infinity Pool
+              </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
+                Ghế tình yêu
+              </span>
+            </div>
+            <div class="rating mb-4">
+              <h6 class="mb-1">Đánh giá</h6>
+              <span class="badge rounded-pill bg-light">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+              </span> 
+            </div>
+            <div class="d-flex justify-content-evenly mb-2">
+              <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Đặt phòng</a>
+              <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Thêm chi tiết</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 text-center mt-5">
+        <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms >>></a>
+      </div>
+    </div>
+  </div>
   <br><br><br>
   <br><br><br>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
