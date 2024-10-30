@@ -180,7 +180,6 @@
 <!-- Carousel -->
  <!-- Swiper -->
 <div class="contrainer-fluid px-lg-4 mt-4">
-
   <div class="swiper swiper-container">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
@@ -202,11 +201,11 @@
           <img src="images/carousel/6.png" class="w-100 d-block"/>
       </div>
   </div>
-  
+
 </div>
 
- <!-- Form Check Booking -->
-  <div class="container availabity-form">
+    <!-- Form Check Booking -->
+    <div class="container availabity-form">
     <div class="row">
       <div class="col-lg-12 bg-white shadow p-4 rounded">
         <h5 class="mb-4"> Check Booking Availabity</h5>
@@ -233,7 +232,7 @@
                 <select class="form-select shadow-none">
                   <option value="1">One</option>
                   <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <otion value="3">Three</otion>
                 </select>
               </div>
               <div class="col-lg-1 mb-lg-3 mt-2">
@@ -245,9 +244,9 @@
     </div>
   </div>
 
-  <!-- List Rooms -->
-   <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Danh sách các phòng</h2>
-  <div class="container">
+    <!-- OUR Rooms -->
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Phòng</h2>
+    <div class="container">
     <div class="row">
       <!-- Room 1 -->
       <div class="col-lg-4 col-md-6 my-3">
@@ -410,8 +409,182 @@
       </div>
     </div>
   </div>
-  <br><br><br>
-  <br><br><br>
+
+    <!-- OUR FACILITIES -->
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">CƠ SỞ</h2>
+    <div class="contrainer">
+        <div class="row justify-content-evenly px-lg-0 px-5">
+            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+                <img src="images/facilities/Wifi.svg" width="80px">
+                <h5 class="mt-3">Wifi</h5>
+            </div>
+            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+                <img src="images/facilities/air.svg" width="80px">
+                <h5 class="mt-3">Máy Lạnh</h5>
+            </div>
+            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+                <img src="images/facilities/raidio.svg" width="80px">
+                <h5 class="mt-3">Radio</h5>
+            </div>
+            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+                <img src="images/facilities/SPA.svg" width="80px">
+                <h5 class="mt-3">Spq</h5>
+            </div>
+            <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
+                <img src="images/facilities/TV.svg" width="80px">
+                <h5 class="mt-3">TV</h5>
+            </div>
+        </div>
+        <div class="col-lg-12 text-center mt-4">
+            <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Facilities >>></a>
+        </div>
+    </div>
+
+    <!-- OUR Feedback -->
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Feedbacks</h2>
+    <div class="contrainer mt-5">
+        <!-- Swiper Feedback-->
+        <div class="swiper swiper-testimonials">
+            <div class="swiper-wrapper mb-5" >
+                <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex algin-item-center p-4">
+                        <img src="images/facilities/star.jpg" width="30px">
+                        <h6 class="m-1 ms-2">Random user1</h6>
+                    </div>
+                    <p>
+                        Bản thân chúng tôi mong muốn có trải nghiệm tuyệt vời và
+                        những khoảng thời gian tuyệt vời đã là sự thành công rất lớn.
+                    </p>
+                    <div class="rating">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                </div>
+                <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex algin-item-center p-4">
+                        <img src="images/facilities/star.jpg" width="30px">
+                        <h6 class="m-1 ms-2">Random user2</h6>
+                    </div>
+                    <p>
+                       Amazing Good Job Em
+                    </p>
+                    <div class="rating">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                </div>
+                <div class="swiper-slide bg-white p-4">
+                    <div class="profile d-flex algin-item-center p-4">
+                        <img src="images/facilities/star.jpg" width="30px">
+                        <h6 class="m-1 ms-2">Random user3</h6>
+                    </div>
+                    <p>
+                        Trời ơi có cái hotel gì mà xịn thế nào, phải kiểm tra mới được
+                    </p>
+                    <div class="rating">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="col-lg-12 text-center mt-4">
+            <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Feedbacks>>></a>
+        </div>
+    </div>
+
+    <!-- Reach us -->
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Liên hệ</h2>
+    <div class="contrainer">
+        <div class="row">
+            <!-- Map -->
+            <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
+                <iframe class="w-100" height="320px" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d56453.162935122054!2d109.13825128198059!3d12.253457263750047!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317067de00952ab5%3A0x3a2caca4f28a4c62!2sComodo%20Nha%20Trang%20Hotel!5e1!3m2!1svi!2s!4v1730276218078!5m2!1svi!2s" ></iframe>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <!-- Phone Number -->
+                <div class="bg-white p-4 rounded mb-4">
+                    <h5>Hotline</h5>
+                    <a href="tel: +849057768899" class="d-inline-block mb-2 text-decoration-none text-dark">
+                        <i class="bi bi-telephone-fill"></i>+84 9057768899
+                    </a>
+                    <br>
+                    <a href="tel: +849057768899" class="d-inline-block mb-2 text-decoration-none text-dark">
+                        <i class="bi bi-telephone-fill"></i> +84 8567842167
+                    </a>
+                </div>
+                <!-- Platform -->
+                <div class="bg-white p-4 rounded mb-4">
+                    <h5>Follow us</h5>
+                    <a href="#" class="d-inline-block mb-3">
+                        <span class="badge bg-light text-dark fs-6 p-2">
+                            <i class="bi bi-twitter-x"></i> Twitter
+                        </span>
+                    </a>
+                    <br>
+                    <a href="#" class="d-inline-block mb-3">
+                        <span class="badge bg-light text-dark fs-6 p-2">
+                            <i class="bi bi-facebook"></i> Facebook
+                        </span>
+                    </a>
+                    <br>
+                    <a href="#" class="d-inline-block mb-3">
+                        <span class="badge bg-light text-dark fs-6 p-2">
+                            <i class="bi bi-instagram"></i> Instagram
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="contrainer-fluid bg-white mt-5">
+        <div class="row">
+            <div class="col-lg-4 p-4">
+                <h3 class="h-font fw-bold fs-3">Comodo Nha Trang Hotel</h3>
+                <p>
+                    Hotel Comodo là một điểm đến lý tưởng cho du khách, nổi tiếng với không gian sang trọng,
+                    dịch vụ chuyên nghiệp và tiện nghi hiện đại. Với vị trí thuận lợi, gần các điểm du lịch nổi tiếng và trung tâm thương mại,
+                    Comodo mang đến cho khách hàng trải nghiệm lưu trú tuyệt vời.
+                </p>
+            </div>
+            <div class="col-lg-4 p-4">
+                <h5 class="mb-3">Links</h5>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a> <br>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Rooms</a> <br>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Facilities</a> <br>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Contact us</a> <br>
+                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">About</a>
+            </div>
+            <div class="col-lg-4 p-4">
+                <h5 class="mb-3">Follow us</h5>
+                <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
+                    <i class="bi bi-twitter-x"></i> Twitter
+                </a><br>
+                <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
+                    <i class="bi bi-facebook"></i> Facebook
+                </a><br>
+                <a href="#" class="d-inline-block text-dark text-decoration-none">
+                    <i class="bi bi-instagram"></i> Instagram
+                </a><br>
+            </div>
+        </div>
+    </div>
+
+    <h6 class="text-center bg-dark text-white p-3 m-0">Design and Devoloped by CEO GROUP</h6>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
@@ -456,6 +629,39 @@
         delay: 3500,
         disableonOnInteraction: false,
       }
+    });
+    //Swiper slidebar  coverflow
+    var swiper = new Swiper(".swiper-testimonials", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        slidesPerView: "3",
+        loop: true,
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+            },
+            640: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+        }
     });
 
 </script>
