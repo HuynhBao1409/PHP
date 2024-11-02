@@ -3,17 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel</title>
-    <!-- Bootraps 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <!-- Icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Hotel - HOME</title>
     <!-- SwiperJS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <!-- CSS -->
-     <link rel="stylesheet" href="css/common.css">
+    <?php require ('inc/links.php');?>
     <style>
         .availabity-form{
           margin-top: -50px;
@@ -29,154 +22,9 @@
     </style>
 </head>
 <body class="bg-light">
-<nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 px-lg-2 shadow-sm ssticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand mx-2 fw-bold fs-3 h-font" href="index.php">HOTEL</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active mx-2" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mx-2" href="#">Rooms</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mx-2" href="#">Facilities</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mx-2" href="#">Contact us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link mx-2" href="#">About</a>
-        </li>
-      </ul>
-      <div class="d-flex">
-        <button type="button" class="btn btn-outline-dark shadow-none mx-lg-3 mx-3" data-bs-toggle="modal" data-bs-target="#loginModal">
-            Login
-        </button>
-        <button type="button" class="btn btn-outline-primary shadow-none" data-bs-toggle="modal" data-bs-target="#registerModal">
-            Register
-        </button>
-      </div>
-    </div>
-  </div>
-</nav>
+    <!--Header-->
+    <?php require ('inc/header.php'); ?>
 
-<!-- Login Modal -->
-<div class="modal fade" id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">
-            <i class="bi bi-person-circle fs-3 mx-2"></i> User Login
-        </h5>
-        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control shadow-none">
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <div class="input-group">
-                <input type="password" id="password" class="form-control">
-                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                    <i class="bi bi-eye" id="eyeIcon"></i>
-                </button>
-            </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-between">
-            <button type="submit" class="btn btn-dark shadow-none">
-                LOGIN
-            </button>
-            <a href="#" class="text-secondary text-decoration-none">Forgot Password?</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Register Modal -->
-<div class="modal fade" id="registerModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">
-          <i class="bi bi-person-vcard"></i> User Registration
-        </h5>
-        <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 ps-0 mb-3">
-              <label classs="form-label">Name</label>
-              <input type="text" class="form-control shadow-none">
-            </div>
-            <div class="col-md-6 p-0">
-              <label classs="form-label">Email</label>
-              <input type="email" class="form-control shadow-none">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-7 col-md-6 ps-0 mb-3">
-              <label classs="form-label">Phone Number</label>
-              <input type="number" class="form-control shadow-none">
-            </div>
-            <div class="col-lg-5 col-md-6 p-0">
-              <label classs="form-label">Picture</label>
-              <input type="file" class="form-control shadow-none">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12 col-md-6 ps-0 mb-3">
-              <label classs="form-label">Andress</label>
-              <textarea class="form-control shadow-none" id=""></textarea>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-12 col-md-6 ps-0 mb-3">
-              <label classs="form-label">Date of Birth</label>
-              <input type="date" class="form-control shadow-none">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-6 col-md-6 ps-0 mb-3">
-              <label for="password1" class="form-label">Password</label>
-              <div class="input-group">
-                  <input type="password" id="password1" class="form-control shadow-none">
-                  <button class="btn btn-outline-secondary" type="button" id="togglePassword1">
-                      <i class="bi bi-eye" id="eyeIcon1"></i>
-                  </button>
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-6 ps-0 mb-3">
-              <label for="password2" class="form-label">Confirm Password</label>
-              <div class="input-group">
-                  <input type="password" id="password2" class="form-control">
-                  <button class="btn btn-outline-secondary" type="button" id="togglePassword2">
-                      <i class="bi bi-eye" id="eyeIcon2"></i>
-                  </button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-between">
-            <button type="submit" class="btn btn-dark shadow-none">
-                REGISTER
-            </button>
-            <a href="#" class="text-secondary text-decoration-none">Already have account?</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 <!-- Carousel -->
  <!-- Swiper -->
 <div class="contrainer-fluid px-lg-4 mt-4">
@@ -411,7 +259,7 @@
   </div>
 
     <!-- OUR FACILITIES -->
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">CƠ SỞ</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">TIỆN ÍCH</h2>
     <div class="contrainer">
         <div class="row justify-content-evenly px-lg-0 px-5">
             <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
@@ -428,7 +276,7 @@
             </div>
             <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
                 <img src="images/facilities/SPA.svg" width="80px">
-                <h5 class="mt-3">Spq</h5>
+                <h5 class="mt-3">Spa</h5>
             </div>
             <div class="col-lg-2 col-md-2 text-center bg-white rounded shadow py-4 my-3">
                 <img src="images/facilities/TV.svg" width="80px">
@@ -440,10 +288,10 @@
         </div>
     </div>
 
-    <!-- OUR Feedback -->
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Feedbacks</h2>
+    <!-- OUR Reviews -->
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Reviews</h2>
     <div class="contrainer mt-5">
-        <!-- Swiper Feedback-->
+        <!-- Swiper Reviews-->
         <div class="swiper swiper-testimonials">
             <div class="swiper-wrapper mb-5" >
                 <div class="swiper-slide bg-white p-4">
@@ -499,7 +347,7 @@
             <div class="swiper-pagination"></div>
         </div>
         <div class="col-lg-12 text-center mt-4">
-            <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Feedbacks>>></a>
+            <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Reviews>>></a>
         </div>
     </div>
 
@@ -509,7 +357,7 @@
         <div class="row">
             <!-- Map -->
             <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-                <iframe class="w-100" height="320px" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d56453.162935122054!2d109.13825128198059!3d12.253457263750047!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317067de00952ab5%3A0x3a2caca4f28a4c62!2sComodo%20Nha%20Trang%20Hotel!5e1!3m2!1svi!2s!4v1730276218078!5m2!1svi!2s" ></iframe>
+                <iframe class="w-100" height="320px" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28229.831991927833!2d109.25586900000002!3d12.22304!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317066e1dd9688bb%3A0x6ae039c3dfc181db!2sVinpearl%20Resort%20Nha%20Trang!5e1!3m2!1svi!2sus!4v1730539444657!5m2!1svi!2sus""></iframe>
             </div>
             <div class="col-lg-4 col-md-4">
                 <!-- Phone Number -->
@@ -550,42 +398,9 @@
 
     </div>
 
-    <!-- Footer -->
-    <div class="contrainer-fluid bg-white mt-5">
-        <div class="row">
-            <div class="col-lg-4 p-4">
-                <h3 class="h-font fw-bold fs-3">Comodo Nha Trang Hotel</h3>
-                <p>
-                    Hotel Comodo là một điểm đến lý tưởng cho du khách, nổi tiếng với không gian sang trọng,
-                    dịch vụ chuyên nghiệp và tiện nghi hiện đại. Với vị trí thuận lợi, gần các điểm du lịch nổi tiếng và trung tâm thương mại,
-                    Comodo mang đến cho khách hàng trải nghiệm lưu trú tuyệt vời.
-                </p>
-            </div>
-            <div class="col-lg-4 p-4">
-                <h5 class="mb-3">Links</h5>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Home</a> <br>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Rooms</a> <br>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Facilities</a> <br>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">Contact us</a> <br>
-                <a href="#" class="d-inline-block mb-2 text-dark text-decoration-none">About</a>
-            </div>
-            <div class="col-lg-4 p-4">
-                <h5 class="mb-3">Follow us</h5>
-                <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-                    <i class="bi bi-twitter-x"></i> Twitter
-                </a><br>
-                <a href="#" class="d-inline-block text-dark text-decoration-none mb-2">
-                    <i class="bi bi-facebook"></i> Facebook
-                </a><br>
-                <a href="#" class="d-inline-block text-dark text-decoration-none">
-                    <i class="bi bi-instagram"></i> Instagram
-                </a><br>
-            </div>
-        </div>
-    </div>
+    <!--Footer-->
+    <?php require ('inc/footer.php'); ?>
 
-    <h6 class="text-center bg-dark text-white p-3 m-0">Design and Devoloped by CEO GROUP</h6>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
