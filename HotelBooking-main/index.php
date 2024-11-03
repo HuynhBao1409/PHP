@@ -131,6 +131,15 @@
                 Ghế tình yêu
               </span>
             </div>
+            <div class="guests mb-4">
+                  <h6 class="mb-1">Số lượng khách</h6>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                5 người lớn
+              </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                4 trẻ em
+              </span>
+              </div>
             <div class="rating mb-4">
               <h6 class="mb-1">Đánh giá</h6>
               <span class="badge rounded-pill bg-light">
@@ -183,6 +192,15 @@
                 Ghế tình yêu
               </span>
             </div>
+              <div class="guests mb-4">
+                  <h6 class="mb-1">Số lượng khách</h6>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                5 người lớn
+              </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                4 trẻ em
+              </span>
+              </div>
             <div class="rating mb-4">
               <h6 class="mb-1">Đánh giá</h6>
               <span class="badge rounded-pill bg-light">
@@ -221,6 +239,15 @@
                   2 Con ghẹ đít bự
                 </span>
             </div>
+              <div class="guests mb-4">
+                  <h6 class="mb-1">Cơ sở vật chất</h6>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                5 người lớn
+              </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                4 trẻ em
+              </span>
+              </div>
             <div class="facilites mb-4">
               <h6 class="mb-1">Cơ sở vật chất</h6>
               <span class="badge rounded-pill bg-light text-dark text-wrap ">
@@ -235,6 +262,15 @@
                 Ghế tình yêu
               </span>
             </div>
+              <div class="guests mb-4">
+                  <h6 class="mb-1">Số lượng khách</h6>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                5 người lớn
+              </span>
+                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                4 trẻ em
+              </span>
+              </div>
             <div class="rating mb-4">
               <h6 class="mb-1">Đánh giá</h6>
               <span class="badge rounded-pill bg-light">
@@ -289,7 +325,7 @@
     </div>
 
     <!-- OUR Reviews -->
-    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Reviews</h2>
+    <h2 class="mt-5 pt-4 mb-4 text-center fw-bold h-font">Đánh giá</h2>
     <div class="contrainer mt-5">
         <!-- Swiper Reviews-->
         <div class="swiper swiper-testimonials">
@@ -478,6 +514,7 @@
             },
         }
     });
+
 
 </script>
 </body>

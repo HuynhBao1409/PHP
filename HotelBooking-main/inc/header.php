@@ -11,13 +11,13 @@
           <a class="nav-link active mx-2" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-2" href="#">Rooms</a>
+          <a class="nav-link mx-2" href="rooms.php">Rooms</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-2" href="facilities.php">Facilities</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link mx-2" href="#">Contact us</a>
+          <a class="nav-link mx-2" href="contact.php">Contact us</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-2" href="about.php">About</a>
@@ -61,7 +61,7 @@
         </div>
         <div class="d-flex align-items-center justify-content-between">
             <button type="submit" class="btn btn-dark shadow-none">
-LOGIN
+                LOGIN
             </button>
             <a href="#" class="text-secondary text-decoration-none">Forgot Password?</a>
         </div>

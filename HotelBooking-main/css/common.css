@@ -1,12 +1,18 @@
+
 :root{
     --teal: #2ec1ac;
     --teal_hover: #279e8c;
 }
-*{
-    font-family: "Poppins", sans-serif;
+html{
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
-.h-font{
-    font-family: "Merienda", cursive;
+
+.h-font {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 .custom-bg{
   background-color: var(--teal);

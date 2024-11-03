@@ -18,7 +18,7 @@
     <?php require ('inc/header.php'); ?>
     <div class="my-5 px-4">
         <h2 class="fw-bold h-font text-center">TIỆN ÍCH</h2>
-        <hr>
+        <hr class="w-50 mx-auto">
         <div class="h-line bg-dark"></div>
         <p class="text-center mt-3">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit.
