@@ -54,10 +54,10 @@
                         <i class="bi bi-twitter-x"></i>
                     </a>
                     <a href="#" class="d-inline-block text-dark fs-5 me-2">
-                        <i class="bi bi-facebook"></i> Facebook
+                        <i class="bi bi-facebook"></i>
                     </a>
                     <a href="#" class="d-inline-block text-dark fs-5 me-2">
-                        <i class="bi bi-instagram"></i> Instagram
+                        <i class="bi bi-instagram"></i>
                     </a>
                 </div>
             </div>
