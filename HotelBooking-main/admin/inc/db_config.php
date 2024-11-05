@@ -12,14 +12,23 @@
     //Bảo mật dữ liệu đầu vào
     function filteration($data){
         foreach ($data as $key => $value) {
-            $data[$key] = trim($value); //trim() xóa khoảng trắng ở đầu và cuối chuỗi
-            $data[$key] = stripslashes($value); //stripslashes xóa dấu gạch chéo
-            $data[$key] = htmlspecialchars($value); //chuyển ký tự đặc biệt thành html
-            $data[$key] = strip_tags($value); //bỏ thẻ html,php khỏi chuỗi
+            $value = trim($value);
+            $value = stripslashes($value);
+            $value = htmlspecialchars($value);
+            $value = strip_tags($value);
+            $data[$key] = $value; // Gán giá trị đã xử lý vào mảng
         }
         return $data;
     }
 
+    function selectAll($table) {
+        $con = $GLOBALS['con'];
+        $res = mysqli_query($con, "SELECT * FROM $table");
+        if (!$res) {
+            die("Query failed: " . mysqli_error($con));
+        }
+        return $res;
+    }
     function select($sql,$values,$datatypes){
         $con =$GLOBALS['con'];
         if($stmt = mysqli_prepare($con,$sql)){
@@ -39,4 +48,64 @@
             die("Query cannot be prepared -Select");
         }
     }
+
+    function update($sql,$values,$datatypes){
+        $con =$GLOBALS['con'];
+        if($stmt = mysqli_prepare($con,$sql)){
+            mysqli_stmt_bind_param($stmt, $datatypes,...$values);
+            if(mysqli_stmt_execute($stmt)){
+                $res = mysqli_stmt_affected_rows($stmt);
+                mysqli_stmt_close($stmt);
+                return $res;
+            }
+            else{
+                mysqli_stmt_close($stmt);
+                die("Query cannot be executed -Update");
+            }
+
+        }
+        else{
+            die("Query cannot be prepared -Update");
+        }
+    }
+
+    function insert($sql,$values,$datatypes){
+        $con =$GLOBALS['con'];
+        if($stmt = mysqli_prepare($con,$sql)){
+            mysqli_stmt_bind_param($stmt, $datatypes,...$values);
+            if(mysqli_stmt_execute($stmt)){
+                $res = mysqli_stmt_affected_rows($stmt);
+                mysqli_stmt_close($stmt);
+                return $res;
+            }
+            else{
+                mysqli_stmt_close($stmt);
+                die("Query cannot be executed - Insert");
+            }
+
+        }
+        else{
+            die("Query cannot be prepared - Insert");
+        }
+    }
+
+    function delete($sql,$values,$datatypes){
+    $con =$GLOBALS['con'];
+    if($stmt = mysqli_prepare($con,$sql)){
+        mysqli_stmt_bind_param($stmt, $datatypes,...$values);
+        if(mysqli_stmt_execute($stmt)){
+            $res = mysqli_stmt_affected_rows($stmt);
+            mysqli_stmt_close($stmt);
+            return $res;
+        }
+        else{
+            mysqli_stmt_close($stmt);
+            die("Query cannot be executed -Delete");
+        }
+
+    }
+    else{
+        die("Query cannot be prepared -Delete");
+    }
+}
 ?>

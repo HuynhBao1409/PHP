@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2024 at 10:06 AM
+-- Generation Time: Nov 05, 2024 at 02:06 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,6 +40,73 @@ CREATE TABLE `admin_cred` (
 INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`) VALUES
 (1, 'admin', '123');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_details`
+--
+
+CREATE TABLE `contact_details` (
+  `sr_no` int(11) NOT NULL,
+  `address` varchar(50) NOT NULL,
+  `gmap` varchar(100) NOT NULL,
+  `pn1` varchar(30) NOT NULL,
+  `pn2` varchar(30) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `fb` varchar(100) NOT NULL,
+  `insta` varchar(100) NOT NULL,
+  `tw` varchar(100) NOT NULL,
+  `iframe` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `contact_details`
+--
+
+INSERT INTO `contact_details` (`sr_no`, `address`, `gmap`, `pn1`, `pn2`, `email`, `fb`, `insta`, `tw`, `iframe`) VALUES
+(1, 'City, Hon Tre Nha Trang, Vĩnh Nguyên, Nha Trang, K', 'https://maps.app.goo.gl/ttSiQZuKfnQQ7gTd6', '84 90577688992', '84 9057768899', 'abc@gmail.com', 'facebook.com', 'instagram.com', 'twitter.com', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31194.83770616767!2d109.2272085!3d12.2242448!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317066e1dd9688bb:0x6ae039c3dfc181db!2sVinpearl Resort Nha Trang!5e0!3m2!1sen!2s!4v1730781584534!5m2!1sen!2s');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `sr_no` int(11) NOT NULL,
+  `site_title` varchar(50) NOT NULL,
+  `site_about` varchar(250) NOT NULL,
+  `shutdown` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`sr_no`, `site_title`, `site_about`, `shutdown`) VALUES
+(1, 'Vinpearl Nha Trang 123', 'Vinpearl Nha Trang là nơi có các khách sạn là một điểm đến lý tưởng cho du khách, nổi tiếng với không gian sang trọng, dịch vụ chuyên nghiệp và tiện nghi hiện đại. Với vị trí thuận lợi, gần các điểm du lịch nổi tiếng và trung tâm thương mại, Comodo m', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `team_details`
+--
+
+CREATE TABLE `team_details` (
+  `sr_no` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `picture` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `team_details`
+--
+
+INSERT INTO `team_details` (`sr_no`, `name`, `picture`) VALUES
+(4, 'SangTraan', 'IMG_17791.jpg'),
+(5, 'AnhSeng', 'IMG_18943.jpg'),
+(7, 'Phan Hoang', 'IMG_87681.png');
+
 --
 -- Indexes for dumped tables
 --
@@ -51,6 +118,24 @@ ALTER TABLE `admin_cred`
   ADD PRIMARY KEY (`sr_no`);
 
 --
+-- Indexes for table `contact_details`
+--
+ALTER TABLE `contact_details`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `team_details`
+--
+ALTER TABLE `team_details`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -59,6 +144,24 @@ ALTER TABLE `admin_cred`
 --
 ALTER TABLE `admin_cred`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `contact_details`
+--
+ALTER TABLE `contact_details`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `team_details`
+--
+ALTER TABLE `team_details`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
