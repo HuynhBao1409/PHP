@@ -24,32 +24,28 @@
 <body class="bg-light">
     <!--Header-->
     <?php require ('inc/header.php'); ?>
-
+    <?php
+        $contact_q= "SELECT * FROM `contact_details` WHERE `sr_no`=?"; //Lấy dữ liệu từ bảng contact_details với sr_no=?
+        $values = [1];
+        $contact_r = mysqli_fetch_assoc(select($contact_q,$values,'i')); //Lấy 1 dòng kết quả dạng array
+    ?>
 <!-- Carousel -->
- <!-- Swiper -->
 <div class="contrainer-fluid px-lg-4 mt-4">
   <div class="swiper swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">
-        <img src="images/carousel/1.png" class="w-100 d-block" />
-      </div>
-      <div class="swiper-slide">
-          <img src="images/carousel/2.png" class="w-100 d-block"/>
-      </div>
-      <div class="swiper-slide">
-          <img src="images/carousel/3.png" class="w-100 d-block"/>
-      </div>
-      <div class="swiper-slide">
-          <img src="images/carousel/4.png" class="w-100 d-block"/>
-      </div>
-      <div class="swiper-slide">
-          <img src="images/carousel/5.png" class="w-100 d-block"/>
-      </div>
-      <div class="swiper-slide">
-          <img src="images/carousel/6.png" class="w-100 d-block"/>
-      </div>
+        <?php
+            $res = selectAll('carousel');
+            while ($row = mysqli_fetch_assoc($res)){
+                $path = CAROUSEL_IMG_PATH;
+                echo <<<data
+                    <div class="swiper-slide">
+                        <img src="$path$row[image] " class="w-100 d-block">
+                    </div>
+                data;
+            }
+        ?>
+    </div>
   </div>
-
 </div>
 
     <!-- Form Check Booking -->
@@ -394,36 +390,50 @@
         <div class="row">
             <!-- Map -->
             <div class="col-lg-8 col-md-8 p-4 mb-lg-0 mb-3 bg-white rounded">
-                <iframe class="w-100" height="320px" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28229.831991927833!2d109.25586900000002!3d12.22304!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317066e1dd9688bb%3A0x6ae039c3dfc181db!2sVinpearl%20Resort%20Nha%20Trang!5e1!3m2!1svi!2sus!4v1730539444657!5m2!1svi!2sus""></iframe>
+                <iframe class="w-100" height="320px" src="<?php echo $contact_r['iframe'] ?>""></iframe>
             </div>
             <div class="col-lg-4 col-md-4">
                 <!-- Phone Number -->
                 <div class="bg-white p-4 rounded mb-4">
                     <h5>Hotline</h5>
-                    <a href="tel: +849057768899" class="d-inline-block mb-2 text-decoration-none text-dark">
-                        <i class="bi bi-telephone-fill"></i>+84 9057768899
+                    <a href="tel: + <?php echo $contact_r['pn1'] ?>" class="d-inline-block mb-2 text-decoration-none text-dark">
+                        <i class="bi bi-telephone-fill"></i> + <?php echo $contact_r['pn1'] ?>
                     </a>
                     <br>
-                    <a href="tel: +849057768899" class="d-inline-block mb-2 text-decoration-none text-dark">
-                        <i class="bi bi-telephone-fill"></i> +84 8567842167
-                    </a>
+                    <?php
+                    // Kiểm tra nếu số điện thoại 2 không rỗng thì hiển thị link và icon gọi điện
+                        if($contact_r['pn2']!=''){
+                            echo <<< data
+                                <a href="tel: + $contact_r[pn2]" class="d-inline-block mb-2 text-decoration-none text-dark">
+                                    <i class="bi bi-telephone-fill"></i> + $contact_r[pn2]
+                                </a>
+                            data;
+                        }
+                    ?>
                 </div>
                 <!-- Platform -->
                 <div class="bg-white p-4 rounded mb-4">
                     <h5>Follow us</h5>
-                    <a href="#" class="d-inline-block mb-3">
-                        <span class="badge bg-light text-dark fs-6 p-2">
-                            <i class="bi bi-twitter-x"></i> Twitter
-                        </span>
-                    </a>
-                    <br>
-                    <a href="#" class="d-inline-block mb-3">
+                    <?php
+                        if($contact_r['tw']!=''){
+                            echo <<< data
+                            <a href="$contact_r[tw]" class="d-inline-block mb-3">
+                                <span class="badge bg-light text-dark fs-6 p-2">
+                                <i class="bi bi-twitter-x"></i> Twitter
+                                </span>
+                            </a>
+                            <br>
+                            data;
+                        }
+                    ?>
+
+                    <a href="<?php echo $contact_r['fb']?>" class="d-inline-block mb-3">
                         <span class="badge bg-light text-dark fs-6 p-2">
                             <i class="bi bi-facebook"></i> Facebook
                         </span>
                     </a>
                     <br>
-                    <a href="#" class="d-inline-block mb-3">
+                    <a href="<?php echo $contact_r['insta']?>" class="d-inline-block mb-3">
                         <span class="badge bg-light text-dark fs-6 p-2">
                             <i class="bi bi-instagram"></i> Instagram
                         </span>
