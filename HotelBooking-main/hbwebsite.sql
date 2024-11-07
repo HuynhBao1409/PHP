@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2024 at 05:36 AM
+-- Generation Time: Nov 07, 2024 at 10:05 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,7 +60,8 @@ INSERT INTO `carousel` (`sr_no`, `image`) VALUES
 (3, 'IMG_39857.png'),
 (4, 'IMG_34886.png'),
 (5, 'IMG_84417.png'),
-(6, 'IMG_28937.png');
+(6, 'IMG_28937.png'),
+(7, 'IMG_26881.png');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,87 @@ CREATE TABLE `contact_details` (
 --
 
 INSERT INTO `contact_details` (`sr_no`, `address`, `gmap`, `pn1`, `pn2`, `email`, `fb`, `insta`, `tw`, `iframe`) VALUES
-(1, 'City, Hon Tre Nha Trang, Vĩnh Nguyên, Nha Trang, K', 'https://maps.app.goo.gl/ttSiQZuKfnQQ7gTd6', 84905467851, 84905467851, 'abc123@gmail.com', 'https://www.facebook.com/', 'https://www.instagram.com/', 'https://www.twitter.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31194.83770616767!2d109.2272085!3d12.2242448!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317066e1dd9688bb:0x6ae039c3dfc181db!2sVinpearl Resort Nha Trang!5e0!3m2!1sen!2s!4v1730781584534!5m2!1sen!2s');
+(1, 'City, Hon Tre Nha Trang, Vĩnh Nguyên, Nha Trang, K', 'https://maps.app.goo.gl/ttSiQZuKfnQQ7gTd6', 84365855293, 84905467851, 'abc123@gmail.com', 'https://www.facebook.com/', 'https://www.instagram.com/', 'https://www.twitter.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31194.83770616767!2d109.2272085!3d12.2242448!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317066e1dd9688bb:0x6ae039c3dfc181db!2sVinpearl Resort Nha Trang!5e0!3m2!1sen!2s!4v1730781584534!5m2!1sen!2s');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facilities`
+--
+
+CREATE TABLE `facilities` (
+  `id` int(11) NOT NULL,
+  `icon` varchar(100) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `facilities`
+--
+
+INSERT INTO `facilities` (`id`, `icon`, `name`, `description`) VALUES
+(0, 'IMG_37391.svg', 'Máy bay', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\r\n                                    Dignissimos harum perferendis quas quidem totam!');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `features`
+--
+
+CREATE TABLE `features` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `features`
+--
+
+INSERT INTO `features` (`id`, `name`) VALUES
+(0, 'na');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `area` int(11) NOT NULL,
+  `price` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `adult` int(11) NOT NULL,
+  `children` int(11) NOT NULL,
+  `description` varchar(350) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_facilities`
+--
+
+CREATE TABLE `room_facilities` (
+  `sr_no` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `facilities_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_features`
+--
+
+CREATE TABLE `room_features` (
+  `sr_no` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `features_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -106,7 +187,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`sr_no`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'Vinpearl Nha Trang', 'Vinpearl Nha Trang là nơi có các khách sạn là một điểm đến lý tưởng cho du khách, nổi tiếng với không gian sang trọng, dịch vụ chuyên nghiệp và tiện nghi hiện đại. Với vị trí thuận lợi, gần các điểm du lịch nổi tiếng và trung tâm thương mại, Comodo m', 0);
+(1, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -129,6 +210,29 @@ INSERT INTO `team_details` (`sr_no`, `name`, `picture`) VALUES
 (5, 'AnhSeng', 'IMG_18943.jpg'),
 (7, 'Phan Hoang', 'IMG_87681.png'),
 (8, 'Mr.Nghia', 'IMG_66561.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_queries`
+--
+
+CREATE TABLE `user_queries` (
+  `sr_no` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `subject` varchar(200) NOT NULL,
+  `message` varchar(500) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp(),
+  `seen` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user_queries`
+--
+
+INSERT INTO `user_queries` (`sr_no`, `name`, `email`, `subject`, `message`, `date`, `seen`) VALUES
+(0, 'Tin Thanh', 'tin.dt.63cntt@ntu.edu.vn', 'abc', '213124r', '2024-11-06', 1);
 
 --
 -- Indexes for dumped tables
@@ -153,6 +257,40 @@ ALTER TABLE `contact_details`
   ADD PRIMARY KEY (`sr_no`);
 
 --
+-- Indexes for table `facilities`
+--
+ALTER TABLE `facilities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `features`
+--
+ALTER TABLE `features`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `room_facilities`
+--
+ALTER TABLE `room_facilities`
+  ADD PRIMARY KEY (`sr_no`),
+  ADD KEY `facilities id` (`facilities_id`),
+  ADD KEY `room id` (`room_id`);
+
+--
+-- Indexes for table `room_features`
+--
+ALTER TABLE `room_features`
+  ADD PRIMARY KEY (`sr_no`),
+  ADD KEY `rm id` (`room_id`),
+  ADD KEY `features id` (`features_id`);
+
+--
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
@@ -162,6 +300,12 @@ ALTER TABLE `settings`
 -- Indexes for table `team_details`
 --
 ALTER TABLE `team_details`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `user_queries`
+--
+ALTER TABLE `user_queries`
   ADD PRIMARY KEY (`sr_no`);
 
 --
@@ -178,13 +322,31 @@ ALTER TABLE `admin_cred`
 -- AUTO_INCREMENT for table `carousel`
 --
 ALTER TABLE `carousel`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `contact_details`
 --
 ALTER TABLE `contact_details`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `room_facilities`
+--
+ALTER TABLE `room_facilities`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `room_features`
+--
+ALTER TABLE `room_features`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -197,6 +359,24 @@ ALTER TABLE `settings`
 --
 ALTER TABLE `team_details`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `room_facilities`
+--
+ALTER TABLE `room_facilities`
+  ADD CONSTRAINT `facilities id` FOREIGN KEY (`facilities_id`) REFERENCES `facilities` (`id`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `room id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `room_features`
+--
+ALTER TABLE `room_features`
+  ADD CONSTRAINT `features id` FOREIGN KEY (`features_id`) REFERENCES `features` (`id`) ON UPDATE NO ACTION,
+  ADD CONSTRAINT `rm id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

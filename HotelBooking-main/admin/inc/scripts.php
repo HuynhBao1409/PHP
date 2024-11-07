@@ -11,6 +11,10 @@
             </div>
         `;
         document.body.append(element);
+
+        setTimeout(remAlert, 2000);
+
+
         // Thêm style cho alert
         element.firstElementChild.style.position = 'fixed';
         element.firstElementChild.style.top = '80px';
@@ -24,6 +28,10 @@
                 element.remove();
             }, 300);
         }, 2000);
+    }
+
+    function remAlert(){
+        document.getElementsByClassName('alert')[0].remove();
     }
 
     function setActive() {

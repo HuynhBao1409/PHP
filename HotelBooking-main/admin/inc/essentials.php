@@ -4,6 +4,8 @@
     define('SITE_URL','http://127.0.0.1/HotelBooking-main/');
     define('ABOUT_IMG_PATH', SITE_URL. 'images/about/');
     define('CAROUSEL_IMG_PATH', SITE_URL. 'images/carousel/');
+    define('FEATURES_IMG_PATH', SITE_URL. 'images/features/');
+    define('FACILITIES_IMG_PATH', SITE_URL. 'images/facilities/');
 
 
     //backend
@@ -13,6 +15,8 @@
     define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/HotelBooking-main/images/');
     define('ABOUT_FOLDER','about/');
     define('CAROUSEL_FOLDER','carousel/');
+    define('FEATURES_FOLDER','features/');
+    define('FACILITIES_FOLDER','facilities/');
 
     function adminLogin()
     {
@@ -87,6 +91,52 @@
        else{
         return false;
        }
+    }
+
+
+    function uploadSVGImage($image, $folder)
+    {
+        // Tạo đường dẫn đầy đủ đến thư mục
+        $target_dir = UPLOAD_IMAGE_PATH.$folder;
+
+        // Kiểm tra và tạo thư mục nếu không tồn tại
+        if (!file_exists($target_dir)) {
+            mkdir($target_dir, 0755, true);
+        }
+
+        $valid_mime = ['image/svg+xml'];
+        $img_mime = $image['type'];
+
+        // Debug để kiểm tra mime type
+        error_log("File MIME type: " . $img_mime);
+        error_log("File size: " . ($image['size']/(1024*1024)) . "MB");
+
+        if (!in_array($img_mime, $valid_mime)) {
+            return 'inv_img';
+        }
+        else if (($image['size']/(1024*1024)) > 1) {
+            return 'inv_size';
+        }
+        else {
+            $ext = pathinfo($image['name'], PATHINFO_EXTENSION);
+            $rname = 'IMG_'.random_int(11111,99999).".$ext";
+
+            $img_path = $target_dir.$rname;
+
+            // Debug thông tin file
+            error_log("Target directory: " . $target_dir);
+            error_log("Full image path: " . $img_path);
+            error_log("Temporary file: " . $image['tmp_name']);
+
+            if (move_uploaded_file($image['tmp_name'], $img_path)) {
+                return $rname;
+            }
+            else {
+                // Log lỗi cụ thể từ PHP
+                error_log("Upload failed - PHP Error: " . error_get_last()['message']);
+                return 'upd_failed';
+            }
+        }
     }
 
 ?>
