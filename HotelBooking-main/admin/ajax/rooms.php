@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require('../inc/db_config.php');
 require('../inc/essentials.php');
 adminLogin();
@@ -8,7 +11,7 @@ if (isset($_POST['add_room'])) {
     $facilities = filteration(json_decode($_POST['facilities']));
     $frm_data = filteration($_POST);
 
-    $q1 = "INSERT INTO `rooms`(`name`, `area`, `price`, `quantity`, `adult`, `children`, `desc`) VALUES (?,?,?,?,?,?,?)";
+    $q1 = "INSERT INTO `rooms`(`name`, `area`, `price`, `quantity`, `adult`, `children`, `description`) VALUES (?,?,?,?,?,?,?)";
     $values = [
         $frm_data['name'],
         $frm_data['area'],
@@ -16,7 +19,7 @@ if (isset($_POST['add_room'])) {
         $frm_data['quantity'],
         $frm_data['adult'],
         $frm_data['children'],
-        $frm_data['desc']
+        $frm_data['description']
     ];
 
     if (insert($q1, $values, 'siiiiis')) {
@@ -64,15 +67,22 @@ if (isset($_POST['add_room'])) {
 
 if (isset($_POST['get_all_rooms'])) {
     $res = selectAll('rooms');
-    $i = 0;
+    $i = 1;
     $data = "";
 
     while ($row = mysqli_fetch_assoc($res)) {
+        if($row['status']==1){
+            $status = "<button onclick='toggle_status($row[id],0)' class='btn btn-dark btn-sm shadow-none'>active</button>";
+        }
+        else{
+            $status = "<button onclick='toggle_status($row[id],1)' class='btn btn-warning btn-sm shadow-none'>inactive</button>";
+        }
+
         $data .= "
             <tr class='align-middle'>
                 <td>$i</td>
                 <td>$row[name]</td>
-                <td>$row[area]</td>
+                <td>$row[area] sq. ft.</td>
                 <td>
                     <span class='badge rounded-pill bg-light text-dark'>
                         Adult: $row[adult];
@@ -81,14 +91,31 @@ if (isset($_POST['get_all_rooms'])) {
                         Children: $row[children];
                     </span>
                 </td>
-                <td>$row[price]</td>
+                <td>VND $row[price]</td>
                 <td>$row[quantity]</td>
-                <td>Status</td>
-                <td>Buttons</td>
+                <td>$status</td>
+                <td>
+                    <button type='button' class='btn btn-primary shadow-none btn-sm' data-bs-toggle='modal' data-bs-target='#edit-room'>
+                        <i class='bi bi-pencil-square'></i>
+                    </button>
+                </td>
             </tr>
         ";
         $i++;
     }
     echo $data;
+}
+
+if (isset($_POST['get_all_rooms'])) {
+    $frm_data = filteration($_POST);
+
+    $q = "UPDATE `rooms` SET `status`=? WHERE `id`=?";
+    $v =[$frm_data['value'],$frm_data['toggle_status']];
+
+    if(update($q,$v,'ii')){
+        echo 1;
+    }else{
+        echo 0;
+    }
 }
 ?>

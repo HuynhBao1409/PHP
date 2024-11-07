@@ -1,8 +1,10 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require ('inc/essentials.php');
 require ('inc/db_config.php');
 adminLogin();
-
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_POST['seen_all'])) {
@@ -14,7 +16,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         else{
             alert('error','Operation Failed');
         }
-        // Redirect sau khi thực hiện xong
         header("Location: ".$_SERVER['PHP_SELF']);
         exit;
     }
@@ -29,13 +30,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         else{
             alert('error','Operation Failed');
         }
-        // Redirect sau khi thực hiện xong
         header("Location: ".$_SERVER['PHP_SELF']);
         exit;
     }
 
     if(isset($_POST['delete_all'])) {
-        $con = $GLOBALS['con'];  // lấy biến $con từ global
+        $con =$GLOBALS['con'];
         $q = "DELETE FROM `user_queries`";
         if(mysqli_query($con,$q)){
             alert('success','Đã xóa tất cả');
@@ -58,7 +58,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             else{
                 alert('error','Xóa thất bại');
             }
-            // Redirect sau khi thực hiện xong
             header("Location: ".$_SERVER['PHP_SELF']);
             exit;
         }
@@ -71,12 +70,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $quantity = $_POST['quantity'];
         $adult = $_POST['adult'];
         $children = $_POST['children'];
-        $desc = $_POST['desc'];
+        $description = $_POST['description'];
         $features = json_decode($_POST['features']);
         $facilities = json_decode($_POST['facilities']);
 
         $q = "INSERT INTO `rooms`(`name`, `area`, `price`, `quantity`, `adult`, `children`, `description`) VALUES (?,?,?,?,?,?,?)";
-        $values = [$name, $area, $price, $quantity, $adult, $children, $desc];
+        $values = [$name, $area, $price, $quantity, $adult, $children, $description];
         if(insert($q, $values, 'siiiiis')){
             $room_id = $GLOBALS['con']->insert_id;
 
@@ -132,7 +131,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </button>
                     </div>
                     <div class="table-responsive-lg" style="height: 450px; overflow-y: scroll;">
-                        <table class="table table-hover border">
+                        <table class="table table-hover border text-center">
                             <thead class="sticky-top">
                             <tr class="bg-dark text-light">
                                 <th scope="col">#</th>
@@ -168,28 +167,28 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Name</label>
-                            <input type="text" name="name" class="form-control shadow-none" required>
+                            <label class="form-label fw-bold" for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-control shadow-none" autocomplete="name" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Area</label>
-                            <input type="number" min="1" name="area" class="form-control shadow-none" required>
+                            <label class="form-label fw-bold" for="area">Area</label>
+                            <input type="number" min="1" id="area" name="area" class="form-control shadow-none" autocomplete="area" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Price</label>
-                            <input type="number" min="1" name="price" class="form-control shadow-none" required>
+                            <label class="form-label fw-bold" for="price">Price</label>
+                            <input type="number" min="1" id="price" name="price" class="form-control shadow-none" autocomplete="price" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Quantity</label>
-                            <input type="number" min="1" name="quantity" class="form-control shadow-none" required>
+                            <label class="form-label fw-bold" for="quantity">Quantity</label>
+                            <input type="number" min="1" id="quantity" name="quantity" class="form-control shadow-none" autocomplete="quantity" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Adult (Max.)</label>
-                            <input type="number" min="1" name="adult" class="form-control shadow-none" required>
+                            <label class="form-label fw-bold" for="adult">Adult (Max.)</label>
+                            <input type="number" min="1" id="adult" name="adult" class="form-control shadow-none" autocomplete="adult" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Children (Max.)</label>
-                            <input type="number" min="1" name="children" class="form-control shadow-none" required>
+                            <label class="form-label fw-bold" for="children">Children (Max.)</label>
+                            <input type="number" min="1" id="children" name="children" class="form-control shadow-none" autocomplete="children" required>
                         </div>
                     </div>
                     <div class="col-12 mb-3">
@@ -200,10 +199,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                             while($opt = mysqli_fetch_assoc($res)){
                                 echo "
                                         <div class='col-md-3 mb-1'>
-                                            <labe>
-                                                <input type='checkbox' name='features[]' value='$opt[id]' class='form-check-input' shadow-none>
+                                            <label>
+                                                <input type='checkbox' name='features' value='$opt[id]' class='form-check-input shadow-none'>
                                                 $opt[name]
-                                            </labe>
+                                            </label>
                                         </div>
                                         ";
                             }
@@ -218,10 +217,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                             while($opt = mysqli_fetch_assoc($res)){
                                 echo "
                                         <div class='col-md-3 mb-1'>
-                                            <labe>
-                                                <input type='checkbox' name='facilities[]' value='$opt[id]' class='form-check-input' shadow-none>
+                                            <label>
+                                                <input type='checkbox' name='facilities' value='$opt[id]' class='form-check-input shadow-none'>
                                                 $opt[name]
-                                            </labe>
+                                            </label>
                                         </div>
                                         ";
                             }
@@ -229,22 +228,105 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="form-label fw-bold">Description (Max.)</label>
-                        <textarea name="desc" rows="4" class="form-control shadow-none" required></textarea>
+                        <label class="form-label fw-bold" for="description">Description</label>
+                        <textarea id="description" name="description" rows="4" class="form-control shadow-none" autocomplete="description" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn custom-bg text-white sahdow-none">Submit</button>
+                    <button type="submit" name="add_room" class="btn custom-bg text-white shadow-none">Submit</button>
                 </div>
+
             </div>
         </form>
     </div>
 </div>
 
+<!-- Edit room Modal -->
+<div class="modal fade" id="edit-room" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <form id="add_room_form" autocomplete="off">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Room</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold" for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-control shadow-none" autocomplete="name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold" for="area">Area</label>
+                            <input type="number" min="1" id="area" name="area" class="form-control shadow-none" autocomplete="area" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold" for="price">Price</label>
+                            <input type="number" min="1" id="price" name="price" class="form-control shadow-none" autocomplete="price" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold" for="quantity">Quantity</label>
+                            <input type="number" min="1" id="quantity" name="quantity" class="form-control shadow-none" autocomplete="quantity" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold" for="adult">Adult (Max.)</label>
+                            <input type="number" min="1" id="adult" name="adult" class="form-control shadow-none" autocomplete="adult" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold" for="children">Children (Max.)</label>
+                            <input type="number" min="1" id="children" name="children" class="form-control shadow-none" autocomplete="children" required>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label class="form-label fw-bold">Features</label>
+                        <div class="row">
+                            <?php
+                            $res = selectAll('features');
+                            while($opt = mysqli_fetch_assoc($res)){
+                                echo "
+                                        <div class='col-md-3 mb-1'>
+                                            <label>
+                                                <input type='checkbox' name='features' value='$opt[id]' class='form-check-input shadow-none'>
+                                                $opt[name]
+                                            </label>
+                                        </div>
+                                        ";
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label class="form-label fw-bold">Facilities</label>
+                        <div class="row">
+                            <?php
+                            $res = selectAll('facilities');
+                            while($opt = mysqli_fetch_assoc($res)){
+                                echo "
+                                        <div class='col-md-3 mb-1'>
+                                            <label>
+                                                <input type='checkbox' name='facilities' value='$opt[id]' class='form-check-input shadow-none'>
+                                                $opt[name]
+                                            </label>
+                                        </div>
+                                        ";
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label class="form-label fw-bold" for="description">Description</label>
+                        <textarea id="description" name="description" rows="4" class="form-control shadow-none" autocomplete="description" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" name="add_room" class="btn custom-bg text-white shadow-none">Submit</button>
+                </div>
 
-
-
+            </div>
+        </form>
+    </div>
+</div>
 
 <?php require ('inc/scripts.php'); ?>
 <script>
@@ -269,10 +351,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (this.responseText == 1) {
                 alert('success', 'Đã thêm phòng mới!');
                 add_room_form.reset();
-
+                get_all_rooms();
             }
-            else{
-                alert('error','Server down!');
+            else {
+                alert('error', 'Thêm phòng thất bại!');
             }
         }
         xhr.send(data);
@@ -286,6 +368,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             document.getElementById('room-data').innerHTML = this.responseText;
         }
         xhr.send('get_all_rooms');
+    }
+
+    function toggle_status(id,val){
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/rooms.php", true);
+
+        xhr.onload = function () {
+           if(this.responseText==1){
+               alert('success','Status toggled!');
+               get_all_rooms();
+           }
+           else{
+               alert('success','Server Down!');
+           }
+        }
+        xhr.send('toggle_status='+id+'$value='+val);
     }
 
     window.onload = function (){
