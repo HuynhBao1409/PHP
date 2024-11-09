@@ -118,7 +118,7 @@ if (isset($_POST['get_all_rooms'])) {
                         Children: $row[children]
                     </span>
                 </td>
-                <td>VND $row[price]</td>
+                <td>$row[price] VND</td>
                 <td>$row[quantity]</td>
                 <td>$status</td>
                 <td>
