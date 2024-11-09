@@ -10,6 +10,7 @@ if (empty($_SESSION['csrf_token'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Validate CSRF token for all POST requests
     if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
         die('Invalid CSRF token');
     }
@@ -286,96 +287,97 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 
 
-<!-- Edit room Modal -->
+<!-- Edit room Modal HTML -->
 <div class="modal fade" id="edit-room" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <form id="add_room_form" autocomplete="off">
+        <form id="edit_room_form" autocomplete="off">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Room</h5>
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <input type="hidden" name="room_id" id="edit_room_id">
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="name">Name</label>
-                            <input type="text" id="name" name="name" class="form-control shadow-none" autocomplete="name" required>
+                            <label class="form-label fw-bold">Name</label>
+                            <input type="text" name="name" id="edit_name" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="area">Area</label>
-                            <input type="number" min="1" id="area" name="area" class="form-control shadow-none" autocomplete="area" required>
+                            <label class="form-label fw-bold">Area</label>
+                            <input type="number" min="1" name="area" id="edit_area" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="price">Price</label>
-                            <input type="number" min="1" id="price" name="price" class="form-control shadow-none" autocomplete="price" required>
+                            <label class="form-label fw-bold">Price</label>
+                            <input type="number" min="1" name="price" id="edit_price" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="quantity">Quantity</label>
-                            <input type="number" min="1" id="quantity" name="quantity" class="form-control shadow-none" autocomplete="quantity" required>
+                            <label class="form-label fw-bold">Quantity</label>
+                            <input type="number" min="1" name="quantity" id="edit_quantity" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="adult">Adult (Max.)</label>
-                            <input type="number" min="1" id="adult" name="adult" class="form-control shadow-none" autocomplete="adult" required>
+                            <label class="form-label fw-bold">Adult (Max.)</label>
+                            <input type="number" min="1" name="adult" id="edit_adult" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="children">Children (Max.)</label>
-                            <input type="number" min="1" id="children" name="children" class="form-control shadow-none" autocomplete="children" required>
+                            <label class="form-label fw-bold">Children (Max.)</label>
+                            <input type="number" min="1" name="children" id="edit_children" class="form-control shadow-none" required>
                         </div>
                     </div>
                     <div class="col-12 mb-3">
                         <label class="form-label fw-bold">Features</label>
-                        <div class="row">
+                        <div class="row" id="edit_features">
                             <?php
                             $res = selectAll('features');
                             while($opt = mysqli_fetch_assoc($res)){
                                 echo "
-                                        <div class='col-md-3 mb-1'>
-                                            <label>
-                                                <input type='checkbox' name='features' value='$opt[id]' class='form-check-input shadow-none'>
-                                                $opt[name]
-                                            </label>
-                                        </div>
-                                        ";
+                                    <div class='col-md-3 mb-1'>
+                                        <label>
+                                            <input type='checkbox' name='features' value='$opt[id]' class='form-check-input shadow-none'>
+                                            $opt[name]
+                                        </label>
+                                    </div>
+                                ";
                             }
                             ?>
                         </div>
                     </div>
                     <div class="col-12 mb-3">
                         <label class="form-label fw-bold">Facilities</label>
-                        <div class="row">
+                        <div class="row" id="edit_facilities">
                             <?php
                             $res = selectAll('facilities');
                             while($opt = mysqli_fetch_assoc($res)){
                                 echo "
-                                        <div class='col-md-3 mb-1'>
-                                            <label>
-                                                <input type='checkbox' name='facilities' value='$opt[id]' class='form-check-input shadow-none'>
-                                                $opt[name]
-                                            </label>
-                                        </div>
-                                        ";
+                                    <div class='col-md-3 mb-1'>
+                                        <label>
+                                            <input type='checkbox' name='facilities' value='$opt[id]' class='form-check-input shadow-none'>
+                                            $opt[name]
+                                        </label>
+                                    </div>
+                                ";
                             }
                             ?>
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="form-label fw-bold" for="description">Description</label>
-                        <textarea id="description" name="description" rows="4" class="form-control shadow-none" autocomplete="description" required></textarea>
+                        <label class="form-label fw-bold">Description</label>
+                        <textarea name="desc" id="edit_desc" rows="4" class="form-control shadow-none" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" name="add_room" class="btn custom-bg text-white shadow-none">Submit</button>
+                    <button type="submit" class="btn custom-bg text-white shadow-none">Save Changes</button>
                 </div>
-
             </div>
         </form>
     </div>
 </div>
 
-
 <?php require ('inc/scripts.php'); ?>
 <script>
     let add_room_form = document.getElementById('add_room_form');
+    let edit_room_form = document.getElementById('edit_room_form');
 
     function alert(type, msg) {
         let bs_class = (type == 'success') ? 'alert-success' : 'alert-danger';
@@ -395,11 +397,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         add_room();
     });
 
-
+    <!--Add Room-->
     function add_room(){
         let data = new FormData(add_room_form);
         data.append('action', 'add_room');
-        data.append('csrf_token', '<?php echo $_SESSION['csrf_token']; ?>');
+
+        // Validate required fields
+        const requiredFields = ['name', 'area', 'price', 'quantity', 'adult', 'children', 'desc'];
+        for (let field of requiredFields) {
+            if (!data.get(field)) {
+                alert('error', `Please fill in the ${field} field`);
+                return;
+            }
+        }
+
+        // Validate numeric fields
+        const numericFields = ['area', 'price', 'quantity', 'adult', 'children'];
+        for (let field of numericFields) {
+            if (isNaN(data.get(field)) || data.get(field) <= 0) {
+                alert('error', `${field} must be a positive number`);
+                return;
+            }
+        }
 
         let features = [];
         let facilities = [];
@@ -415,37 +434,170 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         data.append('features', JSON.stringify(features));
         data.append('facilities', JSON.stringify(facilities));
 
-        // Kiểm tra dữ liệu trước khi gửi
-        for (let pair of data.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/rooms.php", true);
+
+        xhr.onload = function() {
+            try {
+                var myModal = document.getElementById('add-room');
+                var modal = bootstrap.Modal.getInstance(myModal);
+
+                if (this.responseText == 1) {
+                    alert('success', 'New room added successfully!');
+                    add_room_form.reset();
+                    modal.hide();
+                    get_all_rooms();
+                } else {
+                    alert('error', 'Failed to add room!');
+                }
+            } catch (e) {
+                console.error('Error:', e);
+                alert('error', 'An unexpected error occurred');
+            }
         }
+
+        xhr.onerror = function() {
+            alert('error', 'Connection error occurred!');
+        }
+
+        xhr.send(data);
+    }
+    <!--Edit room-->
+    function edit_details(id) {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/rooms.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+            try {
+                let data = JSON.parse(this.responseText);
+
+                if (!data || !data.room) {
+                    alert('error', 'Failed to load room data');
+                    return;
+                }
+
+                document.getElementById('edit_room_id').value = data.room.id;
+                document.getElementById('edit_name').value = data.room.name;
+                document.getElementById('edit_area').value = data.room.area;
+                document.getElementById('edit_price').value = data.room.price;
+                document.getElementById('edit_quantity').value = data.room.quantity;
+                document.getElementById('edit_adult').value = data.room.adult;
+                document.getElementById('edit_children').value = data.room.children;
+                document.getElementById('edit_desc').value = data.room.description;
+
+                // Clear all checkboxes first
+                document.querySelectorAll('input[name="features"]').forEach(el => {
+                    el.checked = false;
+                });
+                document.querySelectorAll('input[name="facilities"]').forEach(el => {
+                    el.checked = false;
+                });
+
+                // Check features that room has
+                if (data.features) {
+                    data.features.forEach(id => {
+                        let checkbox = document.querySelector(`input[name="features"][value="${id}"]`);
+                        if (checkbox) checkbox.checked = true;
+                    });
+                }
+
+                // Check facilities that room has
+                if (data.facilities) {
+                    data.facilities.forEach(id => {
+                        let checkbox = document.querySelector(`input[name="facilities"][value="${id}"]`);
+                        if (checkbox) checkbox.checked = true;
+                    });
+                }
+            } catch (e) {
+                console.error('Error:', e);
+                alert('error', 'Failed to parse room data');
+            }
+        }
+
+        xhr.onerror = function() {
+            alert('error', 'Connection error occurred!');
+        }
+
+        xhr.send('get_room='+id+'&csrf_token=<?php echo $_SESSION['csrf_token']; ?>');
+    }
+
+    // Add event listener to form
+    document.getElementById('edit_room_form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        submit_edit_room();
+    });
+
+    function submit_edit_room() {
+        let form = document.getElementById('edit_room_form');
+        let data = new FormData(form);
+
+        // Validate required fields
+        const requiredFields = ['name', 'area', 'price', 'quantity', 'adult', 'children', 'desc'];
+        for (let field of requiredFields) {
+            if (!data.get(field)) {
+                alert('error', `Please fill in the ${field} field`);
+                return;
+            }
+        }
+
+        // Validate numeric fields
+        const numericFields = ['area', 'price', 'quantity', 'adult', 'children'];
+        for (let field of numericFields) {
+            let value = data.get(field);
+            if (isNaN(value) || parseInt(value) <= 0) {
+                alert('error', `${field} must be a positive number`);
+                return;
+            }
+        }
+
+        // Collect features and facilities
+        let features = [];
+        let facilities = [];
+
+        document.querySelectorAll('#edit_features input[type="checkbox"]:checked').forEach(el => {
+            features.push(el.value);
+        });
+
+        document.querySelectorAll('#edit_facilities input[type="checkbox"]:checked').forEach(el => {
+            facilities.push(el.value);
+        });
+
+        data.append('features', JSON.stringify(features));
+        data.append('facilities', JSON.stringify(facilities));
+        data.append('action', 'edit_room');
 
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "ajax/rooms.php", true);
 
         xhr.onload = function() {
-            // Thêm log để xem response từ server
-            console.log("Server response:", this.responseText);
-
-            var myModal = document.getElementById('add-room');
-            var modal = bootstrap.Modal.getInstance(myModal);
-            modal.hide();
-
-            if (this.responseText == 1) {
-                alert('success', 'Đã thêm phòng mới!');
-                add_room_form.reset();
-                get_all_rooms();
+            if (this.status === 200) {
+                try {
+                    if (this.responseText == 1) {
+                        alert('success', 'Room updated successfully!');
+                        let modal = bootstrap.Modal.getInstance(document.getElementById('edit-room'));
+                        modal.hide();
+                        get_all_rooms();
+                    } else {
+                        alert('error', 'Failed to update room');
+                        console.error('Server response:', this.responseText);
+                    }
+                } catch (e) {
+                    console.error('Error:', e);
+                    alert('error', 'An error occurred while processing the response');
+                }
             } else {
-                alert('error', 'Thêm phòng thất bại!');
+                alert('error', 'Server error occurred');
             }
         }
 
         xhr.onerror = function() {
-            alert('error', 'Có lỗi xảy ra khi kết nối với server!');
+            alert('error', 'Connection error occurred');
         }
 
         xhr.send(data);
     }
+
 
     function get_all_rooms(){
         let xhr = new XMLHttpRequest();
@@ -469,13 +621,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function () {
-           if(this.responseText==1){
-               alert('success','Status toggled!');
-               get_all_rooms();
-           }
-           else{
-               alert('success','Server Down!');
-           }
+            if(this.responseText==1){
+                alert('success','Status toggled!');
+                get_all_rooms();
+            }
+            else{
+                alert('success','Server Down!');
+            }
         }
         xhr.send('toggle_status='+id+'&value='+val+'&csrf_token=<?php echo $_SESSION['csrf_token']; ?>');
     }
@@ -483,7 +635,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     window.onload = function (){
         get_all_rooms();
     }
-</script>
 
+
+</script>
 </body>
 </html>

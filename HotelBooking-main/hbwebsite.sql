@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2024 at 02:39 AM
+-- Generation Time: Nov 09, 2024 at 01:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -148,15 +148,6 @@ CREATE TABLE `rooms` (
   `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `rooms`
---
-
-INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`) VALUES
-(6, '1', 1, 1, 1, 1, 1, '1', 1),
-(7, 'Phòng đôi', 1, 1500000, 1, 2, 2, 'đẹp', 1),
-(8, 'Villa', 3, 25000000, 2, 6, 2, 'ádhádlkjádlksạ', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -169,16 +160,6 @@ CREATE TABLE `room_facilities` (
   `facilities_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `room_facilities`
---
-
-INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
-(1, 7, 1),
-(2, 7, 2),
-(3, 8, 1),
-(4, 8, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -190,19 +171,6 @@ CREATE TABLE `room_features` (
   `room_id` int(11) NOT NULL,
   `features_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `room_features`
---
-
-INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
-(1, 6, 2),
-(2, 7, 1),
-(3, 7, 2),
-(4, 7, 3),
-(5, 8, 1),
-(6, 8, 2),
-(7, 8, 3);
 
 -- --------------------------------------------------------
 
@@ -381,19 +349,19 @@ ALTER TABLE `features`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `settings`
