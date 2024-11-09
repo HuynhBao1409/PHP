@@ -1,109 +1,151 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
 require ('inc/essentials.php');
 require ('inc/db_config.php');
 adminLogin();
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if(isset($_POST['seen_all'])) {
+// Tạo CSRF token
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        die('Invalid CSRF token');
+    }
+
+    if (isset($_POST['seen_all'])) {
         $q = "UPDATE `user_queries` SET `seen`=?";
         $values = [1];
-        if(update($q,$values,'i')){
-            alert('success','Marked all as read');
+        if (update($q, $values, 'i')) {
+            alert('success', 'Marked all as read');
+        } else {
+            alert('error', 'Operation Failed');
         }
-        else{
-            alert('error','Operation Failed');
-        }
-        header("Location: ".$_SERVER['PHP_SELF']);
+        header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
 
-    if(isset($_POST['seen_single'])) {
-        $sr_no = $_POST['sr_no'];
-        $q = "UPDATE `user_queries` SET `seen`=? WHERE `sr_no`=?";
-        $values = [1,$sr_no];
-        if(update($q,$values,'ii')){
-            alert('success','Marked as read');
+    if (isset($_POST['seen_single'])) {
+        $sr_no = filter_var($_POST['sr_no'], FILTER_VALIDATE_INT);
+        if ($sr_no) {
+            $q = "UPDATE `user_queries` SET `seen`=? WHERE `sr_no`=?";
+            $values = [1, $sr_no];
+            if (update($q, $values, 'ii')) {
+                alert('success', 'Marked as read');
+            } else {
+                alert('error', 'Operation Failed');
+            }
         }
-        else{
-            alert('error','Operation Failed');
-        }
-        header("Location: ".$_SERVER['PHP_SELF']);
+        header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
 
-    if(isset($_POST['delete_all'])) {
-        $con =$GLOBALS['con'];
-        $q = "DELETE FROM `user_queries`";
-        if(mysqli_query($con,$q)){
-            alert('success','Đã xóa tất cả');
+    if (isset($_POST['delete_all'])) {
+        $stmt = mysqli_prepare($GLOBALS['con'], "DELETE FROM `user_queries`");
+        if (mysqli_stmt_execute($stmt)) {
+            alert('success', 'Đã xóa tất cả');
+        } else {
+            alert('error', 'Xóa thất bại');
         }
-        else{
-            alert('error','Xóa thất bại');
-        }
-        header("Location: ".$_SERVER['PHP_SELF']);
+        mysqli_stmt_close($stmt);
+        header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     }
 
-    if(isset($_POST['delete_single'])) {
-        $sr_no = $_POST['sr_no'];
-        if(is_numeric($sr_no)) {
+    if (isset($_POST['delete_single'])) {
+        $sr_no = filter_var($_POST['sr_no'], FILTER_VALIDATE_INT);
+        if ($sr_no) {
             $q = "DELETE FROM `user_queries` WHERE `sr_no`=?";
             $values = [$sr_no];
-            if(delete($q,$values,'i')){
-                alert('success','Đã xóa');
+            if (delete($q, $values, 'i')) {
+                alert('success', 'Đã xóa');
+            } else {
+                alert('error', 'Xóa thất bại');
             }
-            else{
-                alert('error','Xóa thất bại');
-            }
-            header("Location: ".$_SERVER['PHP_SELF']);
-            exit;
         }
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
     }
 
-    if(isset($_POST['action']) && $_POST['action'] == 'add_room') {
-        $name = $_POST['name'];
-        $area = $_POST['area'];
-        $price = $_POST['price'];
-        $quantity = $_POST['quantity'];
-        $adult = $_POST['adult'];
-        $children = $_POST['children'];
-        $description = $_POST['description'];
+    if (isset($_POST['action']) && $_POST['action'] == 'add_room') {
+        // Validate CSRF token
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            error_log("CSRF token validation failed");
+            echo 0;
+            exit;
+        }
+
+        // Log request data
+        error_log("Received POST data: " . print_r($_POST, true));
+
+        // Validate required fields
+        $required_fields = ['name', 'area', 'price', 'quantity', 'adult', 'children', 'desc'];
+        foreach ($required_fields as $field) {
+            if (!isset($_POST[$field]) || empty($_POST[$field])) {
+                error_log("Missing required field: $field");
+                echo 0;
+                exit;
+            }
+        }
+
+        $name = mysqli_real_escape_string($GLOBALS['con'], $_POST['name']);
+        $area = filter_var($_POST['area'], FILTER_VALIDATE_INT);
+        $price = filter_var($_POST['price'], FILTER_VALIDATE_INT);
+        $quantity = filter_var($_POST['quantity'], FILTER_VALIDATE_INT);
+        $adult = filter_var($_POST['adult'], FILTER_VALIDATE_INT);
+        $children = filter_var($_POST['children'], FILTER_VALIDATE_INT);
+        $desc = mysqli_real_escape_string($GLOBALS['con'], $_POST['desc']);
+
         $features = json_decode($_POST['features']);
         $facilities = json_decode($_POST['facilities']);
 
-        $q = "INSERT INTO `rooms`(`name`, `area`, `price`, `quantity`, `adult`, `children`, `description`) VALUES (?,?,?,?,?,?,?)";
-        $values = [$name, $area, $price, $quantity, $adult, $children, $description];
-        if(insert($q, $values, 'siiiiis')){
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            echo 0;
+            exit;
+        }
+
+        if (!$area || !$price || !$quantity || !$adult || !$children) {
+            echo 0;
+            exit;
+        }
+
+        $q = "INSERT INTO `rooms`(`name`, `area`, `price`, `quantity`, `adult`, `children`, `description`) 
+              VALUES (?,?,?,?,?,?,?)";
+        $values = [$name, $area, $price, $quantity, $adult, $children, $desc];
+
+        if (insert($q, $values, 'siiiiis')) {
             $room_id = $GLOBALS['con']->insert_id;
 
-            foreach($features as $f){
-                $data = [
-                    'room_id' => $room_id,
-                    'feature_id' => $f
-                ];
-                insert('room_features', $data, 'ii');
+            // Insert features
+            $q_feature = "INSERT INTO `room_features`(`room_id`, `features_id`) VALUES (?,?)";
+            foreach ($features as $f) {
+                $f = filter_var($f, FILTER_VALIDATE_INT);
+                if ($f) {
+                    $values = [$room_id, $f];
+                    insert($q_feature, $values, 'ii');
+                }
             }
 
-            foreach($facilities as $f){
-                $data = [
-                    'room_id' => $room_id,
-                    'facility_id' => $f
-                ];
-                insert('room_facilities', $data, 'ii');
+            // Insert facilities
+            $q_facility = "INSERT INTO `room_facilities`(`room_id`, `facilities_id`) VALUES (?,?)";
+            foreach ($facilities as $f) {
+                $f = filter_var($f, FILTER_VALIDATE_INT);
+                if ($f) {
+                    $values = [$room_id, $f];
+                    insert($q_facility, $values, 'ii');
+                }
             }
 
             echo 1;
-        }
-        else{
+        } else {
             echo 0;
         }
         exit;
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -166,6 +208,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="modal-body">
                     <div class="row">
+                        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div class="col-md-6 mb-3">
                             <label class="form-label fw-bold" for="name">Name</label>
                             <input type="text" id="name" name="name" class="form-control shadow-none" autocomplete="name" required>
@@ -229,7 +272,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="col-12 mb-3">
                         <label class="form-label fw-bold" for="description">Description</label>
-                        <textarea id="description" name="description" rows="4" class="form-control shadow-none" autocomplete="description" required></textarea>
+                        <textarea id="desc" name="desc" rows="4" class="form-control shadow-none" autocomplete="desc" required></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -241,6 +284,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         </form>
     </div>
 </div>
+
 
 <!-- Edit room Modal -->
 <div class="modal fade" id="edit-room" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -328,22 +372,61 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div>
 
+
 <?php require ('inc/scripts.php'); ?>
 <script>
     let add_room_form = document.getElementById('add_room_form');
-    add_room_form.addEventListener('submit',function (e){
+
+    function alert(type, msg) {
+        let bs_class = (type == 'success') ? 'alert-success' : 'alert-danger';
+        let element = document.createElement('div');
+        element.innerHTML = `
+            <div class="alert ${bs_class} alert-dismissible fade show custom-alert" role="alert">
+                <strong>${msg}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+        document.body.append(element);
+        setTimeout(() => element.remove(), 2000);
+    }
+
+    add_room_form.addEventListener('submit', function(e) {
         e.preventDefault();
         add_room();
     });
 
+
     function add_room(){
         let data = new FormData(add_room_form);
         data.append('action', 'add_room');
+        data.append('csrf_token', '<?php echo $_SESSION['csrf_token']; ?>');
+
+        let features = [];
+        let facilities = [];
+
+        document.querySelectorAll('input[name="features"]:checked').forEach(el => {
+            features.push(el.value);
+        });
+
+        document.querySelectorAll('input[name="facilities"]:checked').forEach(el => {
+            facilities.push(el.value);
+        });
+
+        data.append('features', JSON.stringify(features));
+        data.append('facilities', JSON.stringify(facilities));
+
+        // Kiểm tra dữ liệu trước khi gửi
+        for (let pair of data.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
 
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "ajax/rooms.php", true);
 
-        xhr.onload = function () {
+        xhr.onload = function() {
+            // Thêm log để xem response từ server
+            console.log("Server response:", this.responseText);
+
             var myModal = document.getElementById('add-room');
             var modal = bootstrap.Modal.getInstance(myModal);
             modal.hide();
@@ -352,27 +435,38 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 alert('success', 'Đã thêm phòng mới!');
                 add_room_form.reset();
                 get_all_rooms();
-            }
-            else {
+            } else {
                 alert('error', 'Thêm phòng thất bại!');
             }
         }
+
+        xhr.onerror = function() {
+            alert('error', 'Có lỗi xảy ra khi kết nối với server!');
+        }
+
         xhr.send(data);
     }
 
     function get_all_rooms(){
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "ajax/rooms.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-        xhr.onload = function () {
+        xhr.onload = function() {
             document.getElementById('room-data').innerHTML = this.responseText;
         }
-        xhr.send('get_all_rooms');
+
+        xhr.onerror = function() {
+            alert('error', 'Có lỗi xảy ra khi tải dữ liệu!');
+        }
+
+        xhr.send('get_all_rooms=1&csrf_token=<?php echo $_SESSION['csrf_token']; ?>');
     }
 
     function toggle_status(id,val){
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "ajax/rooms.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
         xhr.onload = function () {
            if(this.responseText==1){
@@ -383,7 +477,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                alert('success','Server Down!');
            }
         }
-        xhr.send('toggle_status='+id+'$value='+val);
+        xhr.send('toggle_status='+id+'&value='+val+'&csrf_token=<?php echo $_SESSION['csrf_token']; ?>');
     }
 
     window.onload = function (){

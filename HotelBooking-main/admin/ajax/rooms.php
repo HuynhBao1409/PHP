@@ -1,15 +1,21 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 require('../inc/db_config.php');
 require('../inc/essentials.php');
 adminLogin();
 
-if (isset($_POST['add_room'])) {
-    $features = filteration(json_decode($_POST['features']));
-    $facilities = filteration(json_decode($_POST['facilities']));
+if (isset($_POST['action']) && $_POST['action'] == 'add_room') {
+    // Chuyển đổi chuỗi JSON thành mảng PHP
+    $features = json_decode($_POST['features'], true);
+    $facilities = json_decode($_POST['facilities'], true);
+
+    // Lọc dữ liệu đầu vào
     $frm_data = filteration($_POST);
+
+    // Log để debug
+    error_log("Received data: " . print_r($_POST, true));
+    error_log("Features: " . print_r($features, true));
+    error_log("Facilities: " . print_r($facilities, true));
 
     $q1 = "INSERT INTO `rooms`(`name`, `area`, `price`, `quantity`, `adult`, `children`, `description`) VALUES (?,?,?,?,?,?,?)";
     $values = [
@@ -19,45 +25,59 @@ if (isset($_POST['add_room'])) {
         $frm_data['quantity'],
         $frm_data['adult'],
         $frm_data['children'],
-        $frm_data['description']
+        $frm_data['desc']  // Sửa 'des' thành 'desc' cho đúng với form
     ];
 
     if (insert($q1, $values, 'siiiiis')) {
-        $room_id = $GLOBALS['con']->insert_id;
+        $room_id = mysqli_insert_id($GLOBALS['con']);
+        $flag = true;  // Biến kiểm tra lỗi
 
-        $q2 = "INSERT INTO `room_facilities` (`room_id`, `facility_id`) VALUES (?,?)";
-        $q3 = "INSERT INTO `room_features` (`room_id`, `feature_id`) VALUES (?,?)";
+        if (!empty($facilities)) {
+            $q2 = "INSERT INTO `room_facilities` (`room_id`, `facilities_id`) VALUES (?,?)";
+            $stmt2 = mysqli_prepare($GLOBALS['con'], $q2);
 
-        $stmt2 = mysqli_prepare($GLOBALS['con'], $q2);
-        $stmt3 = mysqli_prepare($GLOBALS['con'], $q3);
-
-        if ($stmt2 && $stmt3) {
-            mysqli_begin_transaction($GLOBALS['con']);
-
-            try {
+            if ($stmt2) {
                 foreach ($facilities as $f) {
                     mysqli_stmt_bind_param($stmt2, 'ii', $room_id, $f);
-                    mysqli_stmt_execute($stmt2);
+                    if (!mysqli_stmt_execute($stmt2)) {
+                        $flag = false;
+                        break;
+                    }
                 }
+                mysqli_stmt_close($stmt2);
+            } else {
+                $flag = false;
+            }
+        }
 
+        if (!empty($features) && $flag) {
+            $q3 = "INSERT INTO `room_features` (`room_id`, `features_id`) VALUES (?,?)";
+            $stmt3 = mysqli_prepare($GLOBALS['con'], $q3);
+
+            if ($stmt3) {
                 foreach ($features as $f) {
                     mysqli_stmt_bind_param($stmt3, 'ii', $room_id, $f);
-                    mysqli_stmt_execute($stmt3);
+                    if (!mysqli_stmt_execute($stmt3)) {
+                        $flag = false;
+                        break;
+                    }
                 }
-
-                mysqli_commit($GLOBALS['con']);
-                echo 1;
-            } catch (mysqli_sql_exception $exception) {
-                mysqli_rollback($GLOBALS['con']);
-                echo 0;
-                throw $exception;
-            } finally {
-                mysqli_stmt_close($stmt2);
                 mysqli_stmt_close($stmt3);
+            } else {
+                $flag = false;
             }
+        }
+
+        if ($flag) {
+            echo 1;
         } else {
+            // Nếu có lỗi, xóa phòng đã thêm
+            $delete_room = "DELETE FROM `rooms` WHERE `id` = ?";
+            $stmt_delete = mysqli_prepare($GLOBALS['con'], $delete_room);
+            mysqli_stmt_bind_param($stmt_delete, 'i', $room_id);
+            mysqli_stmt_execute($stmt_delete);
+            mysqli_stmt_close($stmt_delete);
             echo 0;
-            throw new Exception('Error preparing SQL statements');
         }
     } else {
         echo 0;
@@ -82,13 +102,13 @@ if (isset($_POST['get_all_rooms'])) {
             <tr class='align-middle'>
                 <td>$i</td>
                 <td>$row[name]</td>
-                <td>$row[area] sq. ft.</td>
+                <td>$row[area]</td>
                 <td>
                     <span class='badge rounded-pill bg-light text-dark'>
-                        Adult: $row[adult];
+                        Adult: $row[adult]
                     </span><br>
                     <span class='badge rounded-pill bg-light text-dark'>
-                        Children: $row[children];
+                        Children: $row[children]
                     </span>
                 </td>
                 <td>VND $row[price]</td>
@@ -106,15 +126,15 @@ if (isset($_POST['get_all_rooms'])) {
     echo $data;
 }
 
-if (isset($_POST['get_all_rooms'])) {
+if (isset($_POST['toggle_status'])) {
     $frm_data = filteration($_POST);
 
     $q = "UPDATE `rooms` SET `status`=? WHERE `id`=?";
-    $v =[$frm_data['value'],$frm_data['toggle_status']];
+    $v = [$frm_data['value'], $frm_data['toggle_status']];
 
-    if(update($q,$v,'ii')){
+    if(update($q, $v, 'ii')){
         echo 1;
-    }else{
+    } else {
         echo 0;
     }
 }

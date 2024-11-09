@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2024 at 02:05 PM
+-- Generation Time: Nov 09, 2024 at 02:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -107,7 +107,8 @@ CREATE TABLE `facilities` (
 --
 
 INSERT INTO `facilities` (`id`, `icon`, `name`, `description`) VALUES
-(0, 'IMG_37391.svg', 'Máy bay', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.\r\n                                    Dignissimos harum perferendis quas quidem totam!');
+(1, 'IMG_42788.svg', 'TV', 'bla'),
+(2, 'IMG_52630.svg', 'wifi', '');
 
 -- --------------------------------------------------------
 
@@ -125,8 +126,9 @@ CREATE TABLE `features` (
 --
 
 INSERT INTO `features` (`id`, `name`) VALUES
-(0, 'na'),
-(1, 'hai giường');
+(1, 'hai giường'),
+(2, 'balcony'),
+(3, 'giường đơn');
 
 -- --------------------------------------------------------
 
@@ -151,7 +153,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`) VALUES
-(5, 'ứađá', 1, 1, 1, 1, 1, 'áđâsd', 1);
+(6, '1', 1, 1, 1, 1, 1, '1', 1),
+(7, 'Phòng đôi', 1, 1500000, 1, 2, 2, 'đẹp', 1),
+(8, 'Villa', 3, 25000000, 2, 6, 2, 'ádhádlkjádlksạ', 1);
 
 -- --------------------------------------------------------
 
@@ -165,6 +169,16 @@ CREATE TABLE `room_facilities` (
   `facilities_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `room_facilities`
+--
+
+INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
+(1, 7, 1),
+(2, 7, 2),
+(3, 8, 1),
+(4, 8, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -176,6 +190,19 @@ CREATE TABLE `room_features` (
   `room_id` int(11) NOT NULL,
   `features_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_features`
+--
+
+INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
+(1, 6, 2),
+(2, 7, 1),
+(3, 7, 2),
+(4, 7, 3),
+(5, 8, 1),
+(6, 8, 2),
+(7, 8, 3);
 
 -- --------------------------------------------------------
 
@@ -240,7 +267,7 @@ CREATE TABLE `user_queries` (
 --
 
 INSERT INTO `user_queries` (`sr_no`, `name`, `email`, `subject`, `message`, `date`, `seen`) VALUES
-(0, 'Tin Thanh', 'tin.dt.63cntt@ntu.edu.vn', 'abc', '213124r', '2024-11-06', 1);
+(1, 'Tin Thanh', 'tin.dt.63cntt@ntu.edu.vn', 'abc', '213124r', '2024-11-06', 1);
 
 --
 -- Indexes for dumped tables
@@ -287,15 +314,15 @@ ALTER TABLE `rooms`
 --
 ALTER TABLE `room_facilities`
   ADD PRIMARY KEY (`sr_no`),
-  ADD KEY `facilities id` (`facilities_id`),
-  ADD KEY `room id` (`room_id`);
+  ADD KEY `rm id` (`room_id`),
+  ADD KEY `facilities id` (`facilities_id`);
 
 --
 -- Indexes for table `room_features`
 --
 ALTER TABLE `room_features`
   ADD PRIMARY KEY (`sr_no`),
-  ADD KEY `rm id` (`room_id`),
+  ADD KEY `room id` (`room_id`),
   ADD KEY `features id` (`features_id`);
 
 --
@@ -339,22 +366,34 @@ ALTER TABLE `contact_details`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `facilities`
+--
+ALTER TABLE `facilities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `features`
+--
+ALTER TABLE `features`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -369,6 +408,12 @@ ALTER TABLE `team_details`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `user_queries`
+--
+ALTER TABLE `user_queries`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -377,14 +422,14 @@ ALTER TABLE `team_details`
 --
 ALTER TABLE `room_facilities`
   ADD CONSTRAINT `facilities id` FOREIGN KEY (`facilities_id`) REFERENCES `facilities` (`id`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `room id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
+  ADD CONSTRAINT `rm id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `room_features`
 --
 ALTER TABLE `room_features`
   ADD CONSTRAINT `features id` FOREIGN KEY (`features_id`) REFERENCES `features` (`id`) ON UPDATE NO ACTION,
-  ADD CONSTRAINT `rm id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
+  ADD CONSTRAINT `room id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
