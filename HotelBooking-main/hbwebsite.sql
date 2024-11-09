@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2024 at 01:39 AM
+-- Generation Time: Nov 09, 2024 at 06:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -107,8 +107,10 @@ CREATE TABLE `facilities` (
 --
 
 INSERT INTO `facilities` (`id`, `icon`, `name`, `description`) VALUES
-(1, 'IMG_42788.svg', 'TV', 'bla'),
-(2, 'IMG_52630.svg', 'wifi', '');
+(6, 'IMG_63358.svg', 'TV', ''),
+(7, 'IMG_41869.svg', 'Air-conditioner', ''),
+(8, 'IMG_94095.svg', 'Radio', ''),
+(9, 'IMG_36249.svg', 'Spa', '');
 
 -- --------------------------------------------------------
 
@@ -126,9 +128,11 @@ CREATE TABLE `features` (
 --
 
 INSERT INTO `features` (`id`, `name`) VALUES
-(1, 'hai giường'),
-(2, 'balcony'),
-(3, 'giường đơn');
+(5, 'Bể bơi vô cực'),
+(7, 'Hai giường đôi'),
+(8, 'Hai giường đơn'),
+(9, 'Một giường đôi'),
+(10, 'Một giường đơn');
 
 -- --------------------------------------------------------
 
@@ -148,6 +152,15 @@ CREATE TABLE `rooms` (
   `status` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`) VALUES
+(9, 'Phòng Vip', 1, 1500000, 1, 2, 1, 'okla', 0),
+(10, 'Phòng tổng thống', 2, 25000000, 1, 4, 2, 'ngon', 1),
+(11, 'Phòng thường', 3, 500000, 1, 1, 1, 'tạm', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -160,6 +173,22 @@ CREATE TABLE `room_facilities` (
   `facilities_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `room_facilities`
+--
+
+INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
+(11, 9, 6),
+(12, 9, 7),
+(13, 9, 8),
+(14, 9, 9),
+(15, 10, 6),
+(16, 10, 7),
+(17, 10, 8),
+(18, 10, 9),
+(19, 11, 6),
+(20, 11, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -171,6 +200,18 @@ CREATE TABLE `room_features` (
   `room_id` int(11) NOT NULL,
   `features_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_features`
+--
+
+INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
+(17, 9, 5),
+(18, 9, 9),
+(19, 10, 5),
+(20, 10, 7),
+(21, 10, 8),
+(22, 11, 10);
 
 -- --------------------------------------------------------
 
@@ -337,31 +378,31 @@ ALTER TABLE `contact_details`
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `settings`

@@ -94,7 +94,7 @@
     <div class="container">
     <div class="row">
       <!-- Room 1 -->
-      <div class="col-lg-4 col-md-6 my-3">
+        <div class="col-lg-4 col-md-6 my-3">
         <div class="card border-0 shadow " style="max-width: 350px; margin: auto;">
           <img src="images/rooms/1.jpg" class="card-img-top">
           <div class="card-body">
@@ -110,9 +110,7 @@
                 </span>
                 <span class="badge rounded-pill bg-light text-dark text-wrap ">
                   1 Living Room
-                </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
-                  2 Con ghẹ đít bự
-                </span>
+
             </div>
             <div class="facilites mb-4">
               <h6 class="mb-1">Cơ sở vật chất</h6>
@@ -124,9 +122,7 @@
               </span>
               <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 1 Infinity Pool
-              </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
-                Ghế tình yêu
-              </span>
+
             </div>
             <div class="guests mb-4">
                   <h6 class="mb-1">Số lượng khách</h6>
@@ -155,136 +151,120 @@
         </div>
       </div>
       <!-- Room 2 -->
-      <div class="col-lg-4 col-md-6 my-3">
-        <div class="card border-0 shadow " style="max-width: 350px; margin: auto;">
-          <img src="images/rooms/1.jpg" class="card-img-top">
-          <div class="card-body">
-            <h5 >Phòng Đơn</h5>
-            <h6 class="mb-4">2tr999 VND/ngày</h6>
-            <div class="features mb-4">
-                <h6 class="mb-1">Mô tả</h6>
-                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+        <div class="col-lg-4 col-md-6 my-3">
+            <div class="card border-0 shadow " style="max-width: 350px; margin: auto;">
+                <img src="images/rooms/1.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5 >Phòng Đơn</h5>
+                    <h6 class="mb-4">2tr999 VND/ngày</h6>
+                    <div class="features mb-4">
+                        <h6 class="mb-1">Mô tả</h6>
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                   2 Rooms
                 </span>
-                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                   2 Bathrooms
                 </span>
-                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                   1 Living Room
-                </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
-                  2 Con ghẹ đít bự
-                </span>
-            </div>
-            <div class="facilites mb-4">
-              <h6 class="mb-1">Cơ sở vật chất</h6>
-              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+
+                    </div>
+                    <div class="facilites mb-4">
+                        <h6 class="mb-1">Cơ sở vật chất</h6>
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 Wifi 5G
               </span>
-              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 2 TV
               </span>
-              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 1 Infinity Pool
-              </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
-                Ghế tình yêu
-              </span>
-            </div>
-              <div class="guests mb-4">
-                  <h6 class="mb-1">Số lượng khách</h6>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+
+                    </div>
+                    <div class="guests mb-4">
+                        <h6 class="mb-1">Số lượng khách</h6>
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 5 người lớn
               </span>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 4 trẻ em
               </span>
-              </div>
-            <div class="rating mb-4">
-              <h6 class="mb-1">Đánh giá</h6>
-              <span class="badge rounded-pill bg-light">
+                    </div>
+                    <div class="rating mb-4">
+                        <h6 class="mb-1">Đánh giá</h6>
+                        <span class="badge rounded-pill bg-light">
                 <i class="bi bi-star-fill text-warning"></i>
                 <i class="bi bi-star-fill text-warning"></i>
                 <i class="bi bi-star-fill text-warning"></i>
                 <i class="bi bi-star-fill text-warning"></i>
                 <i class="bi bi-star-fill text-warning"></i>
-              </span> 
+              </span>
+                    </div>
+                    <div class="d-flex justify-content-evenly mb-2">
+                        <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Đặt phòng</a>
+                        <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Thêm chi tiết</a>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-evenly mb-2">
-              <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Đặt phòng</a>
-              <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Thêm chi tiết</a>
-            </div>
-          </div>
         </div>
-      </div>
       <!-- Room 3 -->
-      <div class="col-lg-4 col-md-6 my-3">
-        <div class="card border-0 shadow " style="max-width: 350px; margin: auto;">
-          <img src="images/rooms/1.jpg" class="card-img-top">
-          <div class="card-body">
-            <h5 >Phòng Đơn</h5>
-            <h6 class="mb-4">2tr999 VND/ngày</h6>
-            <div class="features mb-4">
-                <h6 class="mb-1">Mô tả</h6>
-                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+        <div class="col-lg-4 col-md-6 my-3">
+            <div class="card border-0 shadow " style="max-width: 350px; margin: auto;">
+                <img src="images/rooms/1.jpg" class="card-img-top">
+                <div class="card-body">
+                    <h5 >Phòng Đơn</h5>
+                    <h6 class="mb-4">2tr999 VND/ngày</h6>
+                    <div class="features mb-4">
+                        <h6 class="mb-1">Mô tả</h6>
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                   2 Rooms
                 </span>
-                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                   2 Bathrooms
                 </span>
-                <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                   1 Living Room
-                </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
-                  2 Con ghẹ đít bự
-                </span>
-            </div>
-              <div class="guests mb-4">
-                  <h6 class="mb-1">Cơ sở vật chất</h6>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
-                5 người lớn
-              </span>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
-                4 trẻ em
-              </span>
-              </div>
-            <div class="facilites mb-4">
-              <h6 class="mb-1">Cơ sở vật chất</h6>
-              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+
+                    </div>
+                    <div class="facilites mb-4">
+                        <h6 class="mb-1">Cơ sở vật chất</h6>
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 Wifi 5G
               </span>
-              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 2 TV
               </span>
-              <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 1 Infinity Pool
-              </span><span class="badge rounded-pill bg-light text-dark text-wrap ">
-                Ghế tình yêu
-              </span>
-            </div>
-              <div class="guests mb-4">
-                  <h6 class="mb-1">Số lượng khách</h6>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+
+                    </div>
+                    <div class="guests mb-4">
+                        <h6 class="mb-1">Số lượng khách</h6>
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 5 người lớn
               </span>
-                  <span class="badge rounded-pill bg-light text-dark text-wrap ">
+                        <span class="badge rounded-pill bg-light text-dark text-wrap ">
                 4 trẻ em
               </span>
-              </div>
-            <div class="rating mb-4">
-              <h6 class="mb-1">Đánh giá</h6>
-              <span class="badge rounded-pill bg-light">
+                    </div>
+                    <div class="rating mb-4">
+                        <h6 class="mb-1">Đánh giá</h6>
+                        <span class="badge rounded-pill bg-light">
                 <i class="bi bi-star-fill text-warning"></i>
                 <i class="bi bi-star-fill text-warning"></i>
                 <i class="bi bi-star-fill text-warning"></i>
                 <i class="bi bi-star-fill text-warning"></i>
                 <i class="bi bi-star-fill text-warning"></i>
-              </span> 
+              </span>
+                    </div>
+                    <div class="d-flex justify-content-evenly mb-2">
+                        <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Đặt phòng</a>
+                        <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Thêm chi tiết</a>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex justify-content-evenly mb-2">
-              <a href="#" class="btn btn-sm text-white custom-bg shadow-none">Đặt phòng</a>
-              <a href="#" class="btn btn-sm btn-outline-dark shadow-none">Thêm chi tiết</a>
-            </div>
-          </div>
         </div>
-      </div>
+
       <div class="col-lg-12 text-center mt-5">
         <a href="#" class="btn btn-sm btn-outline-dark rounded-0 fw-bold shadow-none">More Rooms >>></a>
       </div>
