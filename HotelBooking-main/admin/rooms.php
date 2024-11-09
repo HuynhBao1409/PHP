@@ -376,10 +376,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div>
 
+<!-- Manage room iamges modal -->
+<div class="modal fade" id="room-images" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title">Room Name</h1>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="image-alert"></div>
+                <div class="border-bottom border-3 pb-3 mb-3">
+                    <form id="add_image_form">
+                        <label class="form-label fw-bold">Add Image</label>
+                        <input type="file" name="image" accept=".jpg, .png, .webp, .jpeg, .jfif" class="form-control shadow-none mb-3" required>
+                        <button  class="btn custom-bg text-white shadow-none">Add</button>
+                        <input type="hidden" name="room_id">
+                    </form>
+                </div>
+                <div class="table-responsive-lg" style="height: 350px; overflow-y: scroll;">
+                    <table class="table table-hover border text-center">
+                        <thead class="sticky-top">
+                            <tr class="bg-dark text-light sticky-top">
+                                <th scope="col" width="60%">Image</th>
+                                <th scope="col">Thumb</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody id="room-image-data">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <?php require ('inc/scripts.php'); ?>
+
 <script>
     let add_room_form = document.getElementById('add_room_form');
-
 
     function alert(type, msg) {
         let bs_class = (type == 'success') ? 'alert-success' : 'alert-danger';
@@ -445,12 +482,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 var modal = bootstrap.Modal.getInstance(myModal);
 
                 if (this.responseText == 1) {
-                    alert('success', 'New room added successfully!');
+                    alert('success', 'Phòng đã được thêm!');
                     add_room_form.reset();
                     modal.hide();
                     get_all_rooms();
                 } else {
-                    alert('error', 'Failed to add room!');
+                    alert('error', 'Không thể thêm phòng!');
                 }
             } catch (e) {
                 console.error('Error:', e);
@@ -479,23 +516,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         xhr.send('get_all_rooms=1&csrf_token=<?php echo $_SESSION['csrf_token']; ?>');
-    }
-
-    function toggle_status(id,val){
-        let xhr = new XMLHttpRequest();
-        xhr.open("POST", "ajax/rooms.php", true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-        xhr.onload = function () {
-            if(this.responseText==1){
-                alert('success','Status toggled!');
-                get_all_rooms();
-            }
-            else{
-                alert('success','Server Down!');
-            }
-        }
-        xhr.send('toggle_status='+id+'&value='+val+'&csrf_token=<?php echo $_SESSION['csrf_token']; ?>');
     }
 
     <!--Edit room-->
@@ -566,8 +586,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         xhr.send('get_room=' + id + '&csrf_token=' + document.querySelector('input[name="csrf_token"]').value);
     }
 
-
-
     function submit_edit_room() {
         let form = document.getElementById('edit_room_form');
         let data = new FormData(form);
@@ -596,12 +614,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (this.status === 200) {
                 try {
                     if (this.responseText == 1) {
-                        alert('success', 'Room updated successfully!');
+                        alert('success', 'Cật nhật phòng thành công!');
                         let modal = bootstrap.Modal.getInstance(document.getElementById('edit-room'));
                         modal.hide();
                         get_all_rooms();
                     } else {
-                        alert('error', 'Failed to update room');
+                        alert('error', 'Cật nhật phòng thất bại');
                         console.error('Server response:', this.responseText);
                     }
                 } catch (e) {
@@ -623,10 +641,158 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         submit_edit_room();
     });
 
+    function toggle_status(id,val){
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/rooms.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function () {
+            if(this.responseText==1){
+                alert('success','Đã chuyển đổi trạng thái!');
+                get_all_rooms();
+            }
+            else{
+                alert('success','Server Down!');
+            }
+        }
+        xhr.send('toggle_status='+id+'&value='+val+'&csrf_token=<?php echo $_SESSION['csrf_token']; ?>');
+    }
+
+    <!--Up Images room-->
+    let add_image_form = document.getElementById('add_image_form');
+
+    add_image_form.addEventListener('submit',function (e){
+        e.preventDefault();
+        add_image();
+    });
+    <!--Add Images room-->
+    function add_image(){
+        let data = new FormData();
+        data.append('image',add_image_form.elements['image'].files[0]);
+        data.append('room_id',add_image_form.elements['room_id'].value);
+        data.append('add_image','');
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","ajax/rooms.php",true);
+
+        xhr.onload = function() {
+            console.log(this.responseText);
+
+            if(this.responseText == 'inv_img'){
+                alert('error','Chỉ nhận file ảnh JPG, WEBP và PNG!','image-alert');
+            }
+            else if (this.responseText == 'inv_size'){
+                alert('error','Chỉ cho ảnh nhỏ hơn 2MB!','image-alert');
+            }
+            else if (this.responseText == 'upd_failed'){
+                alert('error','Tải ảnh thất bại!','image-alert');
+            }
+            else{
+                alert('success','Ảnh đã thêm thành công!','image-alert');
+                room_images(add_image_form.elements['room_id'].value,document.querySelector("#room-images .modal-title").innerText);
+                add_image_form.reset();
+            }
+        }
+
+        xhr.send(data);
+    }
+
+    function room_images(id,rname){
+        document.querySelector("#room-images .modal-title").innerText = rname;
+        add_image_form.elements['room_id'].value=id;
+        add_image_form.elements['image'].value= '';
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "ajax/rooms.php", true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function () {
+            document.getElementById('room-image-data').innerHTML = this.responseText;
+
+        }
+        xhr.send('get_room_images='+id);
+    }
+
+    <!--Remove Images room-->
+    function rem_image(img_id,room_id){
+        let data = new FormData();
+        data.append('image_id',img_id);
+        data.append('room_id',room_id);
+        data.append('rem_image','');
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","ajax/rooms.php",true);
+
+        xhr.onload = function() {
+            console.log(this.responseText);
+
+            if(this.responseText == 1){
+                alert('success','Ảnh đã được xóa!','image-alert');
+                room_images(room_id,document.querySelector("#room-images .modal-title").innerText);
+
+            }
+
+            else{
+                alert('error','Xóa ảnh thất bại!','image-alert');
+            }
+        }
+        xhr.send(data);
+    }
+
+    <!--Thumb Images room-->
+    function thumb_image(img_id,room_id){
+        let data = new FormData();
+        data.append('image_id',img_id);
+        data.append('room_id',room_id);
+        data.append('thumb_image','');
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","ajax/rooms.php",true);
+
+        xhr.onload = function() {
+            console.log(this.responseText);
+
+            if(this.responseText == 1){
+                alert('success','Ảnh nền đã được thêm!','image-alert');
+                room_images(room_id,document.querySelector("#room-images .modal-title").innerText);
+
+            }
+
+            else{
+                alert('error','Xóa ảnh nền thất bại!','image-alert');
+            }
+        }
+        xhr.send(data);
+    }
+
+    <!--Trash room-->
+    function remove_room(room_id){
+        if(confirm("Bạn có chắc chắn sẽ xóa chứ?")){
+            let data = new FormData();
+            data.append('room_id',room_id);
+            data.append('remove_room','');
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST","ajax/rooms.php",true);
+
+            xhr.onload = function() {
+                console.log(this.responseText);
+
+                if(this.responseText == 1){
+                    alert('success','Đã xóa phòng!');
+                    get_all_rooms();
+                }
+                else{
+                    alert('error','Xóa phòng thất bại!');
+                }
+            }
+            xhr.send(data);
+        }
+    }
+
     window.onload = function (){
         get_all_rooms();
     }
-
 
 </script>
 </body>

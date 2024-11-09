@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2024 at 06:12 AM
+-- Generation Time: Nov 09, 2024 at 11:06 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -157,9 +157,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`) VALUES
-(9, 'Phòng Vip', 1, 1500000, 1, 2, 1, 'okla', 0),
-(10, 'Phòng tổng thống', 2, 25000000, 1, 4, 2, 'ngon', 1),
-(11, 'Phòng thường', 3, 500000, 1, 1, 1, 'tạm', 1);
+(9, 'Phòng Vip', 1, 12500000, 1, 4, 2, 'okla', 0),
+(10, 'Phòng tổng thống', 2, 25000000, 2, 6, 2, 'ngon', 0),
+(12, 'Phòng phổng thông', 2, 10000000, 1, 2, 1, 'là dị đó', 0);
 
 -- --------------------------------------------------------
 
@@ -178,16 +178,18 @@ CREATE TABLE `room_facilities` (
 --
 
 INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
-(11, 9, 6),
-(12, 9, 7),
-(13, 9, 8),
-(14, 9, 9),
-(15, 10, 6),
-(16, 10, 7),
-(17, 10, 8),
-(18, 10, 9),
-(19, 11, 6),
-(20, 11, 7);
+(43, 10, 6),
+(44, 10, 7),
+(45, 10, 8),
+(46, 10, 9),
+(47, 9, 6),
+(48, 9, 7),
+(49, 9, 8),
+(50, 9, 9),
+(51, 12, 6),
+(52, 12, 7),
+(53, 12, 8),
+(54, 12, 9);
 
 -- --------------------------------------------------------
 
@@ -206,12 +208,35 @@ CREATE TABLE `room_features` (
 --
 
 INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
-(17, 9, 5),
-(18, 9, 9),
-(19, 10, 5),
-(20, 10, 7),
-(21, 10, 8),
-(22, 11, 10);
+(36, 10, 5),
+(37, 10, 7),
+(38, 10, 8),
+(39, 9, 5),
+(40, 9, 9),
+(41, 12, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_images`
+--
+
+CREATE TABLE `room_images` (
+  `sr_no` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `image` varchar(150) NOT NULL,
+  `thumb` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_images`
+--
+
+INSERT INTO `room_images` (`sr_no`, `room_id`, `image`, `thumb`) VALUES
+(10, 9, 'IMG_83107.png', 1),
+(12, 9, 'IMG_27592.png', 0),
+(13, 10, 'IMG_70643.png', 1),
+(15, 12, 'IMG_72069.png', 1);
 
 -- --------------------------------------------------------
 
@@ -335,6 +360,13 @@ ALTER TABLE `room_features`
   ADD KEY `features id` (`features_id`);
 
 --
+-- Indexes for table `room_images`
+--
+ALTER TABLE `room_images`
+  ADD PRIMARY KEY (`sr_no`),
+  ADD KEY `room_id` (`room_id`);
+
+--
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
@@ -390,19 +422,25 @@ ALTER TABLE `features`
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
+--
+-- AUTO_INCREMENT for table `room_images`
+--
+ALTER TABLE `room_images`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -439,6 +477,12 @@ ALTER TABLE `room_facilities`
 ALTER TABLE `room_features`
   ADD CONSTRAINT `features id` FOREIGN KEY (`features_id`) REFERENCES `features` (`id`) ON UPDATE NO ACTION,
   ADD CONSTRAINT `room id` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`) ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `room_images`
+--
+ALTER TABLE `room_images`
+  ADD CONSTRAINT `room_images_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

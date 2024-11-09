@@ -6,35 +6,34 @@
     e.preventDefault();
     add_image();
 });
-
     function add_image(){
-    let data = new FormData();
-    data.append('picture',carousel_picture_inp.files[0]);
-    data.append('add_image','');
+        let data = new FormData();
+        data.append('picture',carousel_picture_inp.files[0]);
+        data.append('add_image','');
 
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST","ajax/carousel_crud.php",true);
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST","ajax/carousel_crud.php",true);
 
-    xhr.onload = function() {
-    console.log(this.responseText);
-    var myModal = document.getElementById('carousel-s');
-    var modal = bootstrap.Modal.getInstance(myModal);
-    modal.hide();
+        xhr.onload = function() {
+        console.log(this.responseText);
+        var myModal = document.getElementById('carousel-s');
+        var modal = bootstrap.Modal.getInstance(myModal);
+        modal.hide();
 
     if(this.responseText == 'inv_img'){
-    alert('error','Chỉ cho file ảnh JPG và PNG được cho phép!');
-}
+        alert('error','Chỉ cho file ảnh JPG và PNG được cho phép!');
+    }
     else if (this.responseText == 'inv_size'){
-    alert('error','Chỉ cho ảnh bé hơn 2MB!');
-}
+        alert('error','Chỉ cho ảnh bé hơn 2MB!');
+    }
     else if (this.responseText == 'upd_failed'){
-    alert('error','Tải ảnh lên thất bại!');
-}
+        alert('error','Tải ảnh lên thất bại!');
+    }
     else{
-    alert('success','Ảnh được thêm thành công!');
-    carousel_picture_inp.value ='';
-    get_carousel();
-}
+        alert('success','Ảnh được thêm thành công!');
+        carousel_picture_inp.value ='';
+        get_carousel();
+    }
 }
 
     xhr.send(data);
