@@ -113,10 +113,10 @@ if (isset($_POST['get_all_rooms'])) {
                 <td>$row[area]</td>
                 <td>
                     <span class='badge rounded-pill bg-light text-dark'>
-                        Adult: $row[adult]
+                        Người lớn: $row[adult]
                     </span><br>
                     <span class='badge rounded-pill bg-light text-dark'>
-                        Children: $row[children]
+                        Trẻ em: $row[children]
                     </span>
                 </td>
                 <td>$row[price] VND</td>

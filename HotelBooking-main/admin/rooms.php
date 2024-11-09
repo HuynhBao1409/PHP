@@ -178,13 +178,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <thead class="sticky-top">
                             <tr class="bg-dark text-light">
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Area</th>
-                                <th scope="col">Guests</th>
-                                <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Khu vực</th>
+                                <th scope="col">Khách</th>
+                                <th scope="col">Giá tiền</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Tùy chọn</th>
                             </tr>
                             </thead>
                             <tbody id="room-data">
@@ -211,32 +211,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="row">
                         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="name">Name</label>
+                            <label class="form-label fw-bold" for="name">Tên</label>
                             <input type="text" id="name" name="name" class="form-control shadow-none" autocomplete="name" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="area">Area</label>
+                            <label class="form-label fw-bold" for="area">Khu vực</label>
                             <input type="number" min="1" id="area" name="area" class="form-control shadow-none" autocomplete="area" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="price">Price</label>
+                            <label class="form-label fw-bold" for="price">Giá tiền</label>
                             <input type="number" min="1" id="price" name="price" class="form-control shadow-none" autocomplete="price" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="quantity">Quantity</label>
+                            <label class="form-label fw-bold" for="quantity">Số lượng</label>
                             <input type="number" min="1" id="quantity" name="quantity" class="form-control shadow-none" autocomplete="quantity" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="adult">Adult (Max.)</label>
+                            <label class="form-label fw-bold" for="adult">Người lớn (Max.)</label>
                             <input type="number" min="1" id="adult" name="adult" class="form-control shadow-none" autocomplete="adult" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="children">Children (Max.)</label>
+                            <label class="form-label fw-bold" for="children">Trẻ em (Max.)</label>
                             <input type="number" min="1" id="children" name="children" class="form-control shadow-none" autocomplete="children" required>
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="form-label fw-bold">Features</label>
+                        <label class="form-label fw-bold">Đặc trưng</label>
                         <div class="row">
                             <?php
                             $res = selectAll('features');
@@ -254,7 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="form-label fw-bold">Facilities</label>
+                        <label class="form-label fw-bold">Tiện ích</label>
                         <div class="row">
                             <?php
                             $res = selectAll('facilities');
@@ -300,32 +300,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="hidden" name="room_id" id="edit_room_id">
                         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Name</label>
+                            <label class="form-label fw-bold">Tên</label>
                             <input type="text" name="name" id="edit_name" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Area</label>
+                            <label class="form-label fw-bold">Khu vực</label>
                             <input type="number" min="1" name="area" id="edit_area" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Price</label>
+                            <label class="form-label fw-bold">Giá tiền</label>
                             <input type="number" min="1" name="price" id="edit_price" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Quantity</label>
+                            <label class="form-label fw-bold">Số lượng</label>
                             <input type="number" min="1" name="quantity" id="edit_quantity" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Adult (Max.)</label>
+                            <label class="form-label fw-bold">Người lớn (Max.)</label>
                             <input type="number" min="1" name="adult" id="edit_adult" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Children (Max.)</label>
+                            <label class="form-label fw-bold">Trẻ em (Max.)</label>
                             <input type="number" min="1" name="children" id="edit_children" class="form-control shadow-none" required>
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="form-label fw-bold">Features</label>
+                        <label class="form-label fw-bold">Đặc trưng</label>
                         <div class="row" id="edit_features">
                             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <?php
@@ -344,7 +344,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="form-label fw-bold">Facilities</label>
+                        <label class="form-label fw-bold">Tiện ích</label>
                         <div class="row" id="edit_facilities">
                             <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                             <?php
@@ -363,7 +363,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="form-label fw-bold">Description</label>
+                        <label class="form-label fw-bold">Mô tả</label>
                         <textarea name="desc" id="edit_desc" rows="4" class="form-control shadow-none" required></textarea>
                     </div>
                 </div>
@@ -399,7 +399,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <thead class="sticky-top">
                             <tr class="bg-dark text-light sticky-top">
                                 <th scope="col" width="60%">Image</th>
-                                <th scope="col">Thumb</th>
+                                <th scope="col">Thumbnail</th>
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
