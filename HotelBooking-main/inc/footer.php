@@ -2,16 +2,17 @@
 $contact_q= "SELECT * FROM `contact_details` WHERE `sr_no`=?"; //Lấy dữ liệu từ bảng contact_details với sr_no=?
 $values = [1];
 $contact_r = mysqli_fetch_assoc(select($contact_q,$values,'i')); //Lấy 1 dòng kết quả dạng array
+
+$settings_q = "SELECT * FROM `settings` WHERE `sr_no`=?";
+$settings_r = mysqli_fetch_assoc(select($settings_q,$values,'i'));
 ?>
 <!-- Footer -->
 <div class="contrainer-fluid bg-white mt-5">
     <div class="row">
         <div class="col-lg-4 p-4">
-            <h3 class="h-font fw-bold fs-3">Vinpearl Nha Trang</h3>
+            <h3 class="h-font fw-bold fs-3"><?php echo $settings_r['site_title'] ?></h3>
             <p>
-                Vinpearl Nha Trang là nơi có các khách sạn là một điểm đến lý tưởng cho du khách, nổi tiếng với không gian sang trọng,
-                dịch vụ chuyên nghiệp và tiện nghi hiện đại. Với vị trí thuận lợi, gần các điểm du lịch nổi tiếng và trung tâm thương mại,
-                Comodo mang đến cho khách hàng trải nghiệm lưu trú tuyệt vời.
+                <?php echo $settings_r['site_about'] ?>
             </p>
         </div>
         <div class="col-lg-4 p-4">

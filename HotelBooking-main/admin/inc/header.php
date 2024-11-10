@@ -1,6 +1,6 @@
 <div class="container-flud bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
     <h3 class="mb-0 h-font">HOTEL BOOKING WEBSITE</h3>
-    <a href="logout.php" class="btn btn-light btn-sm">Login Out</a>
+    <a href="logout.php" class="btn btn-light btn-sm">LogOut</a>
 </div>
 
 <div class="col-lg-2 bg-dark border-top border-3 border-secondary position-fixed h-100" id="dashboard-menu">

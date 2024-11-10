@@ -179,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <tr class="bg-dark text-light">
                                 <th scope="col">#</th>
                                 <th scope="col">Tên</th>
-                                <th scope="col">Khu vực</th>
+                                <th scope="col">Diện tích</th>
                                 <th scope="col">Khách</th>
                                 <th scope="col">Giá tiền</th>
                                 <th scope="col">Số lượng</th>
@@ -215,7 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="text" id="name" name="name" class="form-control shadow-none" autocomplete="name" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold" for="area">Khu vực</label>
+                            <label class="form-label fw-bold" for="area">Diện tích</label>
                             <input type="number" min="1" id="area" name="area" class="form-control shadow-none" autocomplete="area" required>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -304,7 +304,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="text" name="name" id="edit_name" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">Khu vực</label>
+                            <label class="form-label fw-bold">Diện tích</label>
                             <input type="number" min="1" name="area" id="edit_area" class="form-control shadow-none" required>
                         </div>
                         <div class="col-md-6 mb-3">
@@ -793,7 +793,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     window.onload = function (){
         get_all_rooms();
     }
-
 </script>
 </body>
 </html>
