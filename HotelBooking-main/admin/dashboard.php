@@ -17,7 +17,7 @@ adminLogin();
 <body class="bg-light">
 <?php
 
-    require('inc/header.php');
+require('inc/header.php');
 
 ?>
 
@@ -26,7 +26,7 @@ adminLogin();
         <div class="col-lg-10 ms-auto p-4 overflow-hidden">
 
             <div class="d-flex align-itmes-center justify-content-between mb-4">
-                <h3>DASHBOARD</h3>
+                <h3>Bảng điều khiển</h3>
                 <h6 class="badge bg-danger py-2 px-3 rounded">Shutdown Mode is Active!</h6>
             </div>
 
@@ -48,7 +48,22 @@ adminLogin();
                         </div>
                     </a>
                 </div>
-
+                <div class="col-md-3 mb-4">
+                    <a href="user_queries.php" class="text-decoration-none">
+                        <div class="card text-center text-info p3">
+                            <h6>User Booking</h6>
+                            <h1 class="mt-2 mb-0">4</h1>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <a href="rate_review.php" class="text-decoration-none">
+                        <div class="card text-center text-info p3">
+                            <h6>Rating & Review</h6>
+                            <h1 class="mt-2 mb-0">4</h1>
+                        </div>
+                    </a>
+                </div>
             </div>
 
 

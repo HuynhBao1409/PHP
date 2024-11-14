@@ -61,14 +61,11 @@ if(isset($_POST['login']))
     }
     // Check if it's an admin login attempt
     else {
-        // Sửa câu query
-        $query = "SELECT * FROM admin WHERE ad_name=? AND ad_pass=?";
+        $query = "SELECT * FROM `admin_cred` WHERE `admin_name`=? AND `admin_pass`=?";
         $values = [$frm_data['username'], $frm_data['password']];
 
         $res = select($query, $values, "ss");
-
-        // Thêm kiểm tra kết quả trước khi truy cập num_rows
-        if($res && $res->num_rows == 1) {
+        if($res->num_rows == 1) {
             $row = mysqli_fetch_assoc($res);
             $_SESSION['adminLogin'] = true;
             $_SESSION['adminId'] = $row['sr_no'];

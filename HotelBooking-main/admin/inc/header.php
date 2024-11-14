@@ -1,14 +1,5 @@
 <div class="container-flud bg-dark text-light p-3 d-flex align-items-center justify-content-between sticky-top">
     <h3 class="mb-0 h-font">HOTEL BOOKING WEBSITE</h3>
-    <?php
-    // Lấy thông tin admin từ database
-    $admin_sql = "SELECT `ad_name`, `ad_pass`, `c_vu` FROM `admin` WHERE 1";
-    $admin_result = mysqli_query($con, $admin_sql);
-    $admin_row = mysqli_fetch_assoc($admin_result);
-    $ad_name = $admin_row['ad_name'];
-    $c_vu = $admin_row['c_vu'];
-    ?>
-    <span class="me-3 text-light">Xin chào, <?php echo $ad_name; ?> (<?php echo $c_vu; ?>)</span>
     <a href="logout.php" class="btn btn-light btn-sm">LogOut</a>
 </div>
 

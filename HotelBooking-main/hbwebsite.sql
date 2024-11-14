@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2024 at 06:20 AM
+-- Generation Time: Nov 14, 2024 at 01:50 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,66 +30,15 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin_cred` (
   `sr_no` int(11) NOT NULL,
   `admin_name` varchar(150) NOT NULL,
-  `admin_pass` varchar(150) NOT NULL,
-  `c_vu` varchar(50) NOT NULL
+  `admin_pass` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin_cred`
 --
 
-INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`, `c_vu`) VALUES
-(1, 'admin', '123', 'giám đốc'),
-(2, 'bao', '123', 'nhân viên');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `carousel`
---
-
-CREATE TABLE `carousel` (
-  `sr_no` int(11) NOT NULL,
-  `image` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `carousel`
---
-
-INSERT INTO `carousel` (`sr_no`, `image`) VALUES
-(2, 'IMG_12665.png'),
-(3, 'IMG_39857.png'),
-(4, 'IMG_34886.png'),
-(5, 'IMG_84417.png'),
-(6, 'IMG_28937.png'),
-(7, 'IMG_26881.png');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contact_details`
---
-
-CREATE TABLE `contact_details` (
-  `sr_no` int(11) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `gmap` varchar(100) NOT NULL,
-  `pn1` bigint(20) NOT NULL,
-  `pn2` bigint(20) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `fb` varchar(100) NOT NULL,
-  `insta` varchar(100) NOT NULL,
-  `tw` varchar(100) NOT NULL,
-  `iframe` varchar(300) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `contact_details`
---
-
-INSERT INTO `contact_details` (`sr_no`, `address`, `gmap`, `pn1`, `pn2`, `email`, `fb`, `insta`, `tw`, `iframe`) VALUES
-(1, 'City, Hon Tre Nha Trang, Vĩnh Nguyên, Nha Trang, K', 'https://maps.app.goo.gl/ttSiQZuKfnQQ7gTd6', 84365855293, 84905467851, 'abc123@gmail.com', 'https://www.facebook.com/', 'https://www.instagram.com/', 'https://www.twitter.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d31194.83770616767!2d109.2272085!3d12.2242448!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317066e1dd9688bb:0x6ae039c3dfc181db!2sVinpearl Resort Nha Trang!5e0!3m2!1sen!2s!4v1730781584534!5m2!1sen!2s');
+INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`) VALUES
+(1, 'admin', '123');
 
 -- --------------------------------------------------------
 
@@ -112,7 +61,8 @@ INSERT INTO `facilities` (`id`, `icon`, `name`, `description`) VALUES
 (6, 'IMG_63358.svg', 'TV', ''),
 (7, 'IMG_41869.svg', 'Air-conditioner', ''),
 (8, 'IMG_94095.svg', 'Radio', ''),
-(9, 'IMG_36249.svg', 'Spa', '');
+(9, 'IMG_36249.svg', 'Spa', ''),
+(10, 'IMG_20283.svg', 'wifi', '');
 
 -- --------------------------------------------------------
 
@@ -240,51 +190,6 @@ INSERT INTO `room_images` (`sr_no`, `room_id`, `image`, `thumb`) VALUES
 (13, 10, 'IMG_70643.png', 1),
 (15, 12, 'IMG_72069.png', 1);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `team_details`
---
-
-CREATE TABLE `team_details` (
-  `sr_no` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `picture` varchar(150) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `team_details`
---
-
-INSERT INTO `team_details` (`sr_no`, `name`, `picture`) VALUES
-(4, 'SangTraan', 'IMG_17791.jpg'),
-(5, 'AnhSeng', 'IMG_18943.jpg'),
-(7, 'Phan Hoang', 'IMG_87681.png'),
-(8, 'Mr.Nghia', 'IMG_66561.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_queries`
---
-
-CREATE TABLE `user_queries` (
-  `sr_no` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `email` varchar(150) NOT NULL,
-  `subject` varchar(200) NOT NULL,
-  `message` varchar(500) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
-  `seen` tinyint(4) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `user_queries`
---
-
-INSERT INTO `user_queries` (`sr_no`, `name`, `email`, `subject`, `message`, `date`, `seen`) VALUES
-(1, 'Tin Thanh', 'tin.dt.63cntt@ntu.edu.vn', 'abc', '213124r', '2024-11-06', 1);
-
 --
 -- Indexes for dumped tables
 --
@@ -293,18 +198,6 @@ INSERT INTO `user_queries` (`sr_no`, `name`, `email`, `subject`, `message`, `dat
 -- Indexes for table `admin_cred`
 --
 ALTER TABLE `admin_cred`
-  ADD PRIMARY KEY (`sr_no`);
-
---
--- Indexes for table `carousel`
---
-ALTER TABLE `carousel`
-  ADD PRIMARY KEY (`sr_no`);
-
---
--- Indexes for table `contact_details`
---
-ALTER TABLE `contact_details`
   ADD PRIMARY KEY (`sr_no`);
 
 --
@@ -349,18 +242,6 @@ ALTER TABLE `room_images`
   ADD KEY `room_id` (`room_id`);
 
 --
--- Indexes for table `team_details`
---
-ALTER TABLE `team_details`
-  ADD PRIMARY KEY (`sr_no`);
-
---
--- Indexes for table `user_queries`
---
-ALTER TABLE `user_queries`
-  ADD PRIMARY KEY (`sr_no`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -368,25 +249,13 @@ ALTER TABLE `user_queries`
 -- AUTO_INCREMENT for table `admin_cred`
 --
 ALTER TABLE `admin_cred`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `carousel`
---
-ALTER TABLE `carousel`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `contact_details`
---
-ALTER TABLE `contact_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `features`
@@ -417,18 +286,6 @@ ALTER TABLE `room_features`
 --
 ALTER TABLE `room_images`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `team_details`
---
-ALTER TABLE `team_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `user_queries`
---
-ALTER TABLE `user_queries`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
