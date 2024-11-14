@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 12, 2024 at 09:15 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 13, 2024 lúc 02:22 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hbwebsite`
+-- Cơ sở dữ liệu: `hbwebsite`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Cấu trúc bảng cho bảng `admin`
 --
 
 CREATE TABLE `admin` (
@@ -35,7 +35,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `admin`
+-- Đang đổ dữ liệu cho bảng `admin`
 --
 
 INSERT INTO `admin` (`sr_no`, `ad_name`, `ad_pass`, `c_vu`) VALUES
@@ -45,7 +45,7 @@ INSERT INTO `admin` (`sr_no`, `ad_name`, `ad_pass`, `c_vu`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `d_trung`
+-- Cấu trúc bảng cho bảng `d_trung`
 --
 
 CREATE TABLE `d_trung` (
@@ -54,7 +54,7 @@ CREATE TABLE `d_trung` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `d_trung`
+-- Đang đổ dữ liệu cho bảng `d_trung`
 --
 
 INSERT INTO `d_trung` (`id`, `ten`) VALUES
@@ -68,7 +68,7 @@ INSERT INTO `d_trung` (`id`, `ten`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phong`
+-- Cấu trúc bảng cho bảng `phong`
 --
 
 CREATE TABLE `phong` (
@@ -84,7 +84,7 @@ CREATE TABLE `phong` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `phong`
+-- Đang đổ dữ liệu cho bảng `phong`
 --
 
 INSERT INTO `phong` (`id`, `name`, `area`, `price`, `soluong`, `adult`, `children`, `mo_ta`, `tr_thai`) VALUES
@@ -95,7 +95,7 @@ INSERT INTO `phong` (`id`, `name`, `area`, `price`, `soluong`, `adult`, `childre
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phong_d_trung`
+-- Cấu trúc bảng cho bảng `phong_d_trung`
 --
 
 CREATE TABLE `phong_d_trung` (
@@ -107,7 +107,7 @@ CREATE TABLE `phong_d_trung` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phong_image`
+-- Cấu trúc bảng cho bảng `phong_image`
 --
 
 CREATE TABLE `phong_image` (
@@ -120,7 +120,7 @@ CREATE TABLE `phong_image` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phong_tien_tich`
+-- Cấu trúc bảng cho bảng `phong_tien_tich`
 --
 
 CREATE TABLE `phong_tien_tich` (
@@ -132,7 +132,7 @@ CREATE TABLE `phong_tien_tich` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tien_ich`
+-- Cấu trúc bảng cho bảng `tien_ich`
 --
 
 CREATE TABLE `tien_ich` (
@@ -143,7 +143,7 @@ CREATE TABLE `tien_ich` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `tien_ich`
+-- Đang đổ dữ liệu cho bảng `tien_ich`
 --
 
 INSERT INTO `tien_ich` (`id`, `icon`, `ten`, `mo_ta`) VALUES
@@ -152,30 +152,53 @@ INSERT INTO `tien_ich` (`id`, `icon`, `ten`, `mo_ta`) VALUES
 (8, 'IMG_94095.svg', 'Radio', ''),
 (9, 'IMG_36249.svg', 'Spa', '');
 
+-- --------------------------------------------------------
+
 --
--- Indexes for dumped tables
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `role` enum('user','admin') NOT NULL DEFAULT 'user',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
+(3, 'Tin Thanh', 'abc@gmail.com', '$2y$10$CxIsUoX0A1UcnAzeifKv1e6TvnSgKFuQcIxzgQYW44BGFViFh1UtG', 'user', '2024-11-13 13:10:30'),
+(5, 'Tín', 'dothanhtin3011@gmail.com', '$2y$10$Ce.Tb6sq2yJeTHCQuygFZuvTurls1KRka17eu6G5RYOAN8z9EGzTm', 'admin', '2024-11-13 13:21:37');
+
+--
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `admin`
+-- Chỉ mục cho bảng `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`sr_no`);
 
 --
--- Indexes for table `d_trung`
+-- Chỉ mục cho bảng `d_trung`
 --
 ALTER TABLE `d_trung`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `phong`
+-- Chỉ mục cho bảng `phong`
 --
 ALTER TABLE `phong`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `phong_d_trung`
+-- Chỉ mục cho bảng `phong_d_trung`
 --
 ALTER TABLE `phong_d_trung`
   ADD PRIMARY KEY (`sr_no`),
@@ -183,14 +206,14 @@ ALTER TABLE `phong_d_trung`
   ADD KEY `d_trung id` (`d_trung_id`);
 
 --
--- Indexes for table `phong_image`
+-- Chỉ mục cho bảng `phong_image`
 --
 ALTER TABLE `phong_image`
   ADD PRIMARY KEY (`sr_no`),
   ADD KEY `phong_id` (`phong_id`);
 
 --
--- Indexes for table `phong_tien_tich`
+-- Chỉ mục cho bảng `phong_tien_tich`
 --
 ALTER TABLE `phong_tien_tich`
   ADD PRIMARY KEY (`sr_no`),
@@ -198,76 +221,89 @@ ALTER TABLE `phong_tien_tich`
   ADD KEY `facilities id` (`tien_ich_id`);
 
 --
--- Indexes for table `tien_ich`
+-- Chỉ mục cho bảng `tien_ich`
 --
 ALTER TABLE `tien_ich`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- AUTO_INCREMENT cho bảng `admin`
 --
 ALTER TABLE `admin`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `d_trung`
+-- AUTO_INCREMENT cho bảng `d_trung`
 --
 ALTER TABLE `d_trung`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `phong`
+-- AUTO_INCREMENT cho bảng `phong`
 --
 ALTER TABLE `phong`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT for table `phong_d_trung`
+-- AUTO_INCREMENT cho bảng `phong_d_trung`
 --
 ALTER TABLE `phong_d_trung`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `phong_image`
+-- AUTO_INCREMENT cho bảng `phong_image`
 --
 ALTER TABLE `phong_image`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `phong_tien_tich`
+-- AUTO_INCREMENT cho bảng `phong_tien_tich`
 --
 ALTER TABLE `phong_tien_tich`
   MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `tien_ich`
+-- AUTO_INCREMENT cho bảng `tien_ich`
 --
 ALTER TABLE `tien_ich`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Constraints for dumped tables
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `phong_d_trung`
+-- Các ràng buộc cho bảng `phong_d_trung`
 --
 ALTER TABLE `phong_d_trung`
   ADD CONSTRAINT `d_trung id` FOREIGN KEY (`d_trung_id`) REFERENCES `d_trung` (`id`) ON UPDATE NO ACTION,
   ADD CONSTRAINT `phong_id` FOREIGN KEY (`phong_id`) REFERENCES `phong` (`id`) ON UPDATE NO ACTION;
 
 --
--- Constraints for table `phong_image`
+-- Các ràng buộc cho bảng `phong_image`
 --
 ALTER TABLE `phong_image`
   ADD CONSTRAINT `room_images_ibfk_1` FOREIGN KEY (`phong_id`) REFERENCES `phong` (`id`);
 
 --
--- Constraints for table `phong_tien_tich`
+-- Các ràng buộc cho bảng `phong_tien_tich`
 --
 ALTER TABLE `phong_tien_tich`
   ADD CONSTRAINT `facilities id` FOREIGN KEY (`tien_ich_id`) REFERENCES `tien_ich` (`id`) ON UPDATE NO ACTION,
