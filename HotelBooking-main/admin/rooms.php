@@ -15,6 +15,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die('Invalid CSRF token');
     }
 
+    if (isset($_POST['seen_all'])) {
+        $q = "UPDATE `user_queries` SET `seen`=?";
+        $values = [1];
+        if (update($q, $values, 'i')) {
+            alert('success', 'Marked all as read');
+        } else {
+            alert('error', 'Operation Failed');
+        }
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+
+    if (isset($_POST['seen_single'])) {
+        $sr_no = filter_var($_POST['sr_no'], FILTER_VALIDATE_INT);
+        if ($sr_no) {
+            $q = "UPDATE `user_queries` SET `seen`=? WHERE `sr_no`=?";
+            $values = [1, $sr_no];
+            if (update($q, $values, 'ii')) {
+                alert('success', 'Marked as read');
+            } else {
+                alert('error', 'Operation Failed');
+            }
+        }
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+
+    if (isset($_POST['delete_all'])) {
+        $stmt = mysqli_prepare($GLOBALS['con'], "DELETE FROM `user_queries`");
+        if (mysqli_stmt_execute($stmt)) {
+            alert('success', 'Đã xóa tất cả');
+        } else {
+            alert('error', 'Xóa thất bại');
+        }
+        mysqli_stmt_close($stmt);
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+
+    if (isset($_POST['delete_single'])) {
+        $sr_no = filter_var($_POST['sr_no'], FILTER_VALIDATE_INT);
+        if ($sr_no) {
+            $q = "DELETE FROM `user_queries` WHERE `sr_no`=?";
+            $values = [$sr_no];
+            if (delete($q, $values, 'i')) {
+                alert('success', 'Đã xóa');
+            } else {
+                alert('error', 'Xóa thất bại');
+            }
+        }
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
+    }
+
     if (isset($_POST['action']) && $_POST['action'] == 'add_room') {
         // Validate CSRF token
         if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
@@ -110,13 +164,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container-fluid" id="main-content">
     <div class="row">
         <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-            <h3 class="mb-4">Danh sách phòng</h3>
+            <h3 class="mb-4">Rooms</h3>
 
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body">
                     <div class="text-end mb-4">
                         <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#add-room">
-                            <i class="bi bi-plus-square"></i> Thêm
+                            <i class="bi bi-plus-square"></i> Add
                         </button>
                     </div>
                     <div class="table-responsive-lg" style="height: 450px; overflow-y: scroll;">
@@ -218,7 +272,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label class="form-label fw-bold" for="description">Mô tả</label>
+                        <label class="form-label fw-bold" for="description">Description</label>
                         <textarea id="desc" name="desc" rows="4" class="form-control shadow-none" autocomplete="desc" required></textarea>
                     </div>
                 </div>

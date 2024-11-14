@@ -82,14 +82,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container-fluid" id="main-content">
     <div class="row">
         <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-            <h3 class="mb-4">Đặc trưng & Tiện tích</h3>
+            <h3 class="mb-4">FEATURES & FACILITIES</h3>
 
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body">
                     <div class="d-flex align-center justify-content-between mb-3">
-                        <h5 class="card-title m-0">Đặc trưng</h5>
+                        <h5 class="card-title m-0">Features</h5>
                         <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#feature-s">
-                            <i class="bi bi-plus-square"></i> Thêm
+                            <i class="bi bi-plus-square"></i> Add
                         </button>
                     </div>
                     <div class="table-responsive-md" style="height: 350px; overflow-y: scroll;">
@@ -97,8 +97,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <thead class="sticky-top">
                             <tr class="bg-dark text-light">
                                 <th scope="col">#</th>
-                                <th scope="col">Tên </th>
-                                <th scope="col">Tùy chọn</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody id="features_data">
@@ -112,9 +112,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body">
                     <div class="d-flex align-center justify-content-between mb-3">
-                        <h5 class="card-title m-0">Tiện ích</h5>
+                        <h5 class="card-title m-0">Facilities</h5>
                         <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#facility-s">
-                            <i class="bi bi-plus-square"></i> Thêm
+                            <i class="bi bi-plus-square"></i> Add
                         </button>
                     </div>
                     <div class="table-responsive-md" style="height: 350px; overflow-y: scroll;">
@@ -123,9 +123,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <tr class="bg-dark text-light">
                                 <th scope="col">#</th>
                                 <th scope="col">Icon</th>
-                                <th scope="col">Tên</th>
-                                <th scope="col" width="40%">Mô tả</th>
-                                <th scope="col">Tùy chọn</th>
+                                <th scope="col">Name</th>
+                                <th scope="col" width="40%">Description</th>
+                                <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody id="facilities_data">
@@ -146,17 +146,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form id="feature_s_form">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Thêm đặc trưng</h5>
+                        <h5 class="modal-title">Add Feature</h5>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label fw-bold">Tên</label>
+                            <label class="form-label fw-bold">Name</label>
                             <input type="text" name="feature_name" class="form-control shadow-none" required>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Hủy</button>
-                        <button type="submit" class="btn custom-bg text-white sahdow-none">Lưu</button>
+                        <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn custom-bg text-white sahdow-none">Submit</button>
                     </div>
                 </div>
             </form>
@@ -169,11 +169,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form id="facility_s_form">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Thêm tiện ích</h5>
+                    <h5 class="modal-title">Add Facility</h5>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <label class="form-label fw-bold">Tên</label>
+                        <label class="form-label fw-bold">Name</label>
                         <input type="text" name="facility_name" class="form-control shadow-none" required>
                     </div>
                     <div class="mb-3">
@@ -181,13 +181,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <input type="file" name="facility_icon" accept=".svg" class="form-control shadow-none" required>
                     </div>
                     <div class="mb-3">
-                        <label classs="form-label">Mô tả</label>
+                        <label classs="form-label">Description</label>
                         <textarea name="facility_desc" class="form-control shadow-none" rows="3" id=""></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Hủy</button>
-                    <button type="submit" class="btn custom-bg text-white sahdow-none">Lưu</button>
+                    <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn custom-bg text-white sahdow-none">Submit</button>
                 </div>
             </div>
         </form>

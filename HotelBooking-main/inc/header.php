@@ -25,6 +25,9 @@
           <a class="nav-link mx-2" href="facilities.php">Facilities</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link mx-2" href="contact.php">Contact us</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link mx-2" href="about.php">About</a>
         </li>
       </ul>
