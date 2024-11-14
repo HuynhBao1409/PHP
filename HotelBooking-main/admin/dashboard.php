@@ -17,19 +17,8 @@ adminLogin();
 <body class="bg-light">
 <?php
 
-    require('inc/header.php');
-    $is_shutdown = mysqli_fetch_assoc(mysqli_query($con,"SELECT `shutdown` FROM `settings`"));
+require('inc/header.php');
 
-//    $current_booking = mysqli_fetch_assoc(mysqli_query($con,"SELECT
-//        COUNT(CASE WHEN booking_status='booked' AND arrival=0 THEN 1 END) AS `new_bookings`,
-//        COUNT(CASE WHEN booking_status='cancelled' AND refund=0 THEN 1 END) AS `refund_bookings`,
-//        FROM `booking_order`"));
-
-    $unread_queries = mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(sr_no) AS `count` 
-        FROM `user_queries` WHERE `seen`=0"));
-
-//    $unread_reviews = mysqli_fetch_assoc(mysqli_query($con,"SELECT COUNT(sr_no) AS `count`
-//        FROM `rating_review` WHERE `seen`=0"));
 ?>
 
 <div class="container-fluid" id="main-content">
@@ -37,7 +26,7 @@ adminLogin();
         <div class="col-lg-10 ms-auto p-4 overflow-hidden">
 
             <div class="d-flex align-itmes-center justify-content-between mb-4">
-                <h3>DASHBOARD</h3>
+                <h3>Bảng điều khiển</h3>
                 <h6 class="badge bg-danger py-2 px-3 rounded">Shutdown Mode is Active!</h6>
             </div>
 

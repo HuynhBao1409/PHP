@@ -415,7 +415,7 @@ if(isset($_POST['remove_room']))
         $q3 = "DELETE FROM `room_features` WHERE `room_id`=?";
         $res3 = delete($q3, [$frm_data['room_id']], 'i');
 
-        // Cuối cùng xóa thông tin phòng từ bảng chính
+        // Xóa thông tin phòng từ bảng chính
         $q4 = "DELETE FROM `rooms` WHERE `id`=?";
         $res4 = delete($q4, [$frm_data['room_id']], 'i');
 
