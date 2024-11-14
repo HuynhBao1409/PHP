@@ -21,11 +21,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql = "INSERT INTO users (name, email, password, role) VALUES ('$name', '$email', '$hashed_password', '$role')";
                 if (mysqli_query($con, $sql)) {
                     echo "<script>alert('Đăng ký thành công.')</script>";
+                    header( "Location: index.php");
+                    exit();
                 } else {
                     echo "<script>alert('Đăng ký thất bại.')</script>";
+                    header( "Location: index.php");
+                    exit();
                 }
             } else {
                 echo "<script>alert('Mật khẩu không khớp.')</script>";
+                header( "Location: index.php");
+                exit();
             }
         }
     }
