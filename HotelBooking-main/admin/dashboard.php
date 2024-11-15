@@ -24,10 +24,16 @@ require('inc/header.php');
 <div class="container-fluid" id="main-content">
     <div class="row">
         <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-
+            <?php if (isset($_SESSION['success'])): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <?= $_SESSION['success']; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <?php unset($_SESSION['success']); // Xóa thông báo sau khi hiển thị ?>
+            <?php endif; ?>
             <div class="d-flex align-itmes-center justify-content-between mb-4">
-                <h3>Bảng điều khiển</h3>
-                <h6 class="badge bg-danger py-2 px-3 rounded">Shutdown Mode is Active!</h6>
+                <h3>Trang chủ</h3>
+
             </div>
 
             <div class="row m-4">

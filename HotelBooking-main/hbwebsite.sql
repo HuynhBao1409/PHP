@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2024 at 01:55 AM
+-- Generation Time: Nov 14, 2024 at 02:51 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,10 +60,10 @@ CREATE TABLE `facilities` (
 --
 
 INSERT INTO `facilities` (`id`, `icon`, `name`, `description`) VALUES
-(10, 'IMG_21205.svg', 'TV', ''),
-(11, 'IMG_69147.svg', 'wifi', ''),
-(12, 'IMG_72155.svg', 'Máy lạnh', 'bla'),
-(13, 'IMG_35638.svg', 'Radio', 'bal');
+(6, 'IMG_63358.svg', 'TV', ''),
+(7, 'IMG_41869.svg', 'Air-conditioner', ''),
+(8, 'IMG_94095.svg', 'Radio', ''),
+(9, 'IMG_36249.svg', 'Spa', '');
 
 -- --------------------------------------------------------
 
@@ -81,10 +81,11 @@ CREATE TABLE `features` (
 --
 
 INSERT INTO `features` (`id`, `name`) VALUES
-(15, 'Hai giường đôi'),
-(16, 'Hai giường đơn'),
-(17, 'Một giường đôi'),
-(18, 'Một giường đơn');
+(5, 'Bể bơi vô cực'),
+(7, 'Hai giường đôi'),
+(8, 'Hai giường đơn'),
+(9, 'Một giường đôi'),
+(10, 'Một giường đơn');
 
 -- --------------------------------------------------------
 
@@ -109,8 +110,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`) VALUES
-(15, 'Phòng Vip', 70, 30000000, 2, 4, 1, 'bla', 0),
-(16, 'Phòng tổng thống', 100, 50000000, 2, 6, 4, 'á', 1);
+(9, 'Phòng Vip', 1, 12500000, 1, 4, 2, 'okla', 0),
+(10, 'Phòng tổng thống', 2, 25000000, 2, 6, 2, 'ngon', 0),
+(12, 'Phòng phổng thông', 2, 10000000, 1, 2, 1, 'là dị đó', 0);
 
 -- --------------------------------------------------------
 
@@ -129,14 +131,18 @@ CREATE TABLE `room_facilities` (
 --
 
 INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
-(59, 15, 10),
-(60, 15, 11),
-(61, 15, 12),
-(62, 15, 13),
-(63, 16, 10),
-(64, 16, 11),
-(65, 16, 12),
-(66, 16, 13);
+(43, 10, 6),
+(44, 10, 7),
+(45, 10, 8),
+(46, 10, 9),
+(47, 9, 6),
+(48, 9, 7),
+(49, 9, 8),
+(50, 9, 9),
+(51, 12, 6),
+(52, 12, 7),
+(53, 12, 8),
+(54, 12, 9);
 
 -- --------------------------------------------------------
 
@@ -155,12 +161,12 @@ CREATE TABLE `room_features` (
 --
 
 INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
-(46, 15, 15),
-(47, 15, 18),
-(48, 16, 15),
-(49, 16, 16),
-(50, 16, 17),
-(51, 16, 18);
+(36, 10, 5),
+(37, 10, 7),
+(38, 10, 8),
+(39, 9, 5),
+(40, 9, 9),
+(41, 12, 9);
 
 -- --------------------------------------------------------
 
@@ -174,6 +180,16 @@ CREATE TABLE `room_images` (
   `image` varchar(150) NOT NULL,
   `thumb` tinyint(4) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `room_images`
+--
+
+INSERT INTO `room_images` (`sr_no`, `room_id`, `image`, `thumb`) VALUES
+(10, 9, 'IMG_83107.png', 1),
+(12, 9, 'IMG_27592.png', 0),
+(13, 10, 'IMG_70643.png', 1),
+(15, 12, 'IMG_72069.png', 1);
 
 -- --------------------------------------------------------
 
@@ -270,37 +286,37 @@ ALTER TABLE `admin_cred`
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `room_images`
 --
 ALTER TABLE `room_images`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`

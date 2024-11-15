@@ -1,9 +1,10 @@
 <?php
-require ('inc/essentials.php');
-require ('inc/db_config.php');
+require('inc/essentials.php');
+require('inc/db_config.php');
 
 session_start();
-if(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] != true){
+// Redirect to dashboard if already logged in
+if (isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] === true) {
     redirect("dashboard.php");
 }
 ?>
@@ -12,17 +13,16 @@ if(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] != true){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
-    <?php require ('inc/links.php'); ?>
+    <?php require('inc/links.php'); ?>
     <style>
-        div.login-form{
+        .login-form {
             position: absolute;
-            top:50%;
+            top: 50%;
             left: 50%;
-            transform: translate(-50%,-50%);
+            transform: translate(-50%, -50%);
             width: 400px;
         }
     </style>
@@ -50,26 +50,26 @@ if(isset($_SESSION['adminLogin']) && $_SESSION['adminLogin'] != true){
 </div>
 
 <?php
-if(isset($_POST['login']))
-{
+if (isset($_POST['login'])) {
     $frm_data = filteration($_POST);
 
-    // Check if it's a user login attempt
-    if($frm_data['username'] === 'user' && $frm_data['password'] === '123') {
+    // User login check
+    if ($frm_data['username'] === 'user' && $frm_data['password'] === '123') {
         $_SESSION['userLogin'] = true;
-        redirect('//localhost/HotelBooking-main/index.php');
-    }
-    // Check if it's an admin login attempt
-    else {
+        $_SESSION['success'] = "User login successful!";
+        redirect('dashboard.php'); // Redirect to dashboard with success message
+    } else {
+        // Admin login check
         $query = "SELECT * FROM `admin_cred` WHERE `admin_name`=? AND `admin_pass`=?";
         $values = [$frm_data['username'], $frm_data['password']];
 
         $res = select($query, $values, "ss");
-        if($res->num_rows == 1) {
+        if ($res && $res->num_rows == 1) {
             $row = mysqli_fetch_assoc($res);
             $_SESSION['adminLogin'] = true;
             $_SESSION['adminId'] = $row['sr_no'];
-            redirect('dashboard.php');
+            $_SESSION['success'] = "Admin đăng nhập thành công!";
+            redirect('dashboard.php'); // Redirect to dashboard with success message
         } else {
             alert('error', 'Login failed - Invalid Credentials!');
         }
@@ -77,7 +77,7 @@ if(isset($_POST['login']))
 }
 ?>
 
-<?php require ('inc/scripts.php'); ?>
+<?php require('inc/scripts.php'); ?>
 <script>
     const togglePass = document.querySelector('#togglePass');
     const passInput = document.querySelector('input[name="password"]');
@@ -89,7 +89,6 @@ if(isset($_POST['login']))
     togglePass.addEventListener('click', () => {
         const type = passInput.getAttribute('type') === 'password' ? 'text' : 'password';
         passInput.setAttribute('type', type);
-
         togglePass.querySelector('i').classList.toggle('bi-eye');
         togglePass.querySelector('i').classList.toggle('bi-eye-slash');
     });

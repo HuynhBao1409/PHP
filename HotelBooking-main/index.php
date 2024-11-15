@@ -19,11 +19,40 @@
                 padding: 0 35px;
             }
         }
+        /* CSS cho thông báo thành công */
+        .alert-success {
+            color: green;
+            border: 1px solid green;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        /* CSS cho thông báo thất bại */
+        .alert-error {
+            color: red;
+            border: 1px solid red;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
     </style>
 </head>
 <body class="bg-light">
 <!--Header-->
 <?php require ('inc/header.php'); ?>
+<?php if (isset($_SESSION['message'])): ?>
+    <div class="alert alert-<?php echo ($_SESSION['message_type'] == 'success') ? 'success' : 'danger'; ?> alert-dismissible fade show" role="alert">
+        <?= $_SESSION['message']; ?>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <?php
+    unset($_SESSION['message']); // Xóa thông báo sau khi hiển thị
+    unset($_SESSION['message_type']); // Xóa loại thông báo sau khi hiển thị
+    ?>
+<?php endif; ?>
+
 
 <!-- Carousel -->
 <!-- Swiper -->
