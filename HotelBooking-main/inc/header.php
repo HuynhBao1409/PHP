@@ -1,3 +1,8 @@
+<?php
+require ('admin/inc/db_config.php');
+require ('admin/inc/essentials.php');
+
+?>
 <!--Header-->
 <nav class="navbar navbar-expand-lg navbar-light bg-white px-lg-3 px-lg-2 shadow-sm ssticky-top">
     <div class="container-fluid">
