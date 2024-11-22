@@ -107,4 +107,44 @@ function delete($sql,$values,$datatypes){
         die("Query cannot be prepared -Delete");
     }
 }
+
+// Đăng ký tài khoản
+function registerUser($name, $email, $password, $role) {
+    global $con;
+
+    // Mã hóa mật khẩu
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Kiểm tra email đã tồn tại chưa
+    $check_email = "SELECT * FROM users WHERE email = ?";
+    $stmt = mysqli_prepare($con, $check_email);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) > 0) {
+        return "Email đã được đăng ký.";
+    } else {
+        // Thêm tài khoản mới vào database
+        $insert_sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+        $stmt = mysqli_prepare($con, $insert_sql);
+        mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $hashed_password, $role);
+
+        if (mysqli_stmt_execute($stmt)) {
+            // Nếu role là 'admin', thêm vào bảng admin_cred
+            if ($role == 'admin') {
+                $insert_admin_sql = "INSERT INTO admin_cred (admin_name, admin_pass, c_vu) VALUES (?, ?, ?)";
+                $stmt = mysqli_prepare($con, $insert_admin_sql);
+                mysqli_stmt_bind_param($stmt, "sss", $name, $hashed_password, $role);
+                mysqli_stmt_execute($stmt);
+            }
+            return "Đăng ký thành công.";
+        } else {
+            return "Lỗi khi đăng ký tài khoản.";
+        }
+    }
+
+    mysqli_stmt_close($stmt);
+}
+
 ?>

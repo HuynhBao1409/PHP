@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2024 at 02:51 PM
+-- Generation Time: Nov 22, 2024 at 01:20 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,8 +39,8 @@ CREATE TABLE `admin_cred` (
 --
 
 INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`, `c_vu`) VALUES
-(1, 'admin', '123', 'giám đốc'),
-(2, 'bao', '123', 'nhân viên');
+(3, 'admin', '123', 'giamdoc'),
+(4, 'bao', '123', 'nhanvien');
 
 -- --------------------------------------------------------
 
@@ -212,7 +212,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
 (6, 'Bảo Huỳnh', 'giabao1409203@gmail.com', '$2y$10$zRiI.UiholL4Ho/QZS8BMOg4hyOCL0Ey8t6jb38PhxQiCCjyb60Gm', 'admin', '2024-11-14 13:47:43'),
-(7, 'HaoBuynh', 'haogiabuynh@gmail.com', '$2y$10$tiGiJMr59Skpjldb2RFSL.b7o8YCov93FYh/K3nOKkK6a6hBZ1IqS', 'user', '2024-11-14 13:48:40');
+(7, 'HaoBuynh', 'haogiabuynh@gmail.com', '$2y$10$tiGiJMr59Skpjldb2RFSL.b7o8YCov93FYh/K3nOKkK6a6hBZ1IqS', 'user', '2024-11-14 13:48:40'),
+(9, 'Bao', 'bao.hg.63cntt@ntu.edu.vn', '123', '', '2024-11-22 00:19:52');
 
 --
 -- Indexes for dumped tables
@@ -280,7 +281,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin_cred`
 --
 ALTER TABLE `admin_cred`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `facilities`
@@ -322,7 +323,7 @@ ALTER TABLE `room_images`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
