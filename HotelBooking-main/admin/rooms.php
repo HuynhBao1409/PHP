@@ -164,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container-fluid" id="main-content">
     <div class="row">
         <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-            <h3 class="mb-4">Danh sách phòng</h3>
+            <h3 class="mb-4">Danh sách loại phòng</h3>
 
             <div class="card border-0 shadow-sm mb-4">
                 <div class="card-body">

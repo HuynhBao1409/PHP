@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 14, 2024 at 02:51 PM
+-- Generation Time: Nov 22, 2024 at 01:04 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,8 +39,66 @@ CREATE TABLE `admin_cred` (
 --
 
 INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`, `c_vu`) VALUES
-(1, 'admin', '123', 'giám đốc'),
-(2, 'bao', '123', 'nhân viên');
+(1, 'admin', '123', 'giamdoc'),
+(2, 'bao', '123', 'nhanvien');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_details`
+--
+
+CREATE TABLE `booking_details` (
+  `sr_no` int(11) NOT NULL,
+  `booking_id` int(11) NOT NULL,
+  `room_name` varchar(150) NOT NULL,
+  `price` int(11) NOT NULL,
+  `room_no` int(11) DEFAULT NULL,
+  `name` varchar(100) NOT NULL,
+  `phonenum` varchar(100) NOT NULL,
+  `address` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking_details`
+--
+
+INSERT INTO `booking_details` (`sr_no`, `booking_id`, `room_name`, `price`, `room_no`, `name`, `phonenum`, `address`) VALUES
+(1, 1, 'Phòng Vip', 30000000, 101, 'Hao Buynh', '0123456789', '123 Nguyen Van Linh, District 7, Ho Chi Minh City'),
+(2, 2, 'Phòng tổng thống', 50000000, 201, 'Hao Buynh', '0123456789', '123 Nguyen Van Linh, District 7, Ho Chi Minh City'),
+(3, 3, 'Phòng thường', 800000, 301, 'Hao Buynh', '0123456789', '123 Nguyen Van Linh, District 7, Ho Chi Minh City'),
+(4, 4, 'Phòng Vip', 30000000, 102, 'Hao Buynh', '0123456789', '123 Nguyen Van Linh, District 7, Ho Chi Minh City'),
+(5, 5, 'Phòng tổng thống', 50000000, 202, 'Hao Buynh', '0123456789', '123 Nguyen Van Linh, District 7, Ho Chi Minh City');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_order`
+--
+
+CREATE TABLE `booking_order` (
+  `booking_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `check_in` date NOT NULL,
+  `check_out` date NOT NULL,
+  `arrival` int(11) NOT NULL DEFAULT 0,
+  `refund` int(11) DEFAULT NULL,
+  `booking_status` varchar(100) NOT NULL DEFAULT 'pending',
+  `order_id` varchar(150) NOT NULL,
+  `datentime` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `booking_order`
+--
+
+INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `check_out`, `arrival`, `refund`, `booking_status`, `order_id`, `datentime`) VALUES
+(1, 7, 15, '2024-11-20', '2024-11-22', 1, NULL, 'booked', 'ORD123456', '2024-11-16 08:00:00'),
+(2, 7, 16, '2024-11-25', '2024-11-27', 0, NULL, 'pending', 'ORD123457', '2024-11-16 09:15:00'),
+(3, 7, 17, '2024-12-01', '2024-12-03', 0, NULL, 'pending', 'ORD123458', '2024-11-16 10:30:00'),
+(4, 7, 15, '2024-12-05', '2024-12-07', 0, NULL, 'pending', 'ORD123459', '2024-11-16 11:45:00'),
+(5, 7, 16, '2024-12-10', '2024-12-12', 0, NULL, 'cancelled', 'ORD123460', '2024-11-16 13:00:00');
 
 -- --------------------------------------------------------
 
@@ -60,10 +118,11 @@ CREATE TABLE `facilities` (
 --
 
 INSERT INTO `facilities` (`id`, `icon`, `name`, `description`) VALUES
-(6, 'IMG_63358.svg', 'TV', ''),
-(7, 'IMG_41869.svg', 'Air-conditioner', ''),
-(8, 'IMG_94095.svg', 'Radio', ''),
-(9, 'IMG_36249.svg', 'Spa', '');
+(10, 'IMG_21205.svg', 'TV', ''),
+(11, 'IMG_69147.svg', 'wifi', ''),
+(12, 'IMG_72155.svg', 'Máy lạnh', 'bla'),
+(13, 'IMG_35638.svg', 'Radio', 'bal'),
+(14, 'IMG_60401.svg', 'SPA', '');
 
 -- --------------------------------------------------------
 
@@ -81,11 +140,10 @@ CREATE TABLE `features` (
 --
 
 INSERT INTO `features` (`id`, `name`) VALUES
-(5, 'Bể bơi vô cực'),
-(7, 'Hai giường đôi'),
-(8, 'Hai giường đơn'),
-(9, 'Một giường đôi'),
-(10, 'Một giường đơn');
+(15, 'Hai giường đôi'),
+(16, 'Hai giường đơn'),
+(17, 'Một giường đôi'),
+(18, 'Một giường đơn');
 
 -- --------------------------------------------------------
 
@@ -110,9 +168,9 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`) VALUES
-(9, 'Phòng Vip', 1, 12500000, 1, 4, 2, 'okla', 0),
-(10, 'Phòng tổng thống', 2, 25000000, 2, 6, 2, 'ngon', 0),
-(12, 'Phòng phổng thông', 2, 10000000, 1, 2, 1, 'là dị đó', 0);
+(15, 'Phòng Vip', 70, 300000, 2, 4, 1, 'bla', 1),
+(16, 'Phòng tổng thống', 100, 50000000, 2, 6, 4, 'á', 1),
+(17, 'Phòng thường', 40, 800000, 1, 2, 1, 'đẹp', 1);
 
 -- --------------------------------------------------------
 
@@ -131,18 +189,17 @@ CREATE TABLE `room_facilities` (
 --
 
 INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
-(43, 10, 6),
-(44, 10, 7),
-(45, 10, 8),
-(46, 10, 9),
-(47, 9, 6),
-(48, 9, 7),
-(49, 9, 8),
-(50, 9, 9),
-(51, 12, 6),
-(52, 12, 7),
-(53, 12, 8),
-(54, 12, 9);
+(63, 16, 10),
+(64, 16, 11),
+(65, 16, 12),
+(66, 16, 13),
+(67, 17, 10),
+(68, 17, 11),
+(69, 17, 12),
+(70, 15, 10),
+(71, 15, 11),
+(72, 15, 12),
+(73, 15, 13);
 
 -- --------------------------------------------------------
 
@@ -161,12 +218,13 @@ CREATE TABLE `room_features` (
 --
 
 INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
-(36, 10, 5),
-(37, 10, 7),
-(38, 10, 8),
-(39, 9, 5),
-(40, 9, 9),
-(41, 12, 9);
+(48, 16, 15),
+(49, 16, 16),
+(50, 16, 17),
+(51, 16, 18),
+(52, 17, 15),
+(53, 15, 15),
+(54, 15, 18);
 
 -- --------------------------------------------------------
 
@@ -186,10 +244,12 @@ CREATE TABLE `room_images` (
 --
 
 INSERT INTO `room_images` (`sr_no`, `room_id`, `image`, `thumb`) VALUES
-(10, 9, 'IMG_83107.png', 1),
-(12, 9, 'IMG_27592.png', 0),
-(13, 10, 'IMG_70643.png', 1),
-(15, 12, 'IMG_72069.png', 1);
+(17, 16, 'IMG_90503.png', 1),
+(18, 16, 'IMG_61684.png', 0),
+(19, 15, 'IMG_21723.jpg', 1),
+(20, 15, 'IMG_30269.png', 0),
+(21, 17, 'IMG_22717.png', 1),
+(22, 17, 'IMG_50555.png', 0);
 
 -- --------------------------------------------------------
 
@@ -202,7 +262,6 @@ CREATE TABLE `users` (
   `name` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('user','admin') NOT NULL DEFAULT 'user',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -210,9 +269,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`) VALUES
-(6, 'Bảo Huỳnh', 'giabao1409203@gmail.com', '$2y$10$zRiI.UiholL4Ho/QZS8BMOg4hyOCL0Ey8t6jb38PhxQiCCjyb60Gm', 'admin', '2024-11-14 13:47:43'),
-(7, 'HaoBuynh', 'haogiabuynh@gmail.com', '$2y$10$tiGiJMr59Skpjldb2RFSL.b7o8YCov93FYh/K3nOKkK6a6hBZ1IqS', 'user', '2024-11-14 13:48:40');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`) VALUES
+(7, 'HaoBuynh', 'haogiabuynh@gmail.com', '$2y$10$tiGiJMr59Skpjldb2RFSL.b7o8YCov93FYh/K3nOKkK6a6hBZ1IqS', '2024-11-14 13:48:40'),
+(9, 'Tín', 'abc@gmail.com', '123', '2024-11-21 03:56:52'),
+(10, 'Linh', 'abc123@gmail.com', '123', '2024-11-21 03:57:04');
 
 --
 -- Indexes for dumped tables
@@ -223,6 +283,20 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `created_at`) VA
 --
 ALTER TABLE `admin_cred`
   ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `booking_details`
+--
+ALTER TABLE `booking_details`
+  ADD PRIMARY KEY (`sr_no`);
+
+--
+-- Indexes for table `booking_order`
+--
+ALTER TABLE `booking_order`
+  ADD PRIMARY KEY (`booking_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `room_id` (`room_id`);
 
 --
 -- Indexes for table `facilities`
@@ -280,53 +354,72 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admin_cred`
 --
 ALTER TABLE `admin_cred`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `booking_details`
+--
+ALTER TABLE `booking_details`
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `booking_order`
+--
+ALTER TABLE `booking_order`
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `facilities`
 --
 ALTER TABLE `facilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT for table `room_images`
 --
 ALTER TABLE `room_images`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `booking_order`
+--
+ALTER TABLE `booking_order`
+  ADD CONSTRAINT `booking_order_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `booking_order_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `rooms` (`id`);
 
 --
 -- Constraints for table `room_facilities`

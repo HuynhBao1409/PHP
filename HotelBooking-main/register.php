@@ -15,10 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_num_rows($result) > 0) {
             echo "<script>alert('Email đã tồn tại.')</script>";
+            header('Location: index.php');
+            exit();
         } else {
             if ($password == $cpassword) {
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                $sql = "INSERT INTO users (name, email, password, role) VALUES ('$name', '$email', '$hashed_password', '$role')";
+
+                $sql = "INSERT INTO users (name, email, password, role) VALUES ('$name', '$email', '$password', '$role')";
                 if (mysqli_query($con, $sql)) {
                     echo "<script>alert('Đăng ký thành công.')</script>";
                     header('Location: index.php');
