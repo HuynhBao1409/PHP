@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2024 at 07:32 AM
+-- Generation Time: Nov 23, 2024 at 10:31 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -38,7 +38,7 @@ CREATE TABLE `admin_cred` (
 --
 
 INSERT INTO `admin_cred` (`sr_no`, `admin_name`, `admin_pass`) VALUES
-(1, 'tjwebdev', '12345');
+(1, 'admin', '123');
 
 -- --------------------------------------------------------
 
@@ -184,7 +184,7 @@ CREATE TABLE `contact_details` (
 --
 
 INSERT INTO `contact_details` (`sr_no`, `address`, `gmap`, `pn1`, `pn2`, `email`, `fb`, `insta`, `tw`, `iframe`) VALUES
-(1, 'XYZ, Prayagraj, Uttar Pradesh', 'https://goo.gl/maps/T1YM8d4fJsoczstd6', 918529636985, 91111222333558, 'ask.tjwebdev@gm.com', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d461321.73752665165!2d81.801585!3d25.402264!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x398534c9b20bd49f:0xa2237856ad4041a!2sPrayagraj, Uttar Pradesh!5e0!3m2!1sen!2sin!4v1644867099910!5m2!1sen!2sin');
+(1, 'XYZ, Prayagraj, Uttar Pradesh', 'https://maps.app.goo.gl/f5gbcxqiJTinz5vw5', 918529636985, 91111222333558, 'ask.tjwebdev@gm.com', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28228.68144474073!2d109.26240842128516!3d12.233814930908274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317066e1dd9688bb:0x6ae039c3dfc181db!2sVinpearl Resort Nha Trang!5e1!3m2!1svi!2s!4v1732348347747!5m2!1svi!2s');
 
 -- --------------------------------------------------------
 
@@ -286,10 +286,10 @@ CREATE TABLE `rooms` (
 INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`, `removed`) VALUES
 (1, 'simple room', 159, 58, 56, 12, 2, 'asdf asd', 1, 1),
 (2, 'simple room 2', 785, 159, 85, 452, 10, 'adfasdfa sd', 1, 1),
-(3, 'Simple Room', 250, 3000000, 10, 5, 3, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0),
-(4, 'Deluxe Room', 300, 5000000, 10, 3, 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0),
-(5, 'Luxury Room', 600, 6000000, 2, 8, 6, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0),
-(6, 'Supreme deluxe room', 500, 9000000, 12, 9, 10, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0);
+(3, 'Phòng thường', 250, 3000000, 10, 5, 3, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0),
+(4, 'Phòng đôi', 300, 5000000, 10, 3, 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0),
+(5, 'Phòng Luxury', 600, 6000000, 2, 8, 6, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0),
+(6, 'Phòng tổng thống', 500, 9000000, 12, 9, 10, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -308,20 +308,20 @@ CREATE TABLE `room_facilities` (
 --
 
 INSERT INTO `room_facilities` (`sr_no`, `room_id`, `facilities_id`) VALUES
-(46, 3, 14),
-(47, 3, 15),
-(48, 3, 18),
-(49, 3, 19),
-(50, 4, 14),
-(51, 4, 18),
-(52, 4, 19),
-(53, 5, 13),
-(54, 5, 14),
-(55, 5, 18),
-(56, 6, 13),
-(57, 6, 14),
-(58, 6, 18),
-(59, 6, 19);
+(64, 4, 14),
+(65, 4, 18),
+(66, 4, 19),
+(67, 5, 13),
+(68, 5, 14),
+(69, 5, 18),
+(70, 6, 13),
+(71, 6, 14),
+(72, 6, 18),
+(73, 6, 19),
+(74, 3, 14),
+(75, 3, 15),
+(76, 3, 18),
+(77, 3, 19);
 
 -- --------------------------------------------------------
 
@@ -340,18 +340,18 @@ CREATE TABLE `room_features` (
 --
 
 INSERT INTO `room_features` (`sr_no`, `room_id`, `features_id`) VALUES
-(31, 3, 13),
-(32, 3, 14),
-(33, 3, 17),
-(34, 4, 13),
-(35, 4, 14),
-(36, 4, 15),
-(37, 5, 13),
-(38, 5, 14),
-(39, 5, 15),
-(40, 6, 13),
-(41, 6, 14),
-(42, 6, 15);
+(46, 4, 13),
+(47, 4, 14),
+(48, 4, 15),
+(49, 5, 13),
+(50, 5, 14),
+(51, 5, 15),
+(52, 6, 13),
+(53, 6, 14),
+(54, 6, 15),
+(55, 3, 13),
+(56, 3, 14),
+(57, 3, 17);
 
 -- --------------------------------------------------------
 
@@ -400,7 +400,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`sr_no`, `site_title`, `site_about`, `shutdown`) VALUES
-(1, 'TJ Website', 'asdlkfj Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?', 0);
+(1, 'Vinpearl Nha Trang', 'asdlkfj Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?', 0);
 
 -- --------------------------------------------------------
 
@@ -647,13 +647,13 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT for table `room_facilities`
 --
 ALTER TABLE `room_facilities`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT for table `room_features`
 --
 ALTER TABLE `room_features`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `room_images`
