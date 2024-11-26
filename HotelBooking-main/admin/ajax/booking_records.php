@@ -2,7 +2,7 @@
 
   require('../inc/db_config.php');
   require('../inc/essentials.php');
-  date_default_timezone_set("Asia/Kolkata");
+  date_default_timezone_set("Asia/Ho_Chi_Minh");
   adminLogin();
 
   if(isset($_POST['get_bookings']))
@@ -29,7 +29,7 @@
     $total_rows = mysqli_num_rows($res);
 
     if($total_rows==0){
-      $output = json_encode(["table_data"=>"<b>No Data Found!</b>", "pagination"=>'']);
+      $output = json_encode(["table_data"=>"<b>Không có dữ liệu!</b>", "pagination"=>'']);
       echo $output;
       exit;
     }
@@ -71,7 +71,7 @@
             <b>Giá:</b> $data[price] VND
           </td>
           <td>
-            <b>Số lượng:</b> $data[trans_amt] 
+            <b>Số tiền:</b>$data[trans_amt]
             <br>
             <b>Ngày:</b> $date
           </td>
@@ -97,26 +97,26 @@
 
       if($page!=1){
         $pagination .="<li class='page-item'>
-          <button onclick='change_page(1)' class='page-link shadow-none'>First</button>
+          <button onclick='change_page(1)' class='page-link shadow-none'>Đầu</button>
         </li>";
       }
 
       $disabled = ($page==1) ? "disabled" : "";
       $prev= $page-1;
       $pagination .="<li class='page-item $disabled'>
-        <button onclick='change_page($prev)' class='page-link shadow-none'>Prev</button>
+        <button onclick='change_page($prev)' class='page-link shadow-none'>Lùi</button>
       </li>";
 
 
       $disabled = ($page==$total_pages) ? "disabled" : "";
       $next = $page+1;
       $pagination .="<li class='page-item $disabled'>
-        <button onclick='change_page($next)' class='page-link shadow-none'>Next</button>
+        <button onclick='change_page($next)' class='page-link shadow-none'>Tiến</button>
       </li>";
 
       if($page!=$total_pages){
         $pagination .="<li class='page-item'>
-          <button onclick='change_page($total_pages)' class='page-link shadow-none'>Last</button>
+          <button onclick='change_page($total_pages)' class='page-link shadow-none'>Cuối</button>
         </li>";
       }
 

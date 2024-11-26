@@ -19,7 +19,7 @@
     $table_data = "";
 
     if(mysqli_num_rows($res)==0){
-      echo"<b>No Data Found!</b>";
+      echo"<b>Không có dữ liệu!</b>";
       exit;
     }
 
@@ -34,28 +34,28 @@
           <td>$i</td>
           <td>
             <span class='badge bg-primary'>
-              Order ID: $data[order_id]
+              ID Đặt Phòng: $data[order_id]
             </span>
             <br>
-            <b>Name:</b> $data[user_name]
+            <b>Tên:</b> $data[user_name]
             <br>
-            <b>Phone No:</b> $data[phonenum]
+            <b>Số điện thoại:</b> $data[phonenum]
           </td>
           <td>
-            <b>Room:</b> $data[room_name]
+            <b>Phòng:</b> $data[room_name]
             <br>
             <b>Check-in:</b> $checkin
             <br>
             <b>Check-out:</b> $checkout
             <br>
-            <b>Date:</b> $date
+            <b>Ngày:</b> $date
           </td>
           <td>
             <b>$data[trans_amt] VND</b> 
           </td>
           <td>
             <button type='button' onclick='refund_booking($data[booking_id])' class='btn btn-success btn-sm fw-bold shadow-none'>
-              <i class='bi bi-cash-stack'></i> Refund
+              <i class='bi bi-cash-stack'></i> Hoàn tiền
             </button>
           </td>
         </tr>

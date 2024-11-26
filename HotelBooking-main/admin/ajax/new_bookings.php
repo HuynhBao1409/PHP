@@ -19,7 +19,7 @@
     $table_data = "";
 
     if(mysqli_num_rows($res)==0){
-      echo"<b>No Data Found!</b>";
+      echo"<b>Không có dữ liệu!</b>";
       exit;
     }
 
@@ -34,34 +34,34 @@
           <td>$i</td>
           <td>
             <span class='badge bg-primary'>
-              Order ID: $data[order_id]
+              ID Đặt Phòng: $data[order_id]
             </span>
             <br>
-            <b>Name:</b> $data[user_name]
+            <b>Tên:</b> $data[user_name]
             <br>
-            <b>Phone No:</b> $data[phonenum]
+            <b>Số điện thoại:</b> $data[phonenum]
           </td>
           <td>
-            <b>Room:</b> $data[room_name]
+            <b>Phòng:</b> $data[room_name]
             <br>
-            <b>Price:</b> $data[price] VND
+            <b>Giá:</b> $data[price] VND
           </td>
           <td>
             <b>Check-in:</b> $checkin
             <br>
             <b>Check-out:</b> $checkout
             <br>
-            <b>Paid:</b> $data[trans_amt] VND
+            <b>Đã trả:</b> $data[trans_amt]
             <br>
-            <b>Date:</b> $date
+            <b>Ngày:</b> $date
           </td>
           <td>
             <button type='button' onclick='assign_room($data[booking_id])' class='btn text-white btn-sm fw-bold custom-bg shadow-none' data-bs-toggle='modal' data-bs-target='#assign-room'>
-              <i class='bi bi-check2-square'></i> Assign Room
+              <i class='bi bi-check2-square'></i> Xếp phòng
             </button>
             <br>
             <button type='button' onclick='cancel_booking($data[booking_id])' class='mt-2 btn btn-outline-danger btn-sm fw-bold shadow-none'>
-              <i class='bi bi-trash'></i> Cancel Booking
+              <i class='bi bi-trash'></i> Hủy đặt phòng
             </button>
           </td>
         </tr>
@@ -84,7 +84,7 @@
 
     $values = [1,0,$frm_data['room_no'],$frm_data['booking_id']];
 
-    $res = update($query,$values,'iisi'); // it will update 2 rows so it will return 2
+    $res = update($query,$values,'iisi');
 
     echo ($res==2) ? 1 : 0;
   }

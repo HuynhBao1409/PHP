@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2024 at 10:31 AM
+-- Generation Time: Nov 25, 2024 at 12:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -84,7 +84,10 @@ INSERT INTO `booking_details` (`sr_no`, `booking_id`, `room_name`, `price`, `tot
 (19, 19, 'Simple Room', 300, 300, NULL, 'Tin', '123', 'abc'),
 (20, 20, 'Simple Room', 300, 600, NULL, 'Tin', '123', 'abc'),
 (21, 21, 'Simple Room', 300, 2400, '201', 'Tin', '123', 'abc'),
-(22, 22, 'Simple Room', 300, 300, '204', 'Tin', '123', 'abc');
+(22, 22, 'Simple Room', 300, 300, '204', 'Tin', '123', 'abc'),
+(23, 23, 'Phòng thường', 3000000, 3000000, '201', 'Tin Thanh', '123456789', '23 T10'),
+(24, 24, 'Phòng đôi', 5000000, 5000000, NULL, 'Tin Thanh', '123456789', '23 T10'),
+(25, 25, 'Phòng thường', 3000000, 3000000, NULL, 'Tin Thanh', '123456789', '23 T10');
 
 -- --------------------------------------------------------
 
@@ -136,7 +139,10 @@ INSERT INTO `booking_order` (`booking_id`, `user_id`, `room_id`, `check_in`, `ch
 (19, 2, 3, '2024-11-24', '2024-11-25', 0, NULL, 'pending', 'ORD_23962708', NULL, 0, 'pending', NULL, NULL, '2024-11-23 10:51:16'),
 (20, 2, 3, '2024-11-23', '2024-11-25', 0, NULL, 'pending', 'ORD_27143736', NULL, 0, 'pending', NULL, NULL, '2024-11-23 10:52:38'),
 (21, 2, 3, '2024-11-24', '2024-12-02', 1, NULL, 'booked', '', NULL, 0, 'pending', NULL, 0, '2024-11-23 11:00:51'),
-(22, 2, 3, '2024-11-24', '2024-11-25', 1, NULL, 'booked', '', NULL, 0, 'pending', NULL, 0, '2024-11-23 11:01:52');
+(22, 2, 3, '2024-11-24', '2024-11-25', 1, NULL, 'booked', '', NULL, 0, 'pending', NULL, 0, '2024-11-23 11:01:52'),
+(23, 6, 3, '2024-11-26', '2024-11-27', 1, NULL, 'booked', '', NULL, 0, 'pending', NULL, 0, '2024-11-25 07:08:24'),
+(24, 6, 4, '2024-11-27', '2024-11-28', 0, NULL, 'booked', '', NULL, 0, 'pending', NULL, NULL, '2024-11-25 08:49:59'),
+(25, 6, 3, '2024-11-28', '2024-11-29', 0, NULL, 'booked', '', NULL, 0, 'pending', NULL, NULL, '2024-11-25 13:02:55');
 
 -- --------------------------------------------------------
 
@@ -184,7 +190,7 @@ CREATE TABLE `contact_details` (
 --
 
 INSERT INTO `contact_details` (`sr_no`, `address`, `gmap`, `pn1`, `pn2`, `email`, `fb`, `insta`, `tw`, `iframe`) VALUES
-(1, 'XYZ, Prayagraj, Uttar Pradesh', 'https://maps.app.goo.gl/f5gbcxqiJTinz5vw5', 918529636985, 91111222333558, 'ask.tjwebdev@gm.com', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28228.68144474073!2d109.26240842128516!3d12.233814930908274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317066e1dd9688bb:0x6ae039c3dfc181db!2sVinpearl Resort Nha Trang!5e1!3m2!1svi!2s!4v1732348347747!5m2!1svi!2s');
+(1, 'XYZ, Prayagraj, Uttar Pradesh', 'https://maps.app.goo.gl/f5gbcxqiJTinz5vw5', 918529636985, 91111222333558, 'abc@gm.com', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.facebook.com/', 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d28228.68144474073!2d109.26240842128516!3d12.233814930908274!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317066e1dd9688bb:0x6ae039c3dfc181db!2sVinpearl Resort Nha Trang!5e1!3m2!1svi!2s!4v1732348347747!5m2!1svi!2s');
 
 -- --------------------------------------------------------
 
@@ -284,8 +290,6 @@ CREATE TABLE `rooms` (
 --
 
 INSERT INTO `rooms` (`id`, `name`, `area`, `price`, `quantity`, `adult`, `children`, `description`, `status`, `removed`) VALUES
-(1, 'simple room', 159, 58, 56, 12, 2, 'asdf asd', 1, 1),
-(2, 'simple room 2', 785, 159, 85, 452, 10, 'adfasdfa sd', 1, 1),
 (3, 'Phòng thường', 250, 3000000, 10, 5, 3, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0),
 (4, 'Phòng đôi', 300, 5000000, 10, 3, 2, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0),
 (5, 'Phòng Luxury', 600, 6000000, 2, 8, 6, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dicta quia nisi voluptates impedit perspiciatis, nobis libero culpa error officiis totam?Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos voluptate vero sed tempore illo atque beatae asperiores, adipisci dic', 1, 0),
@@ -371,8 +375,8 @@ CREATE TABLE `room_images` (
 --
 
 INSERT INTO `room_images` (`sr_no`, `room_id`, `image`, `thumb`) VALUES
-(15, 3, 'IMG_39782.png', 0),
-(16, 3, 'IMG_65019.png', 1),
+(15, 3, 'IMG_39782.png', 1),
+(16, 3, 'IMG_65019.png', 0),
 (17, 4, 'IMG_44867.png', 0),
 (18, 4, 'IMG_78809.png', 1),
 (19, 4, 'IMG_11892.png', 0),
@@ -414,13 +418,6 @@ CREATE TABLE `team_details` (
   `picture` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `team_details`
---
-
-INSERT INTO `team_details` (`sr_no`, `name`, `picture`) VALUES
-(9, 'person 1', 'IMG_69318.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -449,7 +446,8 @@ CREATE TABLE `user_cred` (
 --
 
 INSERT INTO `user_cred` (`id`, `name`, `email`, `address`, `phonenum`, `pincode`, `dob`, `profile`, `password`, `is_verified`, `token`, `t_expire`, `status`, `datentime`) VALUES
-(2, 'bao', 'abc@gmail.com', 'abc', '123', 1234, '2003-11-30', 'IMG_91058.jpeg', '$2y$10$wvee26iQd9nygoYBc/T4AOYw8ARQjFmOxlPc1Oop8hcZKQzeltMMy', 1, NULL, NULL, 1, '2022-06-12 16:05:59');
+(2, 'bao', 'abc@gmail.com', 'abc', '123', 1234, '2003-11-30', 'IMG_91058.jpeg', '$2y$10$wvee26iQd9nygoYBc/T4AOYw8ARQjFmOxlPc1Oop8hcZKQzeltMMy', 1, NULL, NULL, 1, '2022-06-12 16:05:59'),
+(6, 'Tin Thanh', 'dothanhtin3011@gmail.com', '23 T10', '123456789', 1234, '2003-11-30', 'IMG_24136.jpeg', '$2y$10$/ru91LDJYCdGaGkgjjVkq..8AGobj6FsK7PlELxk1a4gGTm2P6pxS', 1, NULL, NULL, 1, '2024-11-24 19:11:29');
 
 -- --------------------------------------------------------
 
@@ -599,13 +597,13 @@ ALTER TABLE `admin_cred`
 -- AUTO_INCREMENT for table `booking_details`
 --
 ALTER TABLE `booking_details`
-  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `sr_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `booking_order`
 --
 ALTER TABLE `booking_order`
-  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `carousel`
@@ -677,7 +675,7 @@ ALTER TABLE `team_details`
 -- AUTO_INCREMENT for table `user_cred`
 --
 ALTER TABLE `user_cred`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_queries`

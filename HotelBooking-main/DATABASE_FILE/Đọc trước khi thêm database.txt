@@ -1,0 +1,4 @@
+Sửa xong mới chạy được đăng kí
+Vào xampp/php/ mở php.ini
+Sửa ";extension=gd" thành "extension=gd"
+Reset máy

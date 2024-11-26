@@ -2,7 +2,7 @@
 
   require('../admin/inc/db_config.php');
   require('../admin/inc/essentials.php');
-  date_default_timezone_set("Asia/Kolkata");
+  date_default_timezone_set("Asia/Ho_Chi_Minh");
 
   session_start();
 
@@ -19,15 +19,15 @@
       $checkout_date = new DateTime($chk_avail['checkout']);
   
       if($checkin_date == $checkout_date){
-        echo"<h3 class='text-center text-danger'>Invalid Dates Entered!</h3>";
+        echo"<h3 class='text-center text-danger'>Ngày chọn không hợp lệ!</h3>";
         exit;
       }
       else if($checkout_date < $checkin_date){
-        echo"<h3 class='text-center text-danger'>Invalid Dates Entered!</h3>";
+        echo"<h3 class='text-center text-danger'>Ngày chọn không hợp lệ!</h3>";
         exit;
       }
       else if($checkin_date < $today_date){
-        echo"<h3 class='text-center text-danger'>Invalid Dates Entered!</h3>";
+        echo"<h3 class='text-center text-danger'>Ngày chọn không hợp lệ!</h3>";
         exit;
       }
     }
@@ -40,17 +40,16 @@
     // facilities data decode
     $facility_list = json_decode($_GET['facility_list'],true);
 
-    // count no. of rooms and ouput variable to store room cards
     $count_rooms = 0;
     $output = "";
 
 
-    // fetching settings table to check website is shutdown or not
+
     $settings_q = "SELECT * FROM `settings` WHERE `sr_no`=1";
     $settings_r = mysqli_fetch_assoc(mysqli_query($con,$settings_q));
 
 
-    // query for room cards with guests filter
+
     $room_res = select("SELECT * FROM `rooms` WHERE `adult`>=? AND `children`>=? AND `status`=? AND `removed`=?",[$adults,$children,1,0],'iiii');
 
     while($room_data = mysqli_fetch_assoc($room_res))
@@ -128,7 +127,7 @@
           $login=1;
         }
 
-        $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm w-100 text-white custom-bg shadow-none mb-2'>Book Now</button>";
+        $book_btn = "<button onclick='checkLoginToBook($login,$room_data[id])' class='btn btn-sm w-100 text-white custom-bg shadow-none mb-2'>Đặt phòng ngay</button>";
       }
 
       // print room card
@@ -142,27 +141,27 @@
             <div class='col-md-5 px-lg-3 px-md-3 px-0'>
               <h5 class='mb-3'>$room_data[name]</h5>
               <div class='features mb-3'>
-                <h6 class='mb-1'>Features</h6>
+                <h6 class='mb-1'>Không gian</h6>
                 $features_data
               </div>
               <div class='facilities mb-3'>
-                <h6 class='mb-1'>Facilities</h6>
+                <h6 class='mb-1'>Tiện ích</h6>
                 $facilities_data
               </div>
               <div class='guests'>
-                <h6 class='mb-1'>Guests</h6>
+                <h6 class='mb-1'>Số khách quy định</h6>
                 <span class='badge rounded-pill bg-light text-dark text-wrap'>
-                  $room_data[adult] Adults
+                  $room_data[adult] Người lớn
                 </span>
                 <span class='badge rounded-pill bg-light text-dark text-wrap'>
-                  $room_data[children] Children
+                  $room_data[children] Trẻ em
                 </span>
               </div>
             </div>
             <div class='col-md-2 mt-lg-0 mt-md-0 mt-4 text-center'>
-              <h6 class='mb-4'>$room_data[price] VND/night</h6>
+              <h6 class='mb-4'>$room_data[price] VND/đêm</h6>
               $book_btn
-              <a href='room_details.php?id=$room_data[id]' class='btn btn-sm w-100 btn-outline-dark shadow-none'>More details</a>
+              <a href='room_details.php?id=$room_data[id]' class='btn btn-sm w-100 btn-outline-dark shadow-none'>Thông tin thêm</a>
             </div>
           </div>
         </div>
@@ -175,7 +174,7 @@
       echo $output;
     }
     else{
-      echo"<h3 class='text-center text-danger'>No rooms to show!</h3>";
+      echo"<h3 class='text-center text-danger'>Chưa có cập nhật phòng!</h3>";
     }
 
   }

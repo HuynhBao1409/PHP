@@ -21,12 +21,12 @@ function add_feature()
     modal.hide();
 
     if(this.responseText == 1){
-      alert('success','New feature added!');
+      alert('success','Tiện ích mới đã được thêm!');
       feature_s_form.elements['feature_name'].value='';
       get_features();
     }
     else{
-      alert('error','Server Down!');
+      alert('error','Thất bại!');
     }
   }
 
@@ -54,14 +54,14 @@ function rem_feature(val)
 
   xhr.onload = function(){
     if(this.responseText==1){
-      alert('success','Feature removed!');
+      alert('success','Không gian đã xóa!');
       get_features();
     }
     else if(this.responseText == 'room_added'){
-      alert('error','Feature is added in room!');
+      alert('error','Không gian đã được thêm vào phòng!');
     }
     else{
-      alert('error','Server down!');
+      alert('error','Thất bại!');
     }
   }
 
@@ -90,16 +90,16 @@ function add_facility()
     modal.hide();
 
     if(this.responseText == 'inv_img'){
-      alert('error','Only SVG images are allowed!');
+      alert('error','Chỉ ảnh SVG được chấp nhận!');
     }
     else if(this.responseText == 'inv_size'){
-      alert('error','Image should be less than 1MB!');
+      alert('error','Ảnh nhỏ hơn 1MB!');
     }
     else if(this.responseText == 'upd_failed'){
-      alert('error','Image upload failed. Server Down!');
+      alert('error','Tải anh lên thất bại!');
     }
     else{
-      alert('success','Đã thêm!');
+      alert('success','Tiện ích mới đã được thêm!');
       facility_s_form.reset();
       get_facilities();
     }
@@ -129,14 +129,14 @@ function rem_facility(val)
 
   xhr.onload = function(){
     if(this.responseText==1){
-      alert('success','Đã xóa!');
+      alert('success','Đã xóa tiện ích!');
       get_facilities();
     }
     else if(this.responseText == 'room_added'){
-      alert('error','Tiện ích này đã có trong phòng!');
+      alert('error','Tiện ích đã được thêm vào phòng!');
     }
     else{
-      alert('error','Server down!');
+      alert('error','Thất bại!');
     }
   }
 

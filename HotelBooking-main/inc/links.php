@@ -6,7 +6,7 @@
 <?php
 
   session_start();
-  date_default_timezone_set("Asia/Kolkata");
+  date_default_timezone_set("Asia/Ho_Chi_Minh");
 
   require('admin/inc/db_config.php');
   require('admin/inc/essentials.php');
@@ -21,7 +21,7 @@
     echo<<<alertbar
       <div class='bg-danger text-center p-2 fw-bold'>
         <i class="bi bi-exclamation-triangle-fill"></i>
-        Bookings are temporarily closed!
+        Hiện không thể đặt phòng, trang đang được đóng!
       </div>
     alertbar;
   }

@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - New Bookings</title>
+  <title>Trang Admin - Đặt phòng mới</title>
   <?php require('inc/links.php'); ?>
 </head>
 <body class="bg-light">
@@ -33,10 +33,10 @@
                 <thead>
                   <tr class="bg-dark text-light">
                     <th scope="col">#</th>
-                    <th scope="col">Chi tiết người dùng</th>
-                    <th scope="col">Chi tiết phòng</th>
-                    <th scope="col">Bookings Details</th>
-                    <th scope="col">Hoạt động</th>
+                    <th scope="col">Thông tin khách hàng</th>
+                    <th scope="col">Thông tin phòng</th>
+                    <th scope="col">Thông tin đơn đặt</th>
+                    <th scope="col">Hành động</th>
                   </tr>
                 </thead>
                 <tbody id="table-data">                 
@@ -60,21 +60,18 @@
       <form id="assign_room_form">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Assign Room</h5>
+            <h5 class="modal-title">Chỉ định số phòng</h5>
           </div>
           <div class="modal-body">
             <div class="mb-3">
-              <label class="form-label fw-bold">Room Number</label>
+              <label class="form-label fw-bold">Số phòng</label>
               <input type="text" name="room_no" class="form-control shadow-none" required>
             </div>
-            <span class="badge rounded-pill bg-light text-dark mb-3 text-wrap lh-base">
-              Note: Assign Room Number only when user has been arrived!
-            </span>
             <input type="hidden" name="booking_id">
           </div>
           <div class="modal-footer">
-            <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">CANCEL</button>
-            <button type="submit" class="btn custom-bg text-white shadow-none">ASSIGN</button>
+            <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">HỦY</button>
+            <button type="submit" class="btn custom-bg text-white shadow-none">GỬI</button>
           </div>
         </div>
       </form>

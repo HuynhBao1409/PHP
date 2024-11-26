@@ -9,7 +9,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Rooms</title>
+  <title>Trang Admin - Phòng</title>
   <?php require('inc/links.php'); ?>
 </head>
 <body class="bg-light">
@@ -19,7 +19,7 @@
   <div class="container-fluid" id="main-content">
     <div class="row">
       <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-        <h3 class="mb-4">Loại phòng</h3>
+        <h3 class="mb-4">LOẠI PHÒNG</h3>
 
         <div class="card border-0 shadow-sm mb-4">
           <div class="card-body">
@@ -35,13 +35,13 @@
                 <thead>
                   <tr class="bg-dark text-light">
                     <th scope="col">#</th>
-                    <th scope="col">Tên phòng</th>
+                    <th scope="col">Tên</th>
                     <th scope="col">Diện tích</th>
-                    <th scope="col">Số khách</th>
+                    <th scope="col">Số người quy định</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Số lượng</th>
                     <th scope="col">Trạng thái</th>
-                    <th scope="col">Tùy chọn</th>
+                    <th scope="col">Hành động</th>
                   </tr>
                 </thead>
                 <tbody id="room-data">                 
@@ -64,7 +64,7 @@
       <form id="add_room_form" autocomplete="off">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Thêm phòng</h5>
+            <h5 class="modal-title">Thêm loại phòng</h5>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -85,15 +85,15 @@
                 <input type="number" min="1" name="quantity" class="form-control shadow-none" required>
               </div>
               <div class="col-md-6 mb-3">
-                <label class="form-label fw-bold">Người lớn</label>
+                <label class="form-label fw-bold">Người lớn (Tối đa.)</label>
                 <input type="number" min="1" name="adult" class="form-control shadow-none" required>
               </div>
               <div class="col-md-6 mb-3">
-                <label class="form-label fw-bold">Trẻ em</label>
+                <label class="form-label fw-bold">Trẻ em (Tối đa.)</label>
                 <input type="number" min="1" name="children" class="form-control shadow-none" required>
               </div>
               <div class="col-12 mb-3">
-                <label class="form-label fw-bold">Đặc trưng</label>
+                <label class="form-label fw-bold">Không gian</label>
                 <div class="row">
                   <?php 
                     $res = selectAll('features');
@@ -135,8 +135,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Hủy</button>
-            <button type="submit" class="btn custom-bg text-white shadow-none">Lưu</button>
+            <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">HỦY</button>
+            <button type="submit" class="btn custom-bg text-white shadow-none">GỬI</button>
           </div>
         </div>
       </form>
@@ -150,7 +150,7 @@
       <form id="edit_room_form" autocomplete="off">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Sửa phòng</h5>
+            <h5 class="modal-title">Chỉnh sửa phòng</h5>
           </div>
           <div class="modal-body">
             <div class="row">
@@ -171,15 +171,15 @@
                 <input type="number" min="1" name="quantity" class="form-control shadow-none" required>
               </div>
               <div class="col-md-6 mb-3">
-                <label class="form-label fw-bold">Người lớn</label>
+                <label class="form-label fw-bold">Người lớn (Tối đa.)</label>
                 <input type="number" min="1" name="adult" class="form-control shadow-none" required>
               </div>
               <div class="col-md-6 mb-3">
-                <label class="form-label fw-bold">Trẻ em</label>
+                <label class="form-label fw-bold">Trẻ em (Tối đa.)</label>
                 <input type="number" min="1" name="children" class="form-control shadow-none" required>
               </div>
               <div class="col-12 mb-3">
-                <label class="form-label fw-bold">Đặc trưng</label>
+                <label class="form-label fw-bold">Không gian</label>
                 <div class="row">
                   <?php 
                     $res = selectAll('features');
@@ -222,8 +222,8 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Hủy</button>
-            <button type="submit" class="btn custom-bg text-white shadow-none">Lưu</button>
+            <button type="reset" class="btn text-secondary shadow-none" data-bs-dismiss="modal">HỦY</button>
+            <button type="submit" class="btn custom-bg text-white shadow-none">GỬI</button>
           </div>
         </div>
       </form>
@@ -236,16 +236,16 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Room Name</h5>
+          <h5 class="modal-title">Tên phòng</h5>
           <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div id="image-alert"></div>
           <div class="border-bottom border-3 pb-3 mb-3">
             <form id="add_image_form">
-              <label class="form-label fw-bold">Thêm hình</label>
+              <label class="form-label fw-bold">Thêm ảnh</label>
               <input type="file" name="image" accept=".jpg, .png, .webp, .jpeg" class="form-control shadow-none mb-3" required>
-              <button class="btn custom-bg text-white shadow-none">Thêm</button>
+              <button class="btn custom-bg text-white shadow-none">ADD</button>
               <input type="hidden" name="room_id">
             </form>
           </div>
@@ -254,7 +254,7 @@
               <thead>
                 <tr class="bg-dark text-light sticky-top">
                   <th scope="col" width="60%">Ảnh</th>
-                  <th scope="col">Thumb</th>
+                  <th scope="col">Chọn</th>
                   <th scope="col">Xóa</th>
                 </tr>
               </thead>

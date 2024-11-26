@@ -33,26 +33,26 @@
     $checkout = date("d-m-Y",strtotime($data['check_out']));
 
     $table_data = "
-    <h2>BOOKING RECIEPT</h2>
+    <h2>HÓA ĐƠN ĐẶT PHÒNG</h2>
     <table border='1'>
       <tr>
-        <td>Order ID: $data[order_id]</td>
-        <td>Booking Date: $date</td>
+        <td>ID đơn đặt: $data[order_id]</td>
+        <td>Ngày đặt: $date</td>
       </tr>
       <tr>
-        <td colspan='2'>Status: $data[booking_status]</td>
+        <td colspan='2'>Trạng thái: $data[booking_status]</td>
       </tr>
       <tr>
-        <td>Name: $data[user_name]</td>
+        <td>Tên: $data[user_name]</td>
         <td>Email: $data[email]</td>
       </tr>
       <tr>
-        <td>Phone Number: $data[phonenum]</td>
-        <td>Address: $data[address]</td>
+        <td>Số điện thoại: $data[phonenum]</td>
+        <td>Địa chỉ: $data[address]</td>
       </tr>
       <tr>
-        <td>Room Name: $data[room_name]</td>
-        <td>Cost: ₹$data[price] per night</td>
+        <td>Tên phòng: $data[room_name]</td>
+        <td>Giá: $data[price] VND /đêm</td>
       </tr>
       <tr>
         <td>Check-in: $checkin</td>
@@ -65,22 +65,22 @@
       $refund = ($data['refund']) ? "Amount Refunded" : "Not Yet Refunded";
 
       $table_data.="<tr>
-        <td>Amount Paid: ₹$data[trans_amt]</td>
-        <td>Refund: $refund</td>
+        <td>Số tiền đã hoàn: $data[trans_amt] VND</td>
+        <td>Đơn hoàn: $refund</td>
       </tr>";
     }
     else if($data['booking_status']=='payment failed')
     {
       $table_data.="<tr>
-        <td>Transaction Amount: ₹$data[trans_amt]</td>
-        <td>Failure Response: $data[trans_resp_msg]</td>
+        <td>Số tiền giao dịch: $data[trans_amt] VND</td>
+        <td>Phản hồi thất bại: $data[trans_resp_msg]</td>
       </tr>";
     }
     else
     {
       $table_data.="<tr>
-        <td>Room Number: $data[room_no]</td>
-        <td>Amount Paid: ₹$data[trans_amt]</td>
+        <td>Số phòng: $data[room_no]</td>
+        <td>Số tiền đã trả: $data[trans_amt] VND</td>
       </tr>";
     }
 

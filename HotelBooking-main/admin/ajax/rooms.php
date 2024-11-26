@@ -82,7 +82,7 @@
         <tr class='align-middle'>
           <td>$i</td>
           <td>$row[name]</td>
-          <td>$row[area] </td>
+          <td>$row[area] sq. ft.</td>
           <td>
             <span class='badge rounded-pill bg-light text-dark'>
               Người lớn: $row[adult]

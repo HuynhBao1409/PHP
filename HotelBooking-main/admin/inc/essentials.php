@@ -12,13 +12,18 @@
 
   //backend upload process needs this data
 
-  define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/hbwebsite/images/');
+  define('UPLOAD_IMAGE_PATH',$_SERVER['DOCUMENT_ROOT'].'/HotelBooking-main/images/');
   define('ABOUT_FOLDER','about/');
   define('CAROUSEL_FOLDER','carousel/');
   define('FACILITIES_FOLDER','facilities/');
   define('ROOMS_FOLDER','rooms/');
   define('USERS_FOLDER','users/');
 
+  // sendgrid api key
+
+  define('SENDGRID_API_KEY',"PASTE YOUR API KEY GENERATED FROM SENDGRID WEBSITE");
+  define('SENDGRID_EMAIL',"PUT YOU EMAIL");
+  define('SENDGRID_NAME',"ANY NAME");
 
 
   function adminLogin()

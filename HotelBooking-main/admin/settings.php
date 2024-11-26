@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - Settings</title>
+  <title>Trang Admin - Cài đặt</title>
   <?php require('inc/links.php'); ?>
 </head>
 <body class="bg-light">
@@ -18,21 +18,21 @@
   <div class="container-fluid" id="main-content">
     <div class="row">
       <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-        <h3 class="mb-4">Cài đặt</h3>
+        <h3 class="mb-4">CÀI ĐẶT</h3>
 
         <!-- General settings section -->
 
         <div class="card border-0 shadow-sm mb-4">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="card-title m-0">Cài đặt chung</h5>
+              <h5 class="card-title m-0">Chỉnh sửa</h5>
               <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#general-s">
-                <i class="bi bi-pencil-square"></i> Sửa
+                <i class="bi bi-pencil-square"></i> Chỉnh sửa
               </button>
             </div>
-            <h6 class="card-subtitle mb-1 fw-bold">Tiêu đề</h6>
+            <h6 class="card-subtitle mb-1 fw-bold">Tiêu đề trang</h6>
             <p class="card-text" id="site_title"></p>
-            <h6 class="card-subtitle mb-1 fw-bold">Giới thiệu</h6>
+            <h6 class="card-subtitle mb-1 fw-bold">Về chúng tôi</h6>
             <p class="card-text" id="site_about"></p>
           </div>
         </div>
@@ -44,21 +44,21 @@
             <form id="general_s_form">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Cài đặt chung</h5>
+                  <h5 class="modal-title">Chỉnh sửa</h5>
                 </div>
                 <div class="modal-body">
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Tiêu đề</label>
+                    <label class="form-label fw-bold">Tiêu đề trang</label>
                     <input type="text" name="site_title" id="site_title_inp" class="form-control shadow-none" required>
                   </div>
                   <div class="mb-3">
-                    <label class="form-label fw-bold">Giới thiệu</label>
+                    <label class="form-label fw-bold">Về chúng tôi</label>
                     <textarea name="site_about" id="site_about_inp" class="form-control shadow-none" rows="6" required></textarea>
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" onclick="site_title.value = general_data.site_title, site_about.value = general_data.site_about" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Hủy</button>
-                  <button type="submit" class="btn custom-bg text-white shadow-none">Lưu</button>
+                  <button type="button" onclick="site_title.value = general_data.site_title, site_about.value = general_data.site_about" class="btn text-secondary shadow-none" data-bs-dismiss="modal">HỦY</button>
+                  <button type="submit" class="btn custom-bg text-white shadow-none">GỬI</button>
                 </div>
               </div>
             </form>
@@ -69,7 +69,7 @@
         <div class="card border-0 shadow-sm mb-4">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="card-title m-0">Đóng Website</h5>
+              <h5 class="card-title m-0">Ngưng hoạt động trang</h5>
               <div class="form-check form-switch">
                 <form>
                   <input onchange="upd_shutdown(this.value)" class="form-check-input" type="checkbox" id="shutdown-toggle">
@@ -77,7 +77,7 @@
               </div>
             </div>
             <p class="card-text">
-              No customers will be allowed to book hotel room, when shutdown mode is turned on.
+              Khi ngưng hoạt động, khách hàng không thể đặt phòng.
             </p>
           </div>
         </div>
@@ -86,9 +86,9 @@
         <div class="card border-0 shadow-sm mb-4">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="card-title m-0">Liên hệ</h5>
+              <h5 class="card-title m-0">Chỉnh sửa liên lạc</h5>
               <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#contacts-s">
-                <i class="bi bi-pencil-square"></i> Sửa
+                <i class="bi bi-pencil-square"></i> Chỉnh sửa
               </button>
             </div>
             <div class="row">
@@ -102,7 +102,7 @@
                   <p class="card-text" id="gmap"></p>
                 </div>
                 <div class="mb-4">
-                  <h6 class="card-subtitle mb-1 fw-bold">Hotline</h6>
+                  <h6 class="card-subtitle mb-1 fw-bold">Số điện thoại</h6>
                   <p class="card-text mb-1">
                     <i class="bi bi-telephone-fill"></i>
                     <span id="pn1"></span>
@@ -113,13 +113,13 @@
                   </p>
                 </div>
                 <div class="mb-4">
-                  <h6 class="card-subtitle mb-1 fw-bold">E-mail</h6>
+                  <h6 class="card-subtitle mb-1 fw-bold">Email</h6>
                   <p class="card-text" id="email"></p>
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="mb-4">
-                  <h6 class="card-subtitle mb-1 fw-bold">Social Links</h6>
+                  <h6 class="card-subtitle mb-1 fw-bold">Mạng xã hội</h6>
                   <p class="card-text mb-1">
                     <i class="bi bi-facebook me-1"></i>
                     <span id="fb"></span>
@@ -134,7 +134,7 @@
                   </p>
                 </div>
                 <div class="mb-4">
-                  <h6 class="card-subtitle mb-1 fw-bold">Link map</h6>
+                  <h6 class="card-subtitle mb-1 fw-bold">Vị trí</h6>
                   <iframe id="iframe" class="border p-2 w-100" loading="lazy"></iframe>
                 </div>
               </div>
@@ -149,7 +149,7 @@
             <form id="contacts_s_form">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title">Liên hệ</h5>
+                  <h5 class="modal-title">Chỉnh sửa liên lạc</h5>
                 </div>
                 <div class="modal-body">
                   <div class="container-fluid p-0">
@@ -164,7 +164,7 @@
                           <input type="text" name="gmap" id="gmap_inp" class="form-control shadow-none" required>
                         </div>
                         <div class="mb-3">
-                          <label class="form-label fw-bold">Hotline</label>
+                          <label class="form-label fw-bold">Số điện thoại</label>
                           <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-telephone-fill"></i></span>
                             <input type="number" name="pn1" id="pn1_inp" class="form-control shadow-none" required>
@@ -181,7 +181,7 @@
                       </div>
                       <div class="col-md-6">
                         <div class="mb-3">
-                          <label class="form-label fw-bold">Social Links</label>
+                          <label class="form-label fw-bold">Link Mạng Xã Hội</label>
                           <div class="input-group mb-3">
                             <span class="input-group-text"><i class="bi bi-facebook"></i></span>
                             <input type="text" name="fb" id="fb_inp" class="form-control shadow-none" required>
@@ -196,7 +196,7 @@
                           </div>
                         </div>
                         <div class="mb-3">
-                          <label class="form-label fw-bold">iFrame Src</label>
+                          <label class="form-label fw-bold">Vị trí</label>
                           <input type="text" name="iframe" id="iframe_inp" class="form-control shadow-none" required>
                         </div>
                       </div>
@@ -204,8 +204,8 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" onclick="contacts_inp(contacts_data)" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Hủy</button>
-                  <button type="submit" class="btn custom-bg text-white shadow-none">Lưu</button>
+                  <button type="button" onclick="contacts_inp(contacts_data)" class="btn text-secondary shadow-none" data-bs-dismiss="modal">HỦY</button>
+                  <button type="submit" class="btn custom-bg text-white shadow-none">GỬI</button>
                 </div>
               </div>
             </form>
@@ -217,7 +217,7 @@
         <div class="card border-0 shadow-sm mb-4">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-3">
-              <h5 class="card-title m-0">Đội ngũ quản lý</h5>
+              <h5 class="card-title m-0">Quản lý nhóm</h5>
               <button type="button" class="btn btn-dark shadow-none btn-sm" data-bs-toggle="modal" data-bs-target="#team-s">
                 <i class="bi bi-plus-square"></i> Thêm
               </button>
@@ -249,8 +249,8 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" onclick="member_name.value='', member_picture.value=''" class="btn text-secondary shadow-none" data-bs-dismiss="modal">Hủy</button>
-                  <button type="submit" class="btn custom-bg text-white shadow-none">Lưu</button>
+                  <button type="button" onclick="member_name.value='', member_picture.value=''" class="btn text-secondary shadow-none" data-bs-dismiss="modal">HỦY</button>
+                  <button type="submit" class="btn custom-bg text-white shadow-none">GỬI</button>
                 </div>
               </div>
             </form>

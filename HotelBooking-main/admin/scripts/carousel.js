@@ -23,16 +23,16 @@ function add_image()
     modal.hide();
 
     if(this.responseText == 'inv_img'){
-      alert('error','Chỉ nhận ảnh JPG và PNG!!');
+      alert('error','Chỉ ảnh JPG and PNG được chấp nhận!');
     }
     else if(this.responseText == 'inv_size'){
-      alert('error','Ảnh phải nhỏ hơn 2MB!');
+      alert('error','Ảnh phải duới 2MB!');
     }
     else if(this.responseText == 'upd_failed'){
-      alert('error','Tải ảnh thất bại!');
+      alert('error','Tải anh thất bại!');
     }
     else{
-      alert('success','New image added!');
+      alert('success','Đã thêm ảnh!');
       carousel_picture_inp.value='';
       get_carousel();
     }

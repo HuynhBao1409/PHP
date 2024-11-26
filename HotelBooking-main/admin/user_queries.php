@@ -11,20 +11,20 @@
       $q = "UPDATE `user_queries` SET `seen`=?";
       $values = [1];
       if(update($q,$values,'i')){
-        alert('success','Marked all as read!');
+        alert('success','Đã đọc hết!');
       }
       else{
-        alert('error','Operation Failed!');
+        alert('error','Thất bại!');
       }
     }
     else{
       $q = "UPDATE `user_queries` SET `seen`=? WHERE `sr_no`=?";
       $values = [1,$frm_data['seen']];
       if(update($q,$values,'ii')){
-        alert('success','Marked as read!');
+        alert('success','Đã đọc!');
       }
       else{
-        alert('error','Operation Failed!');
+        alert('error','Thất bại!');
       }
     }
   }
@@ -36,20 +36,20 @@
     if($frm_data['del']=='all'){
       $q = "DELETE FROM `user_queries`";
       if(mysqli_query($con,$q)){
-        alert('success','All data deleted!');
+        alert('success','Đã xóa hết!');
       }
       else{
-        alert('error','Operation failed!');
+        alert('error','Thất bại!');
       }
     }
     else{
       $q = "DELETE FROM `user_queries` WHERE `sr_no`=?";
       $values = [$frm_data['del']];
       if(delete($q,$values,'i')){
-        alert('success','Data deleted!');
+        alert('success','Đã xóa!');
       }
       else{
-        alert('error','Operation failed!');
+        alert('error','Thất bại!');
       }
     }
   }
@@ -60,7 +60,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Panel - User Queries</title>
+  <title>Trang Admin - Thư khách hàng</title>
   <?php require('inc/links.php'); ?>
 </head>
 <body class="bg-light">
@@ -70,17 +70,17 @@
   <div class="container-fluid" id="main-content">
     <div class="row">
       <div class="col-lg-10 ms-auto p-4 overflow-hidden">
-        <h3 class="mb-4">USER QUERIES</h3>
+        <h3 class="mb-4">THƯ KHÁCH HÀNG</h3>
 
         <div class="card border-0 shadow-sm mb-4">
           <div class="card-body">
 
             <div class="text-end mb-4">
               <a href="?seen=all" class="btn btn-dark rounded-pill shadow-none btn-sm">
-                <i class="bi bi-check-all"></i> Mark all read
+                <i class="bi bi-check-all"></i> Đọc hết
               </a>
               <a href="?del=all" class="btn btn-danger rounded-pill shadow-none btn-sm">
-                <i class="bi bi-trash"></i> Delete all
+                <i class="bi bi-trash"></i> Xóa hết
               </a>
             </div>
 
@@ -89,12 +89,12 @@
                 <thead class="sticky-top">
                   <tr class="bg-dark text-light">
                     <th scope="col">#</th>
-                    <th scope="col">Name</th>
+                    <th scope="col">Tên</th>
                     <th scope="col">Email</th>
-                    <th scope="col" width="20%">Subject</th>
-                    <th scope="col" width="30%">Message</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col" width="20%">Tiêu đề</th>
+                    <th scope="col" width="30%">Lời nhắn</th>
+                    <th scope="col">Ngày</th>
+                    <th scope="col">Hành động</th>
                   </tr>
                 </thead>
                 <tbody>

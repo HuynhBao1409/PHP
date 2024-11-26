@@ -2,53 +2,13 @@
 
   require('../admin/inc/db_config.php');
   require('../admin/inc/essentials.php');
-  require("../inc/sendgrid/sendgrid-php.php");
 
-  date_default_timezone_set("Asia/Kolkata");
+  date_default_timezone_set("Asia/Ho_Chi_Minh");
 
 
-  function send_mail($uemail,$token,$type)
-  {
 
-    if($type == "email_confirmation"){
-      $page = 'email_confirm.php';
-      $subject = "Account Verification Link";
-      $content = "confirm your email";
-    }
-    else{
-      $page = 'index.php';
-      $subject = "Account Reset Link";
-      $content = "reset your account";
-    }
 
-    $email = new \SendGrid\Mail\Mail(); 
-    $email->setFrom(SENDGRID_EMAIL,SENDGRID_NAME);
-    $email->setSubject($subject);
-
-    $email->addTo($uemail);
-
-    $email->addContent(
-        "text/html", 
-        "
-          Click the link to $content: <br>
-          <a href='".SITE_URL."$page?$type&email=$uemail&token=$token"."'>
-            CLICK ME
-          </a>
-        "
-    );
-
-    $sendgrid = new \SendGrid(SENDGRID_API_KEY);
-
-    try{
-      $sendgrid->send($email);
-      return 1;
-    }
-    catch (Exception $e){
-      return 0;
-    }
-  }
-
-  if(isset($_POST['register']))
+if(isset($_POST['register']))
   {
     $data = filteration($_POST);
 
@@ -85,10 +45,8 @@
 
     $enc_pass = password_hash($data['pass'],PASSWORD_BCRYPT);
 
-
     $query = "INSERT INTO `user_cred`(`name`, `email`, `address`, `phonenum`, `pincode`, `dob`,`profile`, `password`, `is_verified`) VALUES (?,?,?,?,?,?,?,?,?)";
     $values = [$data['name'],$data['email'],$data['address'],$data['phonenum'],$data['pincode'],$data['dob'],$img,$enc_pass,'1'];
-
 
 
     if(insert($query,$values,'sssssssss')){
